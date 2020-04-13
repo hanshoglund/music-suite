@@ -55,6 +55,7 @@ library
                         MonadRandom,
                         colour,
                         logict,
+                        monad-bayes,
                         parsec,
                         directory,
                         prettify,
