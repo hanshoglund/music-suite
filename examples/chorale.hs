@@ -4,7 +4,10 @@
 import Music.Prelude
 import Control.Lens (set)
 import qualified Music.Score as S
+import Control.Monad.Bayes.Class
 
+main :: IO ()
+main = defaultMain music
 
 chorale :: (IsPitch a, HasParts' a, S.Part a ~ Part) =>
   [Voice (Maybe Pitch)] -> Score a
@@ -19,5 +22,3 @@ music = compress 4 $ delay 3 $ chorale $ fmap mconcat
   , down _P8 [ c, f_, e_, a_, a_, f_, g_, c, gs_, a_, d_, e_, e_, a_ |*3 ]
   ]
 
-main :: IO ()
-main = defaultMain music
