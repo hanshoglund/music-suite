@@ -14,12 +14,24 @@ music = inspectableToMusic @[Voice Pitch] $
   ]
   where
     cf =
-      [f,e,c,d]
+      -- [f,e,c,d]
       -- [f,e,f,d,e]
       -- [e,f,g,e,d]
       -- [c,g,a,g,f]
+      [b_,d,e,d,g,f]
 
+consonant :: Interval -> Bool
 consonant v = v /= _P4 && isConsonance v && isMelodicConsonance v
+
+parallelsForbidden :: Interval -> Bool
+parallelsForbidden v = v `elem` [_P5, _P1, _P8]
+
+-- | Check if two melodic intervals approach in the same direction.
+-- Returns False if at least one of the intervals is a perfect unison.
+isParallel :: Interval -> Interval -> Bool
+isParallel v w = if isPerfectUnison v || isPerfectUnison w
+  then False
+  else isPositive v == isPositive w
 
 -- |
 -- >>> withPrev [1..4]
@@ -30,11 +42,14 @@ withPrev xs = zip xs (tail xs)
 -- | First species counterpoint.
 species1 :: MonadInfer m => Pitch -> [Pitch] -> m [Pitch]
 species1 tonic cf = do
-  -- Generate countersubject
+  -- Generate harmonically consonant countersubject
   voice2 <- for cf (noteAbove tonic)
   -- Check countersubject is melodically consonant
   condition $ all (\(x,y) -> isMelodicConsonance (x .-. y)) $ withPrev voice2
-  -- TODO check no parallel unisons/fifths/octaves
+  -- Check no parallel unisons/fifths/octaves
+  for (withPrev $ zip cf voice2) $ \((cf0, cs0),(cf1, cs1)) ->
+    when (parallelsForbidden (cs1 .-. cf1)) $
+       condition $ not $ isParallel (cf1 .-. cf0) (cs1 .-. cs0)
   -- Prefer countersubjects with few skips
   for (withPrev voice2) $ \(x, y) ->
     if (x == y)
