@@ -14,11 +14,12 @@ music = inspectableToMusic @[Voice Pitch] $
   ]
   where
     cf =
+      [c,d,e,c,d]
       -- [f,e,c,d]
       -- [f,e,f,d,e]
       -- [e,f,g,e,d]
       -- [c,g,a,g,f]
-      [b_,d,e,d,g,f]
+      -- [b_,d,e,d,g,f]
 
 consonant :: Interval -> Bool
 consonant v = v /= _P4 && isConsonance v && isMelodicConsonance v
@@ -53,7 +54,7 @@ species1 tonic cf = do
   -- Prefer countersubjects with few skips
   for (withPrev voice2) $ \(x, y) ->
     if (x == y)
-      then condition =<< bernoulli 0.001
+      then condition =<< bernoulli 0.1
       else if isStep (x .-. y)
         then condition =<< bernoulli 0.9
         else condition =<< bernoulli 0.05
