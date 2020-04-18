@@ -535,6 +535,16 @@ executable "music-suite-examples-salient-melodic-transformations"
     ghc-options:        -fno-code
     main-is:            Score.hs
 
+executable "music-suite-examples-species-counterpoint"
+    build-depends:      base,
+                        lens,
+                        containers,
+                        random,
+                        monad-bayes,
+                        music-suite
+    hs-source-dirs:     examples
+    ghc-options:        -fno-code
+    main-is:            SpeciesCounterpoint.hs
 
 -- TODO CrawfordSeeger
 -- TODO Floaters

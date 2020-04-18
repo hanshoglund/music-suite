@@ -4,7 +4,6 @@
 import Music.Prelude
 import Control.Lens (set)
 import qualified Music.Score as S
-import Control.Monad.Bayes.Class
 
 main :: IO ()
 main = defaultMain music
