@@ -90,7 +90,7 @@ Consider switching to a decentralized issue tracker such as:
   - Remove HasOctaves/HasQuality/HasNumber (retain interval instance)
   - Remove Augmentable/Alterable (?)
   - Remove triples/pairs in favor of explicit traversals (see example in Time.Score)
-  - Pattern does not need Reversible! (Just use forward version: think modulo arithmetic.)
+  - [X] Pattern does not need Reversible! (Just use forward version: think modulo arithmetic.)
   - Chord/Scale:
     - [X] Use DataKinds/phantom type to distinguish chord vs scale (only difference is Inspectable instance)
       - Single GADT ScaleChord with "3 dimensions"
@@ -360,14 +360,17 @@ Consider switching to a decentralized issue tracker such as:
 - [X] Large scores makes Lilypond segfault
   - Solved by upgrading to Lilypond 2.20
 
-- [ ] Examples should not be Cabal executables
+- [X] Examples should not be Cabal executables
+  - Fixed by adding -fno-code
   - Saves the slow linking step when doing Cabal build
     - Could also just disable codegen/linking!
     - Test in CI with cabal runhaskell
       - Note we need to *run* the examples to make sure the expressions don't
         diverge.
-  - Related:
-    - [ ] Get rid of duplication in music-suite.cabal
+
+- [ ] Get rid of Transformable constraint in Pattern API
+
+- [ ] Get rid of duplication in music-suite.cabal
 
 - Test generating all examples/documentation (and add more) in CI (nightly?)
   - [ ] Make CI validate MIDI output (how?)
@@ -438,7 +441,9 @@ Consider switching to a decentralized issue tracker such as:
 
 - Check `examples` dir for code that can be moved upstream to the main library
 
-- Finalize and test laws for Splittable/Reversible
+- Finalize and test laws for
+  - [ ] Splittable
+  - [X] Reversible (WONT FIX: Reversible has been removed)
 
 - $splitSemantics
   - [ ] Check split semantics for Voice/Note. Should be possble to write a simple instance for both not and voice,
@@ -696,6 +701,8 @@ Consider switching to a decentralized issue tracker such as:
 - Import data from various corpuses
   - musescore.com
   - https://web.mit.edu/music21/doc/about/referenceCorpus.html
+  - http://kern.ccarh.org/
+  - Nice viwer: https://verovio.humdrum.org/
 
 - [X] $reactiveSemantics
   - Briefly: Simultaneous events should not be allowed with Reactive. Semantically:

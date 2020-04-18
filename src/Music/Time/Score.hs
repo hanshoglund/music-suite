@@ -94,6 +94,8 @@ import qualified Data.Traversable as T
 import Data.Typeable
 import Data.VectorSpace
 import Data.VectorSpace hiding (Sum (..))
+import Iso.Deriving
+
 import Music.Dynamics.Literal
 import Music.Pitch.Literal
 import Music.Time.Event
@@ -195,9 +197,6 @@ instance FromJSON a => FromJSON (Score a) where
 instance Transformable (Score a) where
   transform t (Score (m, x)) = Score (transform t m, transform t x)
 
--- instance Reversible a => Reversible (Score a) where
--- rev (Score (m,x)) = Score (rev m, rev x)
-
 -- instance Splittable a => Splittable (Score a) where
 -- split t (Score (m,x)) = (Score (m1,x1), Score (m2,x2))
 -- where
@@ -259,12 +258,15 @@ deriving via
   instance
     Monad Score'
 
-instance Isomorphic (WriterT Span [] x) (Score' x) where
+instance Inject (WriterT Span [] x) (Score' x) where
 
   -- TODO zero-cost version
   inj (WriterT xs) = Score' (fmap (view event . swap) xs)
 
+instance Project (WriterT Span [] x) (Score' x) where
   prj (Score' xs) = WriterT (fmap (swap . view (from event)) xs)
+
+instance Isomorphic (WriterT Span [] x) (Score' x) where
 
 swap :: (a, b) -> (b, a)
 swap (x, y) = (y, x)
@@ -284,8 +286,6 @@ instance MonadPlus Score' where
 instance Transformable (Score' a) where
   transform t = Score' . transform t . getScore'
 
--- instance Reversible a => Reversible (Score' a) where
---   rev (Score' xs) = Score' (fmap rev xs)
 instance HasPosition (Score' a) where
   _era x = case foldMap (NonEmptyInterval . _era1) $ getScore' x of
     EmptyInterval -> Nothing
@@ -488,48 +488,3 @@ anyDistinctOverlaps xs = hasDuplicates xs || anyOverlaps xs
 combined :: Eq a => (a -> a -> b) -> [a] -> [b]
 combined f as = mcatMaybes [if x == y then Nothing else Just (x `f` y) | x <- as, y <- as]
 
--- TODO move:
--- type As1 :: k1 -> (k2 -> Type) -> k2 -> Type
-newtype As1 f g a = As1 {getAs1 :: g a}
-
--- |
--- Laws: isom is an isomorphism, that is:
---
--- @
--- view isom . view (from isom) = id = view (from isom) . view isom
--- @
-class Isomorphic a b where
-
-  isom :: Iso' a b
-  isom = iso inj prj
-
-  inj :: Isomorphic a b => a -> b
-  inj = view isom
-
-  prj :: Isomorphic a b => b -> a
-  prj = view $ from isom
-
-instance (forall x. Isomorphic (f x) (g x), Functor f) => Functor (As1 f g) where
-  fmap h (As1 x) = As1 $ inj $ fmap h $ prj @(f _) @(g _) x
-
-instance (forall x. Isomorphic (f x) (g x), Applicative f) => Applicative (As1 f g) where
-
-  pure x = As1 $ inj @(f _) @(g _) $ pure x
-
-  (<*>) :: forall a b. As1 f g (a -> b) -> As1 f g a -> As1 f g b
-  As1 h <*> As1 x = As1 $ inj @(f b) @(g b) $ (prj @(f (a -> b)) @(g (a -> b)) h) <*> (prj @(f a) @(g a) x)
-
--- TODO use liftA2 instead of <*>, requires recent base library!
--- liftA2 h (As1 x) (As1 y) = As1 $ inj $ liftA2 h (prj x) (prj y)
-
-instance (forall x. Isomorphic (f x) (g x), Alternative f) => Alternative (As1 f g) where
-
-  empty :: forall a. As1 f g a
-  empty = As1 $ inj @(f a) @(g a) $ empty
-
-  (<|>) :: forall a. As1 f g a -> As1 f g a -> As1 f g a
-  As1 h <|> As1 x = As1 $ inj @(f a) @(g a) $ (prj @(f a) @(g a) h) <|> (prj @(f a) @(g a) x)
-
-instance (forall x. Isomorphic (f x) (g x), Monad f) => Monad (As1 f g) where
-  (>>=) :: forall a b. As1 f g a -> (a -> As1 f g b) -> As1 f g b
-  As1 k >>= f = As1 $ inj @(f b) @(g b) $ (prj @(f a) @(g a) k) >>= prj . getAs1 . f

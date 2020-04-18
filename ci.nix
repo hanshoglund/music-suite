@@ -1,4 +1,8 @@
 
+# CI config: same as default but without Lilypond/Pandoc/Timidity (so no doc generation!)
+#
+# TODO unify this expression with default.nix
+
 let
   opts = {
     packageOverrides = pkgs: rec {
@@ -20,13 +24,9 @@ in
 pkgs.stdenv.mkDerivation {
   name = "music-suite";
   buildInputs = [
-
-    pkgs.lilypond
-    pkgs.timidity
     (
     pkgs.haskellPackages.ghcWithPackages (pkgs:
         [ pkgs.cabal-install
-          pkgs.pandoc
         ])
     )
    ];
@@ -34,3 +34,4 @@ pkgs.stdenv.mkDerivation {
   export PS1="music-suite-build> "
   '';
 }
+
