@@ -92,7 +92,7 @@ cut _ = mempty
 -- TODO transcribe more from manual notes. Try to make everything into functions
 -- (find some parameter to vary). Examples:
 
--- TODO a la Stravinsky:
+-- A la Stravinsky:
 -- [False, False, False, False, False, False, False, False, False, True, False, True, False, False, False, False, False, True, False, False]
 beats ::
   ( IsPitch a,
@@ -213,6 +213,10 @@ music =
           [(m2, 15), (- m2, 8), (m2, 22)],
       -- TODO use spread-out "randomly occuring" events, as in the beginning
       -- of "Circue Glacier"
+
+
+      -- TODO block chords with attacks in them (perc/brass)
+      -- a la 2nd part of "Cirque Clacier"
 
       flip renderPattern (0 <-> 10) $ compress 8 $
         palindrChords
