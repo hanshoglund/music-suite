@@ -18,7 +18,8 @@ import qualified Data.List
 
 main = defaultMain music
 
-type GetPart a = S.Part a
+type GetPart a  = S.Part a
+type GetPitch a = S.Pitch a
 
 multiTempoCanon
   :: (IsPitch a, HasParts' a, S.Part a ~ Part)
@@ -85,7 +86,10 @@ beats f = newPattern . view voice . fmap f
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [Vec 3 Pitch] -> Pattern a
 
 -- TODO a la "Bauer 1918"
---  (IsPitch a, HasParts' a, GetPart a ~ Part) => [(Interval, Integer)] -> Pattern a
+-- There is something similar in West Side Story dream ballet
+-- This is basically an "orchestrated" drum roll
+instrRoll :: (IsPitch a, HasPitches' a, GetPitch a ~ Pitch, HasParts' a, GetPart a ~ Part) => [(Interval, Int)] -> Voice a
+instrRoll = mconcat . fmap (view voice . (\(i,n) -> compress 16 $ up i c : replicate n c))
 
 -- TODO a la "When I Dream"
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [[Pitch]] -> Pattern a
@@ -118,7 +122,7 @@ renderFloater (Floater xs) = mconcat $
 -- Thus explore variations of *similar* material.
 --
 --
--- TODO add more! Figure out what to cut later!
+-- TODO add more! Figure out what to cut
 music =
   times 1 $ pseq
   [ mempty
