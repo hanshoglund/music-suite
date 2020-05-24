@@ -133,6 +133,9 @@ music =
     , tune = [c,d,e,g,d |* 2]^.voice
     }
 
+  -- TODO use multiTempoCanon/renderFloater not with *notes*, but
+  -- some higher level concern (slowly!). Use Score.join
+
   , multiTempoCanon'
     [ (divide 2 cellos !! 0, _P5,        4 >-> (2/3))
     , (divide 2 cellos !! 1, _P1,        2 >-> 1)
