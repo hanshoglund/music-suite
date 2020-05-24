@@ -111,9 +111,8 @@ beats f = newPattern . view voice . fmap f
 -- TODO a la "Incandescence"
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [Vec 3 Pitch] -> Pattern a
 
--- TODO a la "Bauer 1918"
--- There is something similar in West Side Story dream ballet
--- This is basically an "orchestrated" drum roll
+-- | A la "Bauer 1918" or West Side Story dream ballet.  This is basically an
+-- "orchestrated" drum roll.
 instrRoll ::
   ( IsPitch a,
     HasPitches' a,
