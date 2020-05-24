@@ -155,7 +155,8 @@ palindrChords = mconcat . fmap
   (newPattern . (\(r,ps) -> set parts' r $ view voice $ fmap fromPitch $ palindr ps))
   where
     palindr [] = []
-    palindr xs = init xs ++ [last xs] ++ reverse (init xs)
+    palindr [x] = [x]
+    palindr xs = init xs ++ [last xs] ++ reverse (init $ tail xs)
 
 
 -- TODO add orchestration
