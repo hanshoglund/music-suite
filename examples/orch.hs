@@ -1,4 +1,4 @@
-{-# LANGUAGE TypeFamilies, NamedFieldPuns #-}
+{-# LANGUAGE TypeFamilies, FlexibleContexts, NamedFieldPuns #-}
 {-
  - Orchestra piece
  -
@@ -20,6 +20,7 @@ main = defaultMain music
 
 type GetPart a  = S.Part a
 type GetPitch a = S.Pitch a
+type GetArticulation a = S.Articulation a
 
 multiTempoCanon
   :: (IsPitch a, HasParts' a, S.Part a ~ Part)
@@ -91,8 +92,8 @@ beats f = newPattern . view voice . fmap f
 -- TODO a la "Bauer 1918"
 -- There is something similar in West Side Story dream ballet
 -- This is basically an "orchestrated" drum roll
-instrRoll :: (IsPitch a, HasPitches' a, GetPitch a ~ Pitch, HasParts' a, GetPart a ~ Part) => [(Interval, Int)] -> Voice a
-instrRoll = mconcat . fmap (view voice . (\(i,n) -> compress 16 $ up i c : replicate n c))
+instrRoll :: (IsPitch a, HasPitches' a, GetPitch a ~ Pitch, HasParts' a, GetPart a ~ Part, HasArticulations' a, Articulated (GetArticulation a)) => [(Interval, Int)] -> Voice a
+instrRoll = mconcat . fmap (view voice . (\(i,n) -> compress 16 $ up i (accentAll c) : replicate n c))
 
 -- TODO a la "When I Dream"
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [[Pitch]] -> Pattern a
