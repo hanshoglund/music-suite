@@ -8,11 +8,13 @@
 import Music.Prelude
 import qualified Ex.StringTexture
 import qualified P.SustainPunctuated.Score
+import qualified P.WindsPhrasing.Score
 
 main = defaultMain music
 
 music =
-  pseq
+  times 1 $ pseq
   [ P.SustainPunctuated.Score.music
   , Ex.StringTexture.music
+  , P.WindsPhrasing.Score.music
   ]

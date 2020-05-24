@@ -1,6 +1,8 @@
 
 {-# LANGUAGE TypeFamilies, ConstraintKinds, FlexibleContexts #-}
 
+module P.WindsPhrasing.Score (music, main) where
+
 import Music.Prelude
 
 main = defaultMain music
