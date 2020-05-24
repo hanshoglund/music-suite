@@ -142,6 +142,21 @@ instrRoll =
 
 -- TODO a la "When I Dream"
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [[Pitch]] -> Pattern a
+palindrChords ::
+  ( IsPitch a,
+    HasPitches' a,
+    GetPitch a ~ Pitch,
+    HasParts' a,
+    GetPart a ~ Part
+  ) =>
+  [(Part, [Pitch])] ->
+  Pattern a
+palindrChords = mconcat . fmap
+  (newPattern . (\(r,ps) -> set parts' r $ view voice $ fmap fromPitch ps))
+  where
+    palindr [] = []
+    palindr xs = init xs ++ [last xs] ++ reverse (init xs)
+
 
 -- TODO add orchestration
 -- TODO allow other types of inversion (e.g. diatonic)
@@ -187,11 +202,18 @@ music :: Music
 music =
   pseq $
     [ mempty,
-      renderAlignedVoice $ aligned 0 0 $
+
+
+      cut $ renderAlignedVoice $ aligned 0 0 $
         instrRoll
           [(m2, 15), (- m2, 8), (m2, 22)],
       -- TODO use spread-out "randomly occuring" events, as in the beginning
       -- of "Circue Glacier"
+
+      flip renderPattern (0 <-> 10) $ compress 8 $ palindrChords
+        [(trumpets1, [e,g,c']),
+         (trumpets2, [bb_,e,bb])
+        ],
 
       -- TODO more floaters (a la Mist)
       -- TODO pad!
@@ -227,7 +249,6 @@ music =
             (divide 2 doubleBasses !! 1, - _P8, 0 >-> 2)
           ]
           (view voice [c, d, e |* 2, c, d, d, e |* 1.5, e, f, d, e, c |* 2, d |* 2]),
-
       flip renderPattern (0 <-> 30) $ compress 16 $
         multiTempoCanon
           [ (divide 2 cellos !! 0, _P5, 4 >-> 1.2321),
