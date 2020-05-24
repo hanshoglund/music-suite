@@ -158,6 +158,7 @@ data ChordMotion v p
       }
   deriving (Eq, Ord, Show)
 
+-- | Inverted chord motion a la Tan Dun "The Map".
 -- TODO add orchestration
 -- TODO allow other types of inversion (e.g. diatonic)
 chordMotion ::
@@ -187,7 +188,7 @@ invertVoice x = case lowestPitch x of
 
 newtype Floater a = Floater [(Alignment, Voice a)]
 
--- TODO canwe also render this into a pattern?
+-- TODO can we also render this into a pattern?
 renderFloater :: Floater a -> Score a
 renderFloater (Floater xs) =
   mconcat $
