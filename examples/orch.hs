@@ -69,6 +69,12 @@ data ChordMotion v p = ChordMotion
 --  data StrumType = Strum | BassStrum | NoStrum
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [StrumType] -> Pattern a
 
+-- TODO a la "Incandescence"
+--  (IsPitch a, HasParts' a, GetPart a ~ Part) => [Vec 3 Pitch] -> Pattern a
+
+-- TODO a la "Bauer 1918"
+--  (IsPitch a, HasParts' a, GetPart a ~ Part) => [(Interval, Integer)] -> Pattern a
+
 -- TODO a la "When I Dream"
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [[Pitch]] -> Pattern a
 
