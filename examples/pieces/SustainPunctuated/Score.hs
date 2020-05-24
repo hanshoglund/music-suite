@@ -4,7 +4,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeFamilies #-}
 
-module Main where
+module P.SustainPunctuated.Score (music, main) where
 
 import Control.Lens (_head, _last, each, nullOf)
 import qualified Data.List
@@ -14,7 +14,7 @@ import Music.Prelude
 import qualified Music.Score.Pitch
 import qualified Music.Score.Pitch as S
 
-main = defaultMain $ inspectableToMusic music
+main = defaultMain music
 
 {-
 Main idea: Given a melody, decorate it by artificially sustaining certain notes.
