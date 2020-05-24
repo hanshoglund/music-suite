@@ -206,6 +206,24 @@ renderFloater (Floater xs) =
 --  * Higher notes can be more dissonant (prefer large consonant intervals at bottom)
 --  * Faster/passing notes (phased w.r.t. to "grid" if there is one) can be more dissonant
 
+-- TODO something like p126 in Broberg "Natura Cycle"
+-- https://issuu.com/kberg444/docs/naturacycle
+--
+-- also p26 in "Transformative States"
+-- https://issuu.com/kberg444/docs/transformativestateswindsymphonyall
+--
+-- Also this entire quartet:
+--  https://issuu.com/kberg444/docs/inwardall2020
+
+
+-- Title: "Superior mirage"?
+-- Ray tracing?
+--  https://www.atoptics.co.uk/fz150.htm
+
+
+
+
+
 -- TODO make most/all of the below into functions (of simple types).
 -- Thus explore variations of *similar* material.
 --
