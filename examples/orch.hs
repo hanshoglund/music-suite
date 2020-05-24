@@ -13,6 +13,7 @@ import qualified P.WindsPhrasing.Score
 import qualified P.BrassLargeEnsemble.Score
 import qualified Ex.Sky
 import qualified Ex.Voicing
+import qualified Data.List
 
 main = defaultMain music
 
@@ -36,6 +37,27 @@ multiTempoCanon'
   -> Score a
 multiTempoCanon' entries subj = mconcat $ fmap
   (\(p,i,t) -> renderAlignedVoice $ transform t $ aligned 0 0 $ set parts' p $ fmap fromPitch $ up i subj) entries
+
+applyBehavior :: Behavior (a -> b) -> Score a -> Score b
+applyBehavior b = mapWithSpan (\s x -> b ! view onset s $ x)
+
+drawBehavior :: RealFrac a => Behavior a -> IO ()
+drawBehavior = fmap (const ()) . traverse print . drawBehavior'
+
+drawBehavior' :: RealFrac a => Behavior a -> [[Char]]
+drawBehavior' b = fmap (\x ->
+    flip replicate 'x' $ floor (( b ! (x / numSamples)) * maxBars))
+  [0..numSamples]
+  where
+    numSamples = 30
+    maxBars = 30
+
+  -- TODO contrary motion of chords, a la Tan Dun "Map"
+  --  { origChord :: Chord Interval Pitch
+  --  , invChord  :: Chord Interval Pitch
+  --  , tune      :: Voice Pitch
+  --  } -> Pattern (Part, Pitch)
+
 
 -- TODO make most/all of these into functions
 -- Explore variations of *similar* material
@@ -86,12 +108,6 @@ music =
 
   -- TODO palindrome phased patterns, a la Calliano "When I Dream"
   --  [[Pitch]] -> Pattern (Part, Pitch)
-
-  -- TODO contrary motion of chords, a la Tan Dun "Map"
-  --  { origChord :: Chord Interval Pitch
-  --  , invChord  :: Chord Interval Pitch
-  --  , tune      :: Voice Pitch
-  --  } -> Pattern (Part, Pitch)
 
   -- TODO make proper chords, orchestrate
   , Ex.Voicing.music
