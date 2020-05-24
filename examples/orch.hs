@@ -91,7 +91,7 @@ music =
   times 1 $ pseq
   [ mempty
 
-  , inspectableToMusic $ chordMotion $ ChordMotion
+  , flip renderPattern (0 <-> 30) $ fmap fromPitch $ chordMotion $ ChordMotion
     { origChord = voiceIn 4 $ chord c dominantSeventhChord
     , invChord  = voiceIn 2 $ chord c majorTriad
     , tune = [c,d,e,g,d |* 2]^.voice
@@ -142,4 +142,5 @@ music =
   , arrangeFor (divide 3 trumpets ++ divide 4 horns ++ divide 2 trombones)
     $ P.BrassLargeEnsemble.Score.music
   ]
+
 
