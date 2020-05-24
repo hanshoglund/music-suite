@@ -85,14 +85,6 @@ drawBehavior' b =
     numSamples = 15
     maxBars = 33
 
-data ChordMotion v p
-  = ChordMotion
-      { origChord :: Voiced Chord v p,
-        invChord :: Voiced Chord v p,
-        tune :: Voice p
-      }
-  deriving (Eq, Ord, Show)
-
 cut :: Monoid a => a -> a
 cut _ = mempty
 
@@ -140,8 +132,6 @@ instrRoll =
           . (\(i, n) -> compress 16 $ up i (accentAll c) : replicate n c)
       )
 
--- TODO a la "When I Dream"
---  (IsPitch a, HasParts' a, GetPart a ~ Part) => [[Pitch]] -> Pattern a
 palindrChords ::
   ( IsPitch a,
     HasPitches' a,
@@ -151,13 +141,22 @@ palindrChords ::
   ) =>
   [(Part, [Pitch])] ->
   Pattern a
-palindrChords = mconcat . fmap
-  (newPattern . (\(r,ps) -> set parts' r $ view voice $ fmap fromPitch $ palindr ps))
+palindrChords =
+  mconcat
+    . fmap
+      (newPattern . (\(r, ps) -> set parts' r $ view voice $ fmap fromPitch $ palindr ps))
   where
     palindr [] = []
     palindr [x] = [x]
     palindr xs = init xs ++ [last xs] ++ reverse (init $ tail xs)
 
+data ChordMotion v p
+  = ChordMotion
+      { origChord :: Voiced Chord v p,
+        invChord :: Voiced Chord v p,
+        tune :: Voice p
+      }
+  deriving (Eq, Ord, Show)
 
 -- TODO add orchestration
 -- TODO allow other types of inversion (e.g. diatonic)
@@ -199,7 +198,6 @@ renderFloater (Floater xs) =
 --  * Higher notes can be more dissonant (prefer large consonant intervals at bottom)
 --  * Faster/passing notes (phased w.r.t. to "grid" if there is one) can be more dissonant
 
-
 -- TODO make most/all of the below into functions (of simple types).
 -- Thus explore variations of *similar* material.
 --
@@ -209,19 +207,17 @@ music :: Music
 music =
   pseq $
     [ mempty,
-
-
       cut $ renderAlignedVoice $ aligned 0 0 $
         instrRoll
           [(m2, 15), (- m2, 8), (m2, 22)],
       -- TODO use spread-out "randomly occuring" events, as in the beginning
       -- of "Circue Glacier"
 
-      flip renderPattern (0 <-> 10) $ compress 8 $ palindrChords
-        [(trumpets1, [e,g,c']),
-         (trumpets2, [g_,bb_,e,bb])
-        ],
-
+      flip renderPattern (0 <-> 10) $ compress 8 $
+        palindrChords
+          [ (trumpets1, [e, g, c']),
+            (trumpets2, [g_, bb_, e, bb])
+          ],
       -- TODO more floaters (a la Mist)
       -- TODO pad!
       set parts' violins $ renderFloater $
