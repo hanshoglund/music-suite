@@ -1,3 +1,6 @@
+
+module Ex.Sky (music, main) where
+
 import Data.List (intersperse)
 import Music.Prelude
 

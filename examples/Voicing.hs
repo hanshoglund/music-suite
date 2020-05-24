@@ -1,5 +1,8 @@
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE OverloadedLists #-}
+
+module Ex.Voicing (music, main) where
+
 import Music.Prelude
 
 main = defaultMain music
