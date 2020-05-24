@@ -29,32 +29,41 @@ type GetArticulation a = S.Articulation a
 
 multiTempoCanon ::
   (IsPitch a, HasParts' a, S.Part a ~ Part) =>
+  -- | Entries (part, transposition, transformtion (phase/stretch)
   [(Part, Interval, Span)] ->
-  -- Entries (part, transposition, transformtion (phase/stretch)
-
   -- | Subject
   Voice Pitch ->
   Pattern a
 multiTempoCanon entries subj =
-  mconcat $
-    fmap
-      (\(p, i, t) -> newPattern $ transform t $ set parts' p $ fmap fromPitch $ up i subj)
-      entries
+  foldMap
+    ( \(p, i, t) ->
+        newPattern
+          $ transform t
+          $ set parts' p
+          $ fmap fromPitch
+          $ up i subj
+    )
+    entries
 
 -- | Like multiTempoCanon but without repetition.
 multiTempoCanon' ::
   (IsPitch a, HasParts' a, S.Part a ~ Part) =>
+  -- | Entries (part, transposition, transformtion (phase/stretch)
   [(Part, Interval, Span)] ->
-  -- Entries (part, transposition, transformtion (phase/stretch)
-
   -- | Subject
   Voice Pitch ->
   Score a
 multiTempoCanon' entries subj =
-  mconcat $
-    fmap
-      (\(p, i, t) -> renderAlignedVoice $ transform t $ aligned 0 0 $ set parts' p $ fmap fromPitch $ up i subj)
-      entries
+  foldMap
+    ( \(p, i, t) ->
+        renderAlignedVoice
+          $ transform t
+          $ aligned 0 0
+          $ set parts' p
+          $ fmap fromPitch
+          $ up i subj
+    )
+    entries
 
 applyBehavior :: Behavior (a -> b) -> Score a -> Score b
 applyBehavior b = mapWithSpan (\s x -> b ! view onset s $ x)
@@ -93,7 +102,11 @@ cut _ = mempty
 -- TODO a la Stravinsky:
 -- [False, False, False, False, False, False, False, False, False, True, False, True, False, False, False, False, False, True, False, False]
 beats ::
-  (IsPitch a, HasParts' a, GetPart a ~ Part, Articulated a) =>
+  ( IsPitch a,
+    HasParts' a,
+    GetPart a ~ Part,
+    Articulated a
+  ) =>
   (Bool -> Note a) ->
   [Bool] ->
   Pattern a
@@ -109,26 +122,48 @@ beats f = newPattern . view voice . fmap f
 -- TODO a la "Bauer 1918"
 -- There is something similar in West Side Story dream ballet
 -- This is basically an "orchestrated" drum roll
-instrRoll :: (IsPitch a, HasPitches' a, GetPitch a ~ Pitch, HasParts' a, GetPart a ~ Part, HasArticulations' a, Articulated (GetArticulation a)) => [(Interval, Int)] -> Voice a
-instrRoll = mconcat . fmap (view voice . (\(i, n) -> compress 16 $ up i (accentAll c) : replicate n c))
+instrRoll ::
+  ( IsPitch a,
+    HasPitches' a,
+    GetPitch a ~ Pitch,
+    HasParts' a,
+    GetPart a ~ Part,
+    HasArticulations' a,
+    Articulated (GetArticulation a)
+  ) =>
+  [(Interval, Int)] ->
+  Voice a
+instrRoll =
+  mconcat
+    . fmap
+      ( view voice
+          . (\(i, n) -> compress 16 $ up i (accentAll c) : replicate n c)
+      )
 
 -- TODO a la "When I Dream"
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [[Pitch]] -> Pattern a
 
 -- TODO add orchestration
 -- TODO allow other types of inversion (e.g. diatonic)
-chordMotion :: ChordMotion Interval Pitch -> Pattern Pitch
-chordMotion ChordMotion {origChord, invChord, tune} =
-  ( mconcat $ fmap newPattern $ homoToPolyphonic $
-      fmap
-        (\p -> Data.Foldable.toList $ getVoiced $ up (p .-. c) origChord)
-        tune
-  )
-    <> ( mconcat $ fmap newPattern $ homoToPolyphonic $
-           fmap
-             (\p -> Data.Foldable.toList $ getVoiced $ up (p .-. c) invChord)
-             (invertVoice tune)
-       )
+chordMotion ::
+  ChordMotion Interval Pitch ->
+  Pattern Pitch
+chordMotion
+  ChordMotion
+    { origChord,
+      invChord,
+      tune
+    } =
+    ( mconcat $ fmap newPattern $ homoToPolyphonic $
+        fmap
+          (\p -> Data.Foldable.toList $ getVoiced $ up (p .-. c) origChord)
+          tune
+    )
+      <> ( mconcat $ fmap newPattern $ homoToPolyphonic $
+             fmap
+               (\p -> Data.Foldable.toList $ getVoiced $ up (p .-. c) invChord)
+               (invertVoice tune)
+         )
 
 invertVoice :: Voice Pitch -> Voice Pitch
 invertVoice x = case lowestPitch x of
@@ -162,9 +197,9 @@ music =
       -- TODO pad!
       set parts' violins $ renderFloater $
         Floater
-          [ (0, pure c |* 2),
-            (0, pure e |* 2.1),
-            (0, pure g |* 3)
+          [ (0, c |* 2),
+            (0, e |* 2.1),
+            (0, g |* 3)
           ],
       flip renderPattern (0 <-> 30) $ fmap fromPitch $ chordMotion $ ChordMotion
         { origChord = voiceIn 4 $ chord c dominantSeventhChord,
@@ -190,6 +225,15 @@ music =
             (divide 2 cellos !! 1, _P1, 2 >-> 1),
             (divide 2 doubleBasses !! 0, - _P4, 1 >-> 1.5),
             (divide 2 doubleBasses !! 1, - _P8, 0 >-> 2)
+          ]
+          (view voice [c, d, e |* 2, c, d, d, e |* 1.5, e, f, d, e, c |* 2, d |* 2]),
+
+      flip renderPattern (0 <-> 30) $ compress 16 $
+        multiTempoCanon
+          [ (divide 2 cellos !! 0, _P5, 4 >-> 1.2321),
+            (divide 2 cellos !! 1, _P1, 2 >-> 1.092),
+            (divide 2 doubleBasses !! 0, - _P4, 1 >-> 1.512),
+            (divide 2 doubleBasses !! 1, - _P8, 0 >-> 1.9998)
           ]
           (view voice [c, d, e |* 2, c, d, d, e |* 1.5, e, f, d, e, c |* 2, d |* 2])
       -- TODO more patterns (a la Interludes)
