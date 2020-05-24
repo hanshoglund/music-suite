@@ -116,6 +116,9 @@ music =
   times 1 $ pseq
   [ mempty
 
+  -- TODO use spread-out "randomly occuring" events, as in the beginning
+  -- of "Circue Glacier"
+
   -- TODO more floaters (a la Mist)
   -- TODO pad!
   , set parts' violins $ renderFloater $ Floater
