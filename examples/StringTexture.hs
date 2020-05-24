@@ -5,6 +5,9 @@
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE TypeApplications #-}
 
+-- NOTE: fork of examples/piano1
+module Ex.StringTexture (music, main) where
+
 import Music.Prelude
 import qualified Music.Score.Articulation as S
 import qualified Music.Score.Pitch as S
@@ -35,17 +38,15 @@ import qualified Music.Score.Part as S
  - Also a solution to the above: simpler patterns and simpler topLevelScore!
  -}
 main =
-  -- TODO workaround for the fact that the REPL can only show
-  -- the top-level definition.
+  defaultMain music
 
-  -- defaultMain music
-  defaultMain $
+music =
     renderPattern
       (stringArpIn8 20 <> hrpGliss)
       (0 <-> 40)
 
-music :: Music
-music =
+music' :: Music
+music' =
   fmap Just $ renderPatternsAbs
     $ fmap renderSimple
     $ topLevelScore
