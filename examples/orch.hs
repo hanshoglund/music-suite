@@ -62,6 +62,9 @@ data ChordMotion v p = ChordMotion
   deriving (Eq, Ord, Show)
 
 
+-- TODO transcribe more from manual notes. Try to make everything into functions
+-- (find some parameter to vary). Examples:
+--
 -- TODO a la Stravinsky
 --  (IsPitch a, HasParts' a, GetPart a ~ Part) => [Bool] -> Pattern a
 
@@ -106,11 +109,6 @@ renderFloater (Floater xs) = mconcat $
 -- Explore variations of *similar* material
 -- Edit/manipulate parameters to turn into some kind of logical sequence
 --
--- TODO transcribe more from manual notes. Try to make everything into functions
--- (find some parameter to vary)
---
--- TODO musicalize *simple* data
--- For example Le Sacre "Dances of the Young Girls" is a "musicalization" of [Bool]
 music =
   times 1 $ pseq
   [ mempty

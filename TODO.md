@@ -20,6 +20,14 @@ Consider switching to a decentralized issue tracker such as:
 - [ ] Bug: since GHC 8.8.3 upgrade, doctester does not compile
   - Try cabal-doctest instead https://github.com/phadej/cabal-doctest
 
+- [ ] Merge visual REPL (and Web UI) into Music Suite
+  - Make it support *expressions* (or at least top-level definitions) like a classic Lisp interpreter
+  - For example: should be possible to move cursors to a top-level Inspectable definition and render
+    just that.
+  - Requires overwriting/ignoring main (which should always be defaultMain pointint to some top-level definition
+    anyway)
+
+
 - $doctests
   - [X] Run locally (README)
     - [X] Tool works
