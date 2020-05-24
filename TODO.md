@@ -27,6 +27,9 @@ Consider switching to a decentralized issue tracker such as:
   - Requires overwriting/ignoring main (which should always be defaultMain pointint to some top-level definition
     anyway)
 
+- Idea: Untypeclassified API
+  - Should single-data-type-defining modules like Voice and Score export momorphized
+   versions of e.g. Functor/Traverse, or specific uses of lenses/traversals such as Music.Time.Voice.notes?
 
 - $doctests
   - [X] Run locally (README)
