@@ -1,4 +1,4 @@
-{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE TypeFamilies, NamedFieldPuns #-}
 {-
  - Orchestra piece
  -
@@ -6,6 +6,7 @@
  -}
 
 import Music.Prelude
+import qualified Data.Foldable
 import qualified Music.Score as S
 import qualified Ex.StringTexture
 import qualified P.SustainPunctuated.Score
@@ -52,12 +53,30 @@ drawBehavior' b = fmap (\x ->
     numSamples = 30
     maxBars = 30
 
-  -- TODO contrary motion of chords, a la Tan Dun "Map"
-  --  { origChord :: Chord Interval Pitch
-  --  , invChord  :: Chord Interval Pitch
-  --  , tune      :: Voice Pitch
-  --  } -> Pattern (Part, Pitch)
 
+data ChordMotion v p = ChordMotion
+  { origChord :: Voiced Chord v p
+  , invChord  :: Voiced Chord v p
+  , tune      :: Voice p
+  }
+  deriving (Eq, Ord, Show)
+
+-- TODO add orchestration
+-- TODO allow other types of inversion (e.g. diatonic)
+chordMotion :: ChordMotion Interval Pitch -> Pattern Pitch
+chordMotion ChordMotion{ origChord, invChord, tune } =
+  (mconcat $ fmap newPattern $ homoToPolyphonic $ fmap
+    (\p -> Data.Foldable.toList $ getVoiced $ up (p .-. c) origChord)
+    tune)
+    <>
+  (mconcat $ fmap newPattern $ homoToPolyphonic $ fmap
+    (\p -> Data.Foldable.toList $ getVoiced $ up (p .-. c) invChord)
+    (invertVoice tune))
+
+invertVoice :: Voice Pitch -> Voice Pitch
+invertVoice x = case lowestPitch x of
+  Nothing -> x
+  Just l -> invertPitches l x
 
 -- TODO make most/all of these into functions
 -- Explore variations of *similar* material
