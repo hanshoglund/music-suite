@@ -152,7 +152,7 @@ palindrChords ::
   [(Part, [Pitch])] ->
   Pattern a
 palindrChords = mconcat . fmap
-  (newPattern . (\(r,ps) -> set parts' r $ view voice $ fmap fromPitch ps))
+  (newPattern . (\(r,ps) -> set parts' r $ view voice $ fmap fromPitch $ palindr ps))
   where
     palindr [] = []
     palindr xs = init xs ++ [last xs] ++ reverse (init xs)
@@ -212,7 +212,7 @@ music =
 
       flip renderPattern (0 <-> 10) $ compress 8 $ palindrChords
         [(trumpets1, [e,g,c']),
-         (trumpets2, [bb_,e,bb])
+         (trumpets2, [g_,bb_,e,bb])
         ],
 
       -- TODO more floaters (a la Mist)
