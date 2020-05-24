@@ -18,6 +18,8 @@ import qualified Data.List
 
 main = defaultMain music
 
+type GetPart a = S.Part a
+
 multiTempoCanon
   :: (IsPitch a, HasParts' a, S.Part a ~ Part)
   => [(Part, Interval, Span)]
@@ -67,9 +69,13 @@ data ChordMotion v p = ChordMotion
 
 -- TODO transcribe more from manual notes. Try to make everything into functions
 -- (find some parameter to vary). Examples:
---
--- TODO a la Stravinsky
---  (IsPitch a, HasParts' a, GetPart a ~ Part) => [Bool] -> Pattern a
+
+
+-- TODO a la Stravinsky:
+-- [False, False, False, False, False, False, False, False, False, True, False, True, False, False, False, False, False, True, False, False]
+beats :: (IsPitch a, HasParts' a, GetPart a ~ Part, Articulated a) => (Bool -> Note a)
+  -> [Bool] -> Pattern a
+beats f = newPattern . view voice . fmap f
 
 -- TODO a la S. Adler "Guitar Concerto"
 --  data StrumType = Strum | BassStrum | NoStrum
@@ -108,10 +114,11 @@ renderFloater :: Floater a -> Score a
 renderFloater (Floater xs) = mconcat $
   fmap (renderAlignedVoice . uncurry (aligned 0)) xs
 
--- TODO make most/all of these into functions
--- Explore variations of *similar* material
--- Edit/manipulate parameters to turn into some kind of logical sequence
+-- TODO make most/all of the below into functions (of simple types).
+-- Thus explore variations of *similar* material.
 --
+--
+-- TODO add more! Figure out what to cut later!
 music =
   times 1 $ pseq
   [ mempty
