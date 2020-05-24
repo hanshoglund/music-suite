@@ -13,5 +13,5 @@ packages: ./music-suite.cabal
           ./doc-tools/doctester/doctester.cabal
 
 package music-suite
-  optimization: False
+  optimization: 2
   haddock-hyperlink-source: True
