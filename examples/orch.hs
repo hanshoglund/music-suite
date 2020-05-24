@@ -67,6 +67,9 @@ data ChordMotion v p = ChordMotion
   }
   deriving (Eq, Ord, Show)
 
+cut :: Monoid a => a -> a
+cut _ = mempty
+
 
 -- TODO transcribe more from manual notes. Try to make everything into functions
 -- (find some parameter to vary). Examples:
@@ -123,9 +126,12 @@ renderFloater (Floater xs) = mconcat $
 --
 --
 -- TODO add more! Figure out what to cut
-music =
-  times 1 $ pseq
+music :: Music
+music = pseq $
   [ mempty
+
+  , renderAlignedVoice $ aligned 0 0 $ instrRoll
+    [(m2,15),(-m2,8),(m2,22)]
 
   -- TODO use spread-out "randomly occuring" events, as in the beginning
   -- of "Circue Glacier"
@@ -168,6 +174,7 @@ music =
 
   -- TODO more patterns (a la Interludes)
 
+  ] ++ cut [ mempty
 
   , P.SustainPunctuated.Score.music
 
