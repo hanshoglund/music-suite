@@ -1,5 +1,5 @@
 
-module Main where
+module P.BrassLargeEnsemble.Score (music, main) where
 
 import Music.Prelude
 import Data.Set (Set)
