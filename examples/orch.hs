@@ -22,6 +22,7 @@ music =
   , Ex.Sky.music
   , Ex.Voicing.music
   , P.WindsPhrasing.Score.music
-  , arrangeFor (divide 3 trumpets ++ divide 4 horns) $ P.BrassLargeEnsemble.Score.music
+  , arrangeFor (divide 3 trumpets ++ divide 4 horns ++ divide 2 trombones)
+    $ P.BrassLargeEnsemble.Score.music
   ]
 
