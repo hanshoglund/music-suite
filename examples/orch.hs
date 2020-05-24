@@ -194,6 +194,10 @@ renderFloater (Floater xs) =
   mconcat $
     fmap (renderAlignedVoice . uncurry (aligned 0)) xs
 
+-- TODO something like Sacre, page 10:
+-- file:///home/hans/Downloads/PMLUS00725-complete1.pdf
+
+
 -- TODO large scale harmony
 -- Function of time "speed"/"phase" and ambitus
 --  * Higher notes can be more dissonant (prefer large consonant intervals at bottom)
