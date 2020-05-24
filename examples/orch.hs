@@ -209,7 +209,7 @@ renderFloater (Floater xs) =
 -- Compare Sibelius 7: returning to C major/minor for all the big moments?
 --  - Well that's a bit of a simplification. There are cadenzes estabilishing other keys
 --    including remote ones (B, e, F, ab)
---  - However the large scale structure is something like (C -> Cm -> ? -> Eb -> V7[C] -> C).
+--  - However the large scale structure is something like (C -> Eb -> C -> Eb -> C).
 -- http://petruccimusiclibrary.ca/files/imglnks/caimg/2/2b/IMSLP15924-Sibelius_-_Symphony_No.7,_Op.105_(orch._score).pdf
 
 
