@@ -42,6 +42,9 @@ multiTempoCanon' entries subj = mconcat $ fmap
 applyBehavior :: Behavior (a -> b) -> Score a -> Score b
 applyBehavior b = mapWithSpan (\s x -> b ! view onset s $ x)
 
+-- Utility for showing a behavior
+-- Note this shows the range [0..1] in the span (0 <-> 1), use transform/fmap
+-- to "zoom"/"move"
 drawBehavior :: RealFrac a => Behavior a -> IO ()
 drawBehavior = fmap (const ()) . traverse print . drawBehavior'
 
@@ -50,8 +53,8 @@ drawBehavior' b = fmap (\x ->
     flip replicate 'x' $ floor (( b ! (x / numSamples)) * maxBars))
   [0..numSamples]
   where
-    numSamples = 30
-    maxBars = 30
+    numSamples = 15
+    maxBars = 33
 
 
 data ChordMotion v p = ChordMotion
