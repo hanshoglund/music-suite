@@ -74,31 +74,31 @@ music =
   -- , Ex.StringTexture.music
 
 
-  -- -- TODO more patterns (a la Interludes)
+  -- TODO more patterns (a la Interludes)
 
-  -- -- TODO more floaters (a la Mist)
+  -- TODO more floaters (a la Mist)
 
-  -- -- TODO multitempo canons (a la Passages/Imitations)
+  -- TODO multitempo canons (a la Passages/Imitations)
 
-  -- -- TODO large-scale Behavior (a la Shadowings/Layers)
+  -- TODO large-scale Behavior (a la Shadowings/Layers)
 
-  -- , Ex.Sky.music
+  , Ex.Sky.music
 
-  -- -- TODO palindrome phased patterns, a la Calliano "When I Dream"
-  -- --  [[Pitch]] -> Pattern (Part, Pitch)
+  -- TODO palindrome phased patterns, a la Calliano "When I Dream"
+  --  [[Pitch]] -> Pattern (Part, Pitch)
 
-  -- -- TODO contrary motion of chords, a la Tan Dun "Map"
-  -- --  { origChord :: Chord Interval Pitch
-  -- --  , invChord  :: Chord Interval Pitch
-  -- --  , tune      :: Voice Pitch
-  -- --  } -> Pattern (Part, Pitch)
+  -- TODO contrary motion of chords, a la Tan Dun "Map"
+  --  { origChord :: Chord Interval Pitch
+  --  , invChord  :: Chord Interval Pitch
+  --  , tune      :: Voice Pitch
+  --  } -> Pattern (Part, Pitch)
 
-  -- -- TODO make proper chords, orchestrate
-  -- , Ex.Voicing.music
+  -- TODO make proper chords, orchestrate
+  , Ex.Voicing.music
 
-  -- , P.WindsPhrasing.Score.music
+  , P.WindsPhrasing.Score.music
 
-  -- , arrangeFor (divide 3 trumpets ++ divide 4 horns ++ divide 2 trombones)
-  --   $ P.BrassLargeEnsemble.Score.music
+  , arrangeFor (divide 3 trumpets ++ divide 4 horns ++ divide 2 trombones)
+    $ P.BrassLargeEnsemble.Score.music
   ]
 
