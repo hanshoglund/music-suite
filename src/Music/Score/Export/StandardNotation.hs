@@ -1749,7 +1749,7 @@ exportNote :: Asp1a -> Score Midi.Message
 -- For now we throw all of this away using 'snd'
 --
 -- Arguably these should be retought, see $minorAspect in TODO.md
-exportNote (PartT (_, ((snd . runSlideT . snd . runHarmonicT . snd . runTextT . snd . runColorT . snd . runTremoloT . snd . runStaffNumberT) -> x))) = exportNoteT x
+exportNote (PartT (_, x)) = exportNoteT x
   where
     exportNoteT (TechniqueT (Couple (_, x))) = exportNoteA x
     exportNoteA (ArticulationT (_, x)) = exportNoteD x
@@ -1819,12 +1819,12 @@ type Asp1 = Maybe Asp1a
 
 type Asp1a =
   ( PartT Part
-      ( StaffNumberT
-          ( TremoloT
-              ( ColorT
-                  ( TextT
-                      ( HarmonicT
-                          ( SlideT
+      -- ( StaffNumberT
+          -- ( TremoloT
+          --     ( ColorT
+          --         ( TextT
+          --             ( HarmonicT
+          --                 ( SlideT
                               ( TechniqueT SomeTechnique
                                   ( ArticulationT Articulation
                                       ( DynamicT Dynamics
@@ -1832,24 +1832,24 @@ type Asp1a =
                                       )
                                   )
                               )
-                          )
-                      )
-                  )
-              )
-          )
-      )
+      --                     )
+      --                 )
+      --             )
+      --         )
+      --     )
+      -- )
   )
 
 -- We require all notes in a chords to have the same kind of ties
 type Asp2 =
   TieT
     ( PartT Part
-        ( StaffNumberT
-            ( TremoloT
-                ( ColorT
-                    ( TextT
-                        ( HarmonicT
-                            ( SlideT
+        -- ( StaffNumberT
+        --     ( TremoloT
+        --         ( ColorT
+        --             ( TextT
+        --                 ( HarmonicT
+        --                     ( SlideT
                                 ( TechniqueT SomeTechnique
                                     ( ArticulationT Articulation
                                         ( DynamicT Dynamics
@@ -1857,23 +1857,23 @@ type Asp2 =
                                         )
                                     )
                                 )
-                            )
-                        )
-                    )
-                )
-            )
-        )
+        --                     )
+        --                 )
+        --             )
+        --         )
+        --     )
+        -- )
     )
 
 type Asp3 =
   TieT
     ( PartT Part
-        ( StaffNumberT
-            ( TremoloT
-                ( ColorT
-                    ( TextT
-                        ( HarmonicT
-                            ( SlideT
+        -- ( StaffNumberT
+        --     ( TremoloT
+        --         ( ColorT
+        --             ( TextT
+        --                 ( HarmonicT
+        --                     ( SlideT
                                 ( TechniqueT TN.TechniqueNotation
                                     ( ArticulationT AN.ArticulationNotation
                                         ( DynamicT DN.DynamicNotation
@@ -1881,12 +1881,12 @@ type Asp3 =
                                         )
                                     )
                                 )
-                            )
-                        )
-                    )
-                )
-            )
-        )
+        --                     )
+        --                 )
+        --             )
+        --         )
+        --     )
+        -- )
     )
 
 type Asp = Score Asp1
@@ -1986,6 +1986,9 @@ toStandardNotation sc' = do
   -- Simplify pitch spelling
   let postPitchSimplification = Music.Score.Pitch.simplifyPitches normScore
   -- Part extraction
+  -- TODO poor man's deepseq:
+  say "Evaluating music expression, will print a number when done"
+  say $ show $ length $ show $ postPitchSimplification
   say "Extracting parts"
   let postPartExtract :: [(Music.Parts.Part, Score Asp1a)] = Music.Score.Part.extractPartsWithInfo postPitchSimplification
   say $ "  Done, " ++ show (length postPartExtract) ++ " parts"
@@ -2108,7 +2111,7 @@ toStandardNotation sc' = do
     sc = mcatMaybes sc'
 
 asp1ToAsp2 :: Asp1a -> Asp2
-asp1ToAsp2 = pure . (fmap . fmap . fmap . fmap . fmap . fmap . fmap . fmap . fmap . fmap) pure
+asp1ToAsp2 = pure . (fmap . fmap . fmap . fmap) pure
 
 asp2ToAsp3 :: Voice (Maybe Asp2) -> Voice (Maybe Asp3)
 asp2ToAsp3 =

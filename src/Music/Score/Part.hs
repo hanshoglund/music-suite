@@ -69,6 +69,7 @@ import Music.Time.Internal.Transform
 import Music.Time.Note
 import Music.Time.Score
 import Music.Time.Voice
+import qualified Data.Set as Set
 
 -- |
 -- Parts type.
@@ -225,7 +226,12 @@ instance (HasParts a b) => HasParts (Note a) (Note b) where
 -- |
 -- List all the parts
 allParts :: (Ord (Part a), HasParts' a) => a -> [Part a]
-allParts = List.nub . List.sort . toListOf parts
+allParts = fastNub . toListOf parts
+-- TODO instead of toListOf use a mutable hash set in the traversal (e.g. with ST)
+-- THEN freeze into a list
+
+fastNub :: Ord a => [a] -> [a]
+fastNub = Set.toList . Set.fromList
 
 replaceParts :: (HasParts' a, Eq (Part a)) => [(Part a, Part a)] -> a -> a
 replaceParts xs = over parts' (`lookupPos` xs)
