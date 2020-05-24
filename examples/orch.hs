@@ -61,6 +61,17 @@ data ChordMotion v p = ChordMotion
   }
   deriving (Eq, Ord, Show)
 
+
+-- TODO a la Stravinsky
+--  (IsPitch a, HasParts' a, GetPart a ~ Part) => [Bool] -> Pattern a
+
+-- TODO a la S. Adler "Guitar Concerto"
+--  data StrumType = Strum | BassStrum | NoStrum
+--  (IsPitch a, HasParts' a, GetPart a ~ Part) => [StrumType] -> Pattern a
+
+-- TODO a la "When I Dream"
+--  (IsPitch a, HasParts' a, GetPart a ~ Part) => [[Pitch]] -> Pattern a
+
 -- TODO add orchestration
 -- TODO allow other types of inversion (e.g. diatonic)
 chordMotion :: ChordMotion Interval Pitch -> Pattern Pitch
@@ -124,8 +135,6 @@ music =
   -- TODO more patterns (a la Interludes)
 
   -- TODO more floaters (a la Mist)
-
-  -- TODO multitempo canons (a la Passages/Imitations)
 
   -- TODO large-scale Behavior (a la Shadowings/Layers)
 
