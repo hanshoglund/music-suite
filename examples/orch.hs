@@ -17,10 +17,11 @@ main = defaultMain music
 
 music =
   times 1 $ pseq
-  [ P.BrassLargeEnsemble.Score.music
-  , P.SustainPunctuated.Score.music
+  [ P.SustainPunctuated.Score.music
   , Ex.StringTexture.music
   , Ex.Sky.music
   , Ex.Voicing.music
   , P.WindsPhrasing.Score.music
+  , P.BrassLargeEnsemble.Score.music
   ]
+
