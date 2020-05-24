@@ -216,6 +216,20 @@ renderFloater (Floater xs) =
 -- TODO Brass Chorale a ala Sibelius 7, M-N
 -- TODO lo/hi strings call and response a la Sibelius 7 V-W
 -- TODO WW parallel up/down (see chordMotion), al a Sibelius 7 before H
+-- TODO "simple" patterns::
+--    repeat [c,e,c,e]
+--    bisb [c,c]
+--    repeat + phase e.g. Monoid/Transformable)
+--    palindrChords (see above)
+--    alberti [c,g,e,g]
+--    melkonian [g,d,g,b',g,d<>b']
+--    march [c,e<>g]
+--    reverseMarch [e<>g,c]
+--    waltz [c,e<>g,e<>g]
+--    reverseWaltz [e<>g,e<>g,c]
+--    pedal notes [c] (a stretched "bisb")
+--    fanfare [c|*3,c,c|*4]
+--
 
 
 -- TODO something like p126 in Broberg "Natura Cycle"
