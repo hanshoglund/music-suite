@@ -117,10 +117,10 @@ music =
 
   -- TODO more floaters (a la Mist)
   -- TODO pad!
-  , renderFloater $ Floater
+  , set parts' violins $ renderFloater $ Floater
     [ (0, pure c |* 2)
     , (0, pure e |* 2.1)
-    , (0, pure g |* 2.4)
+    , (0, pure g |* 3)
     ]
 
   , flip renderPattern (0 <-> 30) $ fmap fromPitch $ chordMotion $ ChordMotion
