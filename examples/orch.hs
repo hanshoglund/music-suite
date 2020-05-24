@@ -133,21 +133,19 @@ music =
     ]
     (view voice [c,d,e|*2,c,d,d,e|*1.5,e,f,d,e,c|*2,d|*2])
 
-  , P.SustainPunctuated.Score.music
-
-  , Ex.StringTexture.music
-
-
   -- TODO more patterns (a la Interludes)
 
   -- TODO more floaters (a la Mist)
 
+  , P.SustainPunctuated.Score.music
+
+  , Ex.StringTexture.music
+
   -- TODO large-scale Behavior (a la Shadowings/Layers)
 
-  , Ex.Sky.music
 
-  -- TODO palindrome phased patterns, a la Calliano "When I Dream"
-  --  [[Pitch]] -> Pattern (Part, Pitch)
+
+  , Ex.Sky.music
 
   -- TODO make proper chords, orchestrate
   , Ex.Voicing.music
