@@ -194,6 +194,12 @@ renderFloater (Floater xs) =
   mconcat $
     fmap (renderAlignedVoice . uncurry (aligned 0)) xs
 
+-- TODO large scale harmony
+-- Function of time "speed"/"phase" and ambitus
+--  * Higher notes can be more dissonant (prefer large consonant intervals at bottom)
+--  * Faster/passing notes (phased w.r.t. to "grid" if there is one) can be more dissonant
+
+
 -- TODO make most/all of the below into functions (of simple types).
 -- Thus explore variations of *similar* material.
 --
