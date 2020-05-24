@@ -1982,12 +1982,12 @@ mapToScore = view score . fmap (view event . first (view $ from onsetAndOffset))
 
 toStandardNotation :: (StandardNotationExportM m) => Asp -> m Work
 toStandardNotation sc' = do
+  -- TODO poor man's deepseq:
+  say "Evaluating music"
+  say $ show $ length $ show $ sc'
   say "Simplifying pitches"
   -- Simplify pitch spelling
   let postPitchSimplification = Music.Score.Pitch.simplifyPitches normScore
-  -- TODO poor man's deepseq:
-  say "Evaluating music"
-  say $ show $ length $ show $ postPitchSimplification
   -- Part extraction
   say "Extracting parts"
   let postPartExtract :: [(Music.Parts.Part, Score Asp1a)] = Music.Score.Part.extractPartsWithInfo postPitchSimplification
