@@ -132,6 +132,7 @@ groupDefault xs =
       Many Bracket ShowBarlines $ fmap Single br,
       Many Bracket ShowBarlines $ fmap Single pc,
       Many Invisible ShowBarlines $ fmap Single kb,
+      Many Invisible ShowBarlines $ fmap Single others,
       Many Bracket HideBarlines $ fmap Single voc,
       Many Bracket ShowBarlines $ fmap Single str
     ]
@@ -142,3 +143,11 @@ groupDefault xs =
     kb = filter (isKeyboardInstrument . fst) xs
     voc = filter (isVocalist . fst) xs
     str = filter (isStringInstrument . fst) xs
+    others = filter (neither . fst) xs
+    neither x = not $ any id
+        [ isWoodwindInstrument x
+        , isBrassInstrument x,
+        isPercussionInstrument x,
+        isKeyboardInstrument x,
+        isVocalist x,
+        isStringInstrument x]
