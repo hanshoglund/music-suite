@@ -213,6 +213,11 @@ renderFloater (Floater xs) =
 -- http://petruccimusiclibrary.ca/files/imglnks/caimg/2/2b/IMSLP15924-Sibelius_-_Symphony_No.7,_Op.105_(orch._score).pdf
 
 
+-- TODO Brass Chorale a ala Sibelius 7, M-N
+-- TODO lo/hi strings call and response a la Sibelius 7 V-W
+-- TODO WW parallel up/down (see chordMotion), al a Sibelius 7 before H
+
+
 -- TODO something like p126 in Broberg "Natura Cycle"
 -- https://issuu.com/kberg444/docs/naturacycle
 --
