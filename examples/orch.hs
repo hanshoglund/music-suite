@@ -95,6 +95,13 @@ invertVoice x = case lowestPitch x of
   Nothing -> x
   Just l -> invertPitches l x
 
+newtype Floater a = Floater [(Alignment, Voice a)]
+
+-- TODO canwe also render this into a pattern?
+renderFloater :: Floater a -> Score a
+renderFloater (Floater xs) = mconcat $
+  fmap (renderAlignedVoice . uncurry (aligned 0)) xs
+
 -- TODO make most/all of these into functions
 -- Explore variations of *similar* material
 -- Edit/manipulate parameters to turn into some kind of logical sequence
@@ -107,6 +114,13 @@ invertVoice x = case lowestPitch x of
 music =
   times 1 $ pseq
   [ mempty
+
+  -- TODO more floaters (a la Mist)
+  , renderFloater $ Floater
+    [ (0, pure c |* 2)
+    , (0, pure e |* 2.1)
+    , (0, pure g |* 2.4)
+    ]
 
   , flip renderPattern (0 <-> 30) $ fmap fromPitch $ chordMotion $ ChordMotion
     { origChord = voiceIn 4 $ chord c dominantSeventhChord
@@ -135,7 +149,6 @@ music =
 
   -- TODO more patterns (a la Interludes)
 
-  -- TODO more floaters (a la Mist)
 
   , P.SustainPunctuated.Score.music
 
