@@ -27,6 +27,7 @@ type GetPitch a = S.Pitch a
 
 type GetArticulation a = S.Articulation a
 
+-- | Multi-tempo canon a la Passages/Interludes.
 multiTempoCanon ::
   (IsPitch a, HasParts' a, S.Part a ~ Part) =>
   -- | Entries (part, transposition, transformtion (phase/stretch)
