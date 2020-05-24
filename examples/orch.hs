@@ -116,6 +116,7 @@ music =
   [ mempty
 
   -- TODO more floaters (a la Mist)
+  -- TODO pad!
   , renderFloater $ Floater
     [ (0, pure c |* 2)
     , (0, pure e |* 2.1)
