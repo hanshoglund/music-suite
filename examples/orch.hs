@@ -69,9 +69,9 @@ music =
     ]
     (view voice [c,d,e|*2,c,d,d,e|*1.5,e,f,d,e,c|*2,d|*2])
 
-  -- , P.SustainPunctuated.Score.music
+  , P.SustainPunctuated.Score.music
 
-  -- , Ex.StringTexture.music
+  , Ex.StringTexture.music
 
 
   -- TODO more patterns (a la Interludes)
