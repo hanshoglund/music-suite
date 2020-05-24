@@ -206,8 +206,11 @@ renderFloater (Floater xs) =
 --  * Higher notes can be more dissonant (prefer large consonant intervals at bottom)
 --  * Faster/passing notes (phased w.r.t. to "grid" if there is one) can be more dissonant
 
--- Compare Sibelius 7: returning to C major for all the big moments?
---  http://petruccimusiclibrary.ca/files/imglnks/caimg/2/2b/IMSLP15924-Sibelius_-_Symphony_No.7,_Op.105_(orch._score).pdf
+-- Compare Sibelius 7: returning to C major/minor for all the big moments?
+--  - Well that's a bit of a simplification. There are cadenzes estabilishing other keys
+--    including remote ones (B, e, F, ab)
+--  - However the large scale structure is something like (C -> Cm -> ? -> Eb -> V7[C] -> C).
+-- http://petruccimusiclibrary.ca/files/imglnks/caimg/2/2b/IMSLP15924-Sibelius_-_Symphony_No.7,_Op.105_(orch._score).pdf
 
 
 -- TODO something like p126 in Broberg "Natura Cycle"
