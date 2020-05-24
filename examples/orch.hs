@@ -91,6 +91,12 @@ music =
   times 1 $ pseq
   [ mempty
 
+  , inspectableToMusic $ chordMotion $ ChordMotion
+    { origChord = voiceIn 4 $ chord c dominantSeventhChord
+    , invChord  = voiceIn 2 $ chord c majorTriad
+    , tune = [c,d,e,g,d |* 2]^.voice
+    }
+
   , multiTempoCanon'
     [ (divide 2 cellos !! 0, _P5,        4 >-> (2/3))
     , (divide 2 cellos !! 1, _P1,        2 >-> 1)
