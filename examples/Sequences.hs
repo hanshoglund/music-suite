@@ -45,12 +45,24 @@ render Empty = mempty
 render (Sim a b) = render a <> render b
 render _ = error "TODO"
 
+
+section :: Natural -> Material -> (Natural, Material)
+section = (,)
+
 sketch :: [(Natural, Material)]
 sketch =
-  [ (,) 1 $
+  [ section 1 $
     Drones [fs', g', d'', a'']
-  , (,) 2 $
+
+  , section 2 $
     Drones [fs', g', d'', a'']
       <>
     Canon [b, cs']
+
+  , section 3 $
+    Canon [a'', g'', fs'']
+      <>
+    Drones [d'', g', fs']
+      <>
+    Canon [as, b, cs']
   ]
