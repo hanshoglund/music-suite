@@ -1,5 +1,6 @@
-
+{-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, MultiParamTypeClasses, TypeFamilies #-}
 import Music.Prelude
+import qualified Music.Score as S
 import Numeric.Natural
 
 -- Working title "Sequences"
@@ -23,20 +24,27 @@ music =
 
   pseq $ fmap render $ fmap snd sketch
 
-data Material
-  = Drones [Pitch]
-  | Canon [Pitch]
-  | Line [Pitch]
+data Material v p
+  = Drones [p]
+  | Canon [p]
+  | Line [p]
   | Empty
-  | Sim Material Material
+  | Sim (Material v p) (Material v p)
+  deriving (Functor, Foldable, Traversable)
   -- TODO add other info from sketch, e.g. dynamics, orchestration
 
-instance Semigroup Material where
+type instance S.Pitch (Material v p) = S.Pitch p
+type instance SetPitch p' (Material v p) = Material v (SetPitch p' p)
+
+instance HasPitches p p' => HasPitches (Material v p) (Material v p') where
+  pitches = traverse . pitches
+
+instance Semigroup (Material v p) where
   (<>) = Sim
-instance Monoid Material where
+instance Monoid (Material v p) where
   mempty = Empty
 
-render :: Material -> Music
+render :: Material Interval Pitch -> Music
 render (Drones xs) = ppar $ fmap fromPitch xs
 render (Canon xs) =
   -- TODO use multiTempoCanon (using pitches composed in sequence as subject)
@@ -48,10 +56,10 @@ render (Line xs) = level _f $ stretchTo 1 $ pseq $ fmap fromPitch xs
 render _ = error "TODO"
 
 
-section :: Natural -> Material -> (Natural, Material)
+section :: Natural -> Material v p -> (Natural, Material v p)
 section = (,)
 
-sketch :: [(Natural, Material)]
+sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   [ section 1 $
     Drones [fs', g', d'', a'']
@@ -108,4 +116,31 @@ sketch =
 
   , section 10 $
     Line [fs', e']
+      <>
+    Drones [b, g, cs]
+    -- TODO second (delayed) Line
+      <>
+    Drones [e__]
+
+  -- TODO
+
+  , section 41 $
+    Drones [g, d', a']
+      <>
+    Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_]
+  , section 41 $
+    Drones [g, d', a']
+      <>
+    Line [b_,d_,c,b_,b_,d_]
+
+  , section 41 $
+    Drones [g, d', a']
+      <>
+    Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_]
+
+  -- TODO
+  , section 45 $
+    up m2 (Drones [g, d', a'])
+      <>
+    up m2 (Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
   ]
