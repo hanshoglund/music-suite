@@ -17,7 +17,7 @@ main = defaultMain music
 music :: Music
 music =
   -- TODO proper tempo
-  tempo largo $
+  tempo (metronome (1 / 4) 24) $
   -- TODO proper orchestration
   set parts' violins $
 
@@ -65,4 +65,24 @@ sketch =
     Drones [d'', g', fs']
       <>
     Canon [as, b, cs']
+
+  , section 4 $
+    Canon [a'', g'', fs'']
+      <>
+    Drones [d'', g', fs']
+      <>
+    Canon [as, b, cs']
+      <>
+    Canon [e, fs]
+
+  , section 5 $
+    Drones [fs'']
+      <>
+    Drones [fs', as, fs, b_]
+
+  , section 6 $
+    Drones [fs'', e'', b', gs']
+      <>
+    Drones [fs', b, gs, fs, b_]
+
   ]
