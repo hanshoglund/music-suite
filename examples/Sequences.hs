@@ -44,7 +44,7 @@ render (Canon xs) =
 render Empty = mempty
 render (Sim a b) = render a <> render b
 -- TODO proper rhythm:
-render (Line xs) = stretchTo 1 $ pseq $ fmap fromPitch xs
+render (Line xs) = level _f $ stretchTo 1 $ pseq $ fmap fromPitch xs
 render _ = error "TODO"
 
 
