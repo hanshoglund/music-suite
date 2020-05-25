@@ -78,11 +78,32 @@ sketch =
   , section 5 $
     Drones [fs'']
       <>
-    Drones [fs', as, fs, b_]
+    Drones [fs', cs', as, fs, b_]
 
   , section 6 $
     Drones [fs'', e'', b', gs']
       <>
-    Drones [fs', b, gs, fs, b_]
+    Drones [fs', cs', b, gs, fs, b_]
 
+  , section 7 $
+    Drones [fs', cs', as, fs, b_]
+
+  , section 8 $
+    Canon [a'', g'', fs'']
+      <>
+    Drones [fs', cs', as, fs, b_]
+      <>
+    Drones [b_, fs_, cs_]
+
+  , section 9 $
+    Canon [a'', g'', fs'']
+      <>
+    Drones [fs', fs, b_] <> Line [cs', b, fs']
+      <>
+    Drones [b_, fs_]
+      <>
+    Canon [cs_, d_, b__]
+
+  , section 10 $
+    Line [fs', e']
   ]
