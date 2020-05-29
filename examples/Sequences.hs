@@ -169,7 +169,7 @@ sketch =
     Canon [bb__,a] -- TODO delay switch from drone bb to canon [bb,ab]?
 
   , section 50 $
-    _8va (Line [e,ds,e,ds,b,b,cs,cs,ds]) -- TODO etc
+    _8va (Line [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
       <>
     Drones [cs,fs, b_, e_, a__]
 
