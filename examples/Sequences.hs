@@ -61,8 +61,7 @@ render _ = error "TODO"
 section :: Natural -> Material v p -> (Natural, Material v p)
 section = (,)
 
-sketch :: [(Natural, Material Interval Pitch)]
-sketch =
+opening =
   [ section 1 $
     Drones [fs', g', d'', a'']
 
@@ -106,8 +105,14 @@ sketch =
     Drones [fs', cs', as, fs, b_]
       <>
     Drones [b_, fs_, cs_]
+  ]
 
-  , section 9 $
+
+sketch :: [(Natural, Material Interval Pitch)]
+sketch =
+  opening
+  <>
+  [ section 9 $
     Canon [a'', g'', fs'']
       <>
     Drones [fs', fs, b_] <> Line [cs', b, fs']
@@ -129,10 +134,12 @@ sketch =
   , section 13 Rest
   , section 14 Rest
   , section 15 Rest
-
+  ]
+  <>
+  opening
+  <>
   -- TODO
-
-  , section 41 $
+  [ section 41 $
     Drones [g, d', a']
       <>
     Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_]
