@@ -138,9 +138,22 @@ sketch =
       <>
     Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_]
 
-  -- TODO
+  -- TODO 42
+  -- TODO 43
+  -- TODO 44
+
+  -- TODO transposed version of 41, deduplicate
   , section 45 $
     up m2 (Drones [g, d', a'])
       <>
     up m2 (Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+
+  -- TODO 46
+
+  , section 47 $ up _M3 $
+    _8va (Line [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+      <>
+    Drones [gb, c, f_]
+
+
   ]
