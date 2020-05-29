@@ -177,11 +177,12 @@ sketch =
 
   -- TODO 52
 
-  , section 53
+  , section 53 $
     up _P12 (Line motB)
       <>
     Drones [c,f,bb,d']
 
   ]
 
-motB = [c,b_,c,b_,g_,g_,a_,a_,b_] -- TODO etd
+motBLyd = [b, a, b, a, f, f, a]
+motB    = [c, b_,c, b_,g_,g_,a_,a_,b_] -- TODO etd
