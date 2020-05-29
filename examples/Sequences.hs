@@ -124,6 +124,12 @@ sketch =
       <>
     Drones [e__]
 
+  , section 11 Rest
+  , section 12 Rest
+  , section 13 Rest
+  , section 14 Rest
+  , section 15 Rest
+
   -- TODO
 
   , section 41 $
