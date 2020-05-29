@@ -155,5 +155,10 @@ sketch =
       <>
     Drones [gb, c, f_]
 
+  , section 48 $ up _M3 $
+    _8va (Line [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+      <>
+    Drones [gb, c, f_,bb]
+
 
   ]
