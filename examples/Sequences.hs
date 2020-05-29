@@ -146,7 +146,7 @@ sketch =
   , section 45 $
     up m2 (Drones [g, d', a'])
       <>
-    up m2 (Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    up m2 (Line $ motBLyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO 46
 
