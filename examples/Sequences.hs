@@ -173,5 +173,15 @@ sketch =
       <>
     Drones [cs,fs, b_, e_, a__]
 
+  -- TODO 51
+
+  -- TODO 52
+
+  , section 53
+    up _P12 (Line motB)
+      <>
+    Drones [c,f,bb,d']
 
   ]
+
+motB = [c,b_,c,b_,g_,g_,a_,a_,b_] -- TODO etd
