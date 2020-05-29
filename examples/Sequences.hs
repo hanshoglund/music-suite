@@ -29,6 +29,7 @@ data Material v p
   | Canon [p]
   | Line [p]
   | Empty
+  | Rest -- For unfilled bars
   | Sim (Material v p) (Material v p)
   deriving (Functor, Foldable, Traversable)
   -- TODO add other info from sketch, e.g. dynamics, orchestration
@@ -50,6 +51,7 @@ render (Canon xs) =
   -- TODO use multiTempoCanon (using pitches composed in sequence as subject)
   ppar $ fmap fromPitch xs
 render Empty = mempty
+render Rest  = rest
 render (Sim a b) = render a <> render b
 -- TODO proper rhythm:
 render (Line xs) = level _f $ stretchTo 1 $ pseq $ fmap fromPitch xs
@@ -139,8 +141,11 @@ sketch =
     Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_]
 
   -- TODO 42
+  , section 42 Rest
   -- TODO 43
+  , section 43 Rest
   -- TODO 44
+  , section 44 Rest
 
   -- TODO transposed version of 41, deduplicate
   , section 45 $
@@ -149,6 +154,7 @@ sketch =
     up m2 (Line $ motBLyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO 46
+  , section 46 Rest
 
   , section 47 $ up _M3 $
     _8va (Line [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
@@ -174,8 +180,10 @@ sketch =
     Drones [cs,fs, b_, e_, a__]
 
   -- TODO 51
+  , section 51 Rest
 
   -- TODO 52
+  , section 52 Rest
 
   , section 53 $
     up _P12 (Line motB)
