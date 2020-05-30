@@ -250,6 +250,21 @@ sketch =
     LineHarm motCLongHarm
       <>
     Drones [g__,g___]
+  , section 103 $
+    Line (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
+
+  , section 104 $
+    Line (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
+
+  , section 105 $
+    down _P4 (LineHarm motCLongHarm)
+      <>
+    Drones [d__,d___]
+
+  , section 106 Rest -- TODO
+
+  , section 107 Rest -- TODO
+
   ]
 
 
