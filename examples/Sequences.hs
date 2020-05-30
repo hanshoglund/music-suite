@@ -190,15 +190,16 @@ sketch =
       <>
     Line (v[b_,d_,c,b_,b_,d_])
 
-  , section 41 $
+  , section 42 $
     Drones [g, d', a']
       <>
     Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
   -- TODO fill in all uses of Rest...
-  , section 42 Rest
-
-  , section 43 Rest
+  , section 43 $
+    Drones [c'',f',bb]
+      <>
+    Line (up d5 $ v motA)
 
   , section 44 Rest
 
