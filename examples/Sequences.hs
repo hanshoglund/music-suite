@@ -213,6 +213,22 @@ sketch =
     down _P4 (Line $ v $ motBLyd ++ motBLyd)
       <>
     Drones (down _P15 [a,d',g',c''])
+
+  , section 101 $
+    down _P4 (Line $ v $ motB)
+      <>
+    Drones (down _P15 [a,d',g',c''])
+
+  -- TODO melodies of 102
+  , section 102 $
+    Drones [g__,d_,g_,c]
+  , section 102 $
+    Drones [a__,d_,g_,c]
+  , section 102 $
+    Drones [g__,d_,g_,c]
+  , section 102 $
+    Drones [a__,d_,g_,c]
+
   ]
 
 -- TODO use these everywhere applicable
