@@ -263,10 +263,19 @@ sketch =
 
   , section 106 Rest -- TODO
 
-  , section 107 Rest -- TODO
-
+  , section 107 $
+    down _P4 $ Line (v motCToV)
   ]
 
+
+
+
+-- TODO use these everywhere applicable
+motALyd :: [Note Pitch]
+motALyd = concat [b, [a, b] |/ 2, a, f, f, a]
+
+motA :: [Note Pitch]
+motA    = concat [c, [b_,c] |/ 2, b_,g_,g_,a_,a_,b_] -- TODO etd
 
 motB :: [Note Pitch]
 motB = [a,g,g,d]
@@ -276,10 +285,8 @@ motBLong = [a,g,g,d,d',cs',cs',b] -- TODO etc
 
 motBLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
 
+motC :: [Note Pitch]
+motC = [f,e,a,g,e' |* 4]
 
--- TODO use these everywhere applicable
-motALyd :: [Note Pitch]
-motALyd = concat [b, [a, b] |/ 2, a, f, f, a]
-
-motA :: [Note Pitch]
-motA    = concat [c, [b_,c] |/ 2, b_,g_,g_,a_,a_,b_] -- TODO etd
+motCToV:: [Note Pitch]
+motCToV = [f,e,a,g,g' |* 4]
