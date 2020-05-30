@@ -247,7 +247,7 @@ sketch =
     Drones [a__,d_,g_,c]
 
   , section 103 $
-    LineHarm motCLongHarm
+    LineHarm motBLongHarm
       <>
     Drones [g__,g___]
   , section 103 $
@@ -257,7 +257,7 @@ sketch =
     Line (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
 
   , section 105 $
-    down _P4 (LineHarm motCLongHarm)
+    down _P4 (LineHarm motBLongHarm)
       <>
     Drones [d__,d___]
 
@@ -268,13 +268,13 @@ sketch =
   ]
 
 
-motC :: [Note Pitch]
-motC = [a,g,g,d]
+motB :: [Note Pitch]
+motB = [a,g,g,d]
 
-motCLong :: [Note Pitch]
-motCLong = [a,g,g,d,d',cs',cs',b] -- TODO etc
+motBLong :: [Note Pitch]
+motBLong = [a,g,g,d,d',cs',cs',b] -- TODO etc
 
-motCLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
+motBLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
 
 
 -- TODO use these everywhere applicable
