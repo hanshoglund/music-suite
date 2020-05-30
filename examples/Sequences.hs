@@ -234,18 +234,20 @@ sketch =
       <>
     Drones [cs,fs, b_, e_, a__]
 
-  -- TODO
-  , section 51 Rest
+  , section 51 $
+    Drones [d', g, d, a__]
 
-  -- TODO
-  , section 52 Rest
+  , section 52 $
+    Drones [c',g]
 
   , section 53 $
     up _P12 (Line $ v motA)
       <>
     Drones [c,f,bb,d']
 
-  , section 54 Rest
+  , section 54 $
+    Drones [g,c,f_]
+
   , section 55 Rest
   , section 56 Rest
   , section 57 Rest
