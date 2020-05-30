@@ -265,6 +265,22 @@ sketch =
 
   , section 107 $
     down m7 $ Line (v motCToV)
+
+  , section 108 $
+    -- TODO line
+    Drones [e',a]
+  , section 108 $
+    -- TODO line
+    Drones [e',gs]
+
+  , section 109 $
+    -- TODO line
+    Drones [ds',gs]
+  , section 109 $
+    -- TODO line
+    Drones [gs]
+
+  , section 110 Rest
   ]
 
 
