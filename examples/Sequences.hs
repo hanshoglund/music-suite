@@ -208,8 +208,14 @@ sketch =
       <>
     Drones [c,f,bb,d']
 
+  -- TODO
+  , section 100 $
+    down _P4 (Line $ v $ motBLyd ++ motBLyd)
+      <>
+    Drones (down _P15 [a,d,g,c])
   ]
 
+-- TODO use these everywhere applicable
 motBLyd :: [Note Pitch]
 motBLyd = concat [b, [a, b] |/ 2, a, f, f, a]
 motB    = concat [c, [b_,c] |/ 2, b_,g_,g_,a_,a_,b_] -- TODO etd
