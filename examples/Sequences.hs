@@ -160,6 +160,26 @@ sketch =
   <>
   opening
   <>
+  [ section 24 Rest
+  , section 25 Rest
+  , section 26 Rest
+  , section 27 Rest
+  , section 28 Rest
+  , section 29 Rest
+  , section 30 Rest
+
+  , section 31 Rest
+  , section 32 Rest
+  , section 33 Rest
+  , section 34 Rest
+  , section 35 Rest
+  , section 36 Rest
+  , section 37 Rest
+  , section 38 Rest
+  , section 39 Rest
+  , section 40 Rest
+  ]
+  <>
   -- TODO
   [ section 41 $
     Drones [g, d', a']
