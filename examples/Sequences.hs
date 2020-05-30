@@ -212,7 +212,7 @@ sketch =
   , section 100 $
     down _P4 (Line $ v $ motBLyd ++ motBLyd)
       <>
-    Drones (down _P15 [a,d,g,c])
+    Drones (down _P15 [a,d',g',c''])
   ]
 
 -- TODO use these everywhere applicable
