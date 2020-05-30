@@ -264,7 +264,7 @@ sketch =
   , section 106 Rest -- TODO
 
   , section 107 $
-    down _P4 $ Line (v motCToV)
+    down m7 $ Line (v motCToV)
   ]
 
 
