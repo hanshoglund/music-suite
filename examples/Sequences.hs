@@ -288,9 +288,26 @@ sketch =
     Drones [fs, d, g_]
 
   , section 111 $
-    Line motBLyd
+    Line (v motALyd)
       <>
     Drones [f,c,g_]
+
+  , section 112 $
+    Line (v motC)
+      <>
+    Drones [c_,c__]
+
+  , section 113 Rest -- TODO
+
+  , section 114 $
+    Line (v motC)
+      <>
+    Drones [c_,c__]
+
+  , section 115 $
+    LineHarm [(v motB,[d,bb_]),(v [d',c',c',g],[e])]
+      <>
+    Drones [g__]
   ]
 
 
@@ -307,7 +324,7 @@ motB :: [Note Pitch]
 motB = [a,g,g,d]
 
 motBLong :: [Note Pitch]
-motBLong = [a,g,g,d,d',cs',cs',b] -- TODO etc
+motBLong = [a,g,g,d, d',cs',cs',b] -- TODO etc
 
 motBLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
 
