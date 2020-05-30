@@ -175,11 +175,11 @@ sketch =
       <>
     Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
-  -- TODO 42
+  -- TODO fill in all uses of Rest...
   , section 42 Rest
-  -- TODO 43
+
   , section 43 Rest
-  -- TODO 44
+
   , section 44 Rest
 
   -- TODO transposed version of 41, deduplicate
@@ -336,7 +336,7 @@ sketch =
   , section 120 $
     LineHarm [(v[f',d',d',bb], [bb,eb])
              ,(v[d',bb,bb,g], [g,eb])
-             ,(v[c',a,a,f], [a,f,bb])
+             ,(v[c',a,a,f], [a,f,bb_])
              ]
       <>
     Drones [g_,c__]
