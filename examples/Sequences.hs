@@ -224,9 +224,13 @@ sketch =
     up _P12 (Line $ v motA)
       <>
     Drones [c,f,bb,d']
-
+  ]
   -- TODO
-  , section 100 $
+  <>
+  opening
+  <>
+  -- B2
+  [ section 100 $
     down _P4 (Line $ v $ motALyd ++ motALyd)
       <>
     Drones (down _P15 [a,d',g',c''])
