@@ -334,9 +334,9 @@ sketch =
 
   -- CODA
   , section 120 $
-    LineHarm [(v[f',d',d',bb], [])
-             ,(v[d',bb,bb,g], [])
-             ,(v[c',a,a,f], [])
+    LineHarm [(v[f',d',d',bb], [bb,eb])
+             ,(v[d',bb,bb,g], [g,eb])
+             ,(v[c',a,a,f], [a,f,bb])
              ]
       <>
     Drones [g_,c__]
