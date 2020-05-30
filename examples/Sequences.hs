@@ -210,5 +210,6 @@ sketch =
 
   ]
 
-motBLyd = [b, a, b, a, f, f, a]
-motB    = [c, b_,c, b_,g_,g_,a_,a_,b_] -- TODO etd
+motBLyd :: [Note Pitch]
+motBLyd = concat [b, [a, b] |/ 2, a, f, f, a]
+motB    = concat [c, [b_,c] |/ 2, b_,g_,g_,a_,a_,b_] -- TODO etd
