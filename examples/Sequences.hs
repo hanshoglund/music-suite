@@ -308,6 +308,27 @@ sketch =
     LineHarm [(v motB,[d,bb_]),(v [d',c',c',g],[e])]
       <>
     Drones [g__]
+
+  , section 116 $
+    LineHarm [(v motB,[d,bb_]),(v [d',c',c',g],[e])]
+      <>
+    Drones [g__]
+
+  , section 117 $
+    -- TODO line
+    Drones [g__]
+
+  , section 118 $
+    LineHarm [(up _P4 $ v motB,[d,bb_]),(mempty,[e]),(mempty,[d])]
+      <>
+    Drones [g__]
+
+  , section 119 $
+    LineHarm [(up _P4 $ v motB,[e]),(mempty,[d]),(mempty,[e]),(mempty,[d])]
+      <>
+    Drones [g__]
+
+  -- CODA
   ]
 
 
