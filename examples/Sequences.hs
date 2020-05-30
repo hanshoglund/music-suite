@@ -1,3 +1,12 @@
+{-# OPTIONS_GHC -Wall
+  -Wcompat
+  -Wincomplete-record-updates
+  -Wincomplete-uni-patterns
+  -Werror
+  -fno-warn-name-shadowing
+  -fno-warn-unused-matches
+  -fno-warn-missing-signatures
+  -fno-warn-unused-imports #-}
 {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, MultiParamTypeClasses, TypeFamilies #-}
 import Music.Prelude
 import qualified Music.Score as S
@@ -28,6 +37,7 @@ data Material v p
   = Drones [p]
   | Canon [p]
   | Line (Voice p)
+  | LineHarm [(Voice p, [p])]
   | Empty
   | Rest -- For unfilled bars
   | Sim (Material v p) (Material v p)
@@ -46,7 +56,7 @@ instance Monoid (Material v p) where
   mempty = Empty
 
 render :: Material Interval Pitch -> Music
-render (Drones xs) = ppar $ fmap fromPitch xs
+render (Drones xs) = renderHarm xs
 render (Canon xs) =
   -- TODO use multiTempoCanon (using pitches composed in sequence as subject)
   ppar $ fmap fromPitch xs
@@ -54,7 +64,14 @@ render Empty = mempty
 render Rest  = rest
 render (Sim a b) = render a <> render b
 -- TODO proper rhythm:
-render (Line xs) = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
+render (Line xs) = renderMel xs
+render (LineHarm xs) = pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
+
+renderMel :: Voice Pitch -> Music
+renderMel xs = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
+
+renderHarm :: [Pitch] -> Music
+renderHarm xs = ppar $ fmap fromPitch xs
 
 fromV :: (Transformable a, HasPosition a, Monoid a) => Voice a -> a
 fromV = pseq . fmap (uncurry stretch) . fmap (view $ from note) . view (from voice)
@@ -231,6 +248,8 @@ sketch =
 
   , section 103 $
     Line (v motCLong)
+      <>
+    Drones [g__,g___]
   ]
 
 
