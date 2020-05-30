@@ -65,7 +65,7 @@ render Rest  = rest
 render (Sim a b) = render a <> render b
 -- TODO proper rhythm:
 render (Line xs) = renderMel xs
-render (LineHarm xs) = pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
+render (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
 
 renderMel :: Voice Pitch -> Music
 renderMel xs = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
@@ -247,7 +247,7 @@ sketch =
     Drones [a__,d_,g_,c]
 
   , section 103 $
-    Line (v motCLong)
+    LineHarm motCLongHarm
       <>
     Drones [g__,g___]
   ]
@@ -258,6 +258,9 @@ motC = [a,g,g,d]
 
 motCLong :: [Note Pitch]
 motCLong = [a,g,g,d,d',cs',cs',b] -- TODO etc
+
+motCLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
+
 
 -- TODO use these everywhere applicable
 motBLyd :: [Note Pitch]
