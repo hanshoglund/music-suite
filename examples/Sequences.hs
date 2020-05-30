@@ -192,10 +192,10 @@ sketch =
       <>
     Drones [cs,fs, b_, e_, a__]
 
-  -- TODO 51
+  -- TODO
   , section 51 Rest
 
-  -- TODO 52
+  -- TODO
   , section 52 Rest
 
   , section 53 $
