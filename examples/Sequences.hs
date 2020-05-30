@@ -280,7 +280,17 @@ sketch =
     -- TODO line
     Drones [gs]
 
-  , section 110 Rest
+  , section 110 $
+    -- TODO line
+    Drones [fs,c_]
+  , section 110 $
+    -- TODO line
+    Drones [fs, d, g_]
+
+  , section 111 $
+    Line motBLyd
+      <>
+    Drones [f,c,g_]
   ]
 
 
