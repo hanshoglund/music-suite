@@ -244,6 +244,36 @@ sketch =
     up _P12 (Line $ v motA)
       <>
     Drones [c,f,bb,d']
+
+  , section 4 Rest
+  , section 5 Rest
+  , section 6 Rest
+  , section 7 Rest
+  , section 8 Rest
+  , section 0 Rest
+  , section 0 Rest
+
+  , section 1 Rest
+  , section 2 Rest
+  , section 3 Rest
+  , section 4 Rest
+  , section 5 Rest
+  , section 6 Rest
+  , section 7 Rest
+  , section 8 Rest
+  , section 0 Rest
+  , section 0 Rest
+
+  , section 1 Rest
+  , section 2 Rest
+  , section 3 Rest
+  , section 4 Rest
+  , section 5 Rest
+  , section 6 Rest
+  , section 7 Rest
+  , section 8 Rest
+  , section 0 Rest
+  , section 0 Rest
   ]
   -- TODO
   <>
