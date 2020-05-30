@@ -27,7 +27,7 @@ music =
 data Material v p
   = Drones [p]
   | Canon [p]
-  | Line [p]
+  | Line (Voice p)
   | Empty
   | Rest -- For unfilled bars
   | Sim (Material v p) (Material v p)
@@ -54,8 +54,13 @@ render Empty = mempty
 render Rest  = rest
 render (Sim a b) = render a <> render b
 -- TODO proper rhythm:
-render (Line xs) = level _f $ stretchTo 1 $ pseq $ fmap fromPitch xs
-render _ = error "TODO"
+render (Line xs) = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
+
+fromV :: (Transformable a, HasPosition a, Monoid a) => Voice a -> a
+fromV = pseq . fmap (uncurry stretch) . fmap (view $ from note) . view (from voice)
+
+v :: [Note Pitch] -> Voice Pitch
+v = view voice
 
 
 section :: Natural -> Material v p -> (Natural, Material v p)
@@ -115,14 +120,14 @@ sketch =
   [ section 9 $
     Canon [a'', g'', fs'']
       <>
-    Drones [fs', fs, b_] <> Line [cs', b, fs']
+    Drones [fs', fs, b_] <> Line (v[cs', b, fs'])
       <>
     Drones [b_, fs_]
       <>
     Canon [cs_, d_, b__]
 
   , section 10 $
-    Line [fs', e']
+    Line (v[fs', e'])
       <>
     Drones [b, g, cs]
     -- TODO second (delayed) Line
@@ -142,16 +147,16 @@ sketch =
   [ section 41 $
     Drones [g, d', a']
       <>
-    Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_]
+    Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
   , section 41 $
     Drones [g, d', a']
       <>
-    Line [b_,d_,c,b_,b_,d_]
+    Line (v[b_,d_,c,b_,b_,d_])
 
   , section 41 $
     Drones [g, d', a']
       <>
-    Line [fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_]
+    Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
   -- TODO 42
   , section 42 Rest
@@ -164,31 +169,31 @@ sketch =
   , section 45 $
     up m2 (Drones [g, d', a'])
       <>
-    up m2 (Line $ motBLyd ++ [fs, e, fs, e, c, b_])
+    up m2 (Line $ v $ motBLyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO 46
   , section 46 Rest
 
   , section 47 $ up _M3 $
-    _8va (Line [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     Drones [gb, c, f_]
 
   , section 48 $ up _M3 $
-    _8va (Line [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     Drones [gb, c, f_,bb__]
 
   , section 49 $
     -- TODO parallel diatonic thirds below in Bb minor/Db major
-    _8va (Line [f,eb,db,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
+    _8va (Line $ v [f,eb,db,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
       <>
     Drones [gb, c, f_]
       <>
     Canon [bb__,a] -- TODO delay switch from drone bb to canon [bb,ab]?
 
   , section 50 $
-    _8va (Line [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
+    _8va (Line $ v [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
       <>
     Drones [cs,fs, b_, e_, a__]
 
@@ -199,7 +204,7 @@ sketch =
   , section 52 Rest
 
   , section 53 $
-    up _P12 (Line motB)
+    up _P12 (Line $ v motB)
       <>
     Drones [c,f,bb,d']
 
