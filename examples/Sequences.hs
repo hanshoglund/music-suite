@@ -233,10 +233,16 @@ sketch =
     Line (v motCLong)
   ]
 
--- motC = [a,g,g,d]
+
+motC :: [Note Pitch]
+motC = [a,g,g,d]
+
+motCLong :: [Note Pitch]
 motCLong = [a,g,g,d,d',cs',cs',b] -- TODO etc
 
 -- TODO use these everywhere applicable
 motBLyd :: [Note Pitch]
 motBLyd = concat [b, [a, b] |/ 2, a, f, f, a]
+
+motB :: [Note Pitch]
 motB    = concat [c, [b_,c] |/ 2, b_,g_,g_,a_,a_,b_] -- TODO etd
