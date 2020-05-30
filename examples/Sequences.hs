@@ -340,6 +340,25 @@ sketch =
              ]
       <>
     Drones [g_,c__]
+
+  , section 121 Rest
+
+  , section 122 Rest
+
+  , section 123 Rest
+
+  , section 124 Rest
+
+  , section 125 Rest
+
+  , section 126 Rest
+
+  , section 127 Rest
+
+  , section 128 Rest
+
+  , section 129 $
+    Drones [fs', g', d'', a'']
   ]
 
 
