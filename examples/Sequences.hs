@@ -229,7 +229,12 @@ sketch =
   , section 102 $
     Drones [a__,d_,g_,c]
 
+  , section 103 $
+    Line (v motCLong)
   ]
+
+-- motC = [a,g,g,d]
+motCLong = [a,g,g,d,d',cs',cs',b] -- TODO etc
 
 -- TODO use these everywhere applicable
 motBLyd :: [Note Pitch]
