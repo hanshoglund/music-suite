@@ -186,7 +186,7 @@ sketch =
   , section 45 $
     up m2 (Drones [g, d', a'])
       <>
-    up m2 (Line $ v $ motBLyd ++ [fs, e, fs, e, c, b_])
+    up m2 (Line $ v $ motALyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO 46
   , section 46 Rest
@@ -221,18 +221,18 @@ sketch =
   , section 52 Rest
 
   , section 53 $
-    up _P12 (Line $ v motB)
+    up _P12 (Line $ v motA)
       <>
     Drones [c,f,bb,d']
 
   -- TODO
   , section 100 $
-    down _P4 (Line $ v $ motBLyd ++ motBLyd)
+    down _P4 (Line $ v $ motALyd ++ motALyd)
       <>
     Drones (down _P15 [a,d',g',c''])
 
   , section 101 $
-    down _P4 (Line $ v $ motB)
+    down _P4 (Line $ v $ motA)
       <>
     Drones (down _P15 [a,d',g',c''])
 
@@ -278,8 +278,8 @@ motCLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
 
 
 -- TODO use these everywhere applicable
-motBLyd :: [Note Pitch]
-motBLyd = concat [b, [a, b] |/ 2, a, f, f, a]
+motALyd :: [Note Pitch]
+motALyd = concat [b, [a, b] |/ 2, a, f, f, a]
 
-motB :: [Note Pitch]
-motB    = concat [c, [b_,c] |/ 2, b_,g_,g_,a_,a_,b_] -- TODO etd
+motA :: [Note Pitch]
+motA    = concat [c, [b_,c] |/ 2, b_,g_,g_,a_,a_,b_] -- TODO etd
