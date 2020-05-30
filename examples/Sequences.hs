@@ -245,35 +245,35 @@ sketch =
       <>
     Drones [c,f,bb,d']
 
-  , section 4 Rest
-  , section 5 Rest
-  , section 6 Rest
-  , section 7 Rest
-  , section 8 Rest
-  , section 0 Rest
-  , section 0 Rest
+  , section 54 Rest
+  , section 55 Rest
+  , section 56 Rest
+  , section 57 Rest
+  , section 58 Rest
+  , section 50 Rest
+  , section 50 Rest
 
-  , section 1 Rest
-  , section 2 Rest
-  , section 3 Rest
-  , section 4 Rest
-  , section 5 Rest
-  , section 6 Rest
-  , section 7 Rest
-  , section 8 Rest
-  , section 0 Rest
-  , section 0 Rest
+  , section 61 Rest
+  , section 62 Rest
+  , section 63 Rest
+  , section 64 Rest
+  , section 65 Rest
+  , section 66 Rest
+  , section 67 Rest
+  , section 68 Rest
+  , section 60 Rest
+  , section 60 Rest
 
-  , section 1 Rest
-  , section 2 Rest
-  , section 3 Rest
-  , section 4 Rest
-  , section 5 Rest
-  , section 6 Rest
-  , section 7 Rest
-  , section 8 Rest
-  , section 0 Rest
-  , section 0 Rest
+  , section 71 Rest
+  , section 72 Rest
+  , section 73 Rest
+  , section 74 Rest
+  , section 75 Rest
+  , section 76 Rest
+  , section 77 Rest
+  , section 78 Rest
+  , section 70 Rest
+  , section 70 Rest
   ]
   -- TODO
   <>
