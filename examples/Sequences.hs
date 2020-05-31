@@ -311,12 +311,20 @@ sketch =
   -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
   -- still alternate at a pace unsynchronized with the main line
   , section 55 $
+    Line (v motC)
+      <>
     Drones [c,f_,bb__]
   , section 55 $
+    Line (v motC)
+      <>
     Drones [c,f_,a__]
   , section 55 $
+    Line (v motC)
+      <>
     Drones [c,f_,bb__]
   , section 55 $
+    Line (v motC)
+      <>
     Drones [c,f_,a__]
 
   , section 56 $
