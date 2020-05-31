@@ -199,9 +199,11 @@ sketch =
   , section 43 $
     Drones [c'',f',bb]
       <>
-    Line (up d5 $ v motA)
+    Line (up d5 $ v motA) -- TODO long version of motA
 
-  , section 44 Rest
+  , section 44 $
+    Drones [c'',f',bb]
+    -- TODO line
 
   -- TODO transposed version of 41, deduplicate
   , section 45 $
@@ -249,7 +251,17 @@ sketch =
   , section 54 $
     Drones [g,c,f_]
 
-  , section 55 Rest
+  -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
+  -- still alternate at a pace unsynchronized with the main line
+  , section 55 $
+    Drones [c,f_,bb__]
+  , section 55 $
+    Drones [c,f_,a__]
+  , section 55 $
+    Drones [c,f_,bb__]
+  , section 55 $
+    Drones [c,f_,a__]
+
   , section 56 Rest
   , section 57 Rest
   , section 58 Rest
