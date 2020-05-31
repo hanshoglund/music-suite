@@ -179,18 +179,27 @@ sketch =
     Drones [b__,b___]
 
   , section 27 $
+    -- TODO what?
     Drones [b__,b___]
 
   , section 28 $
+    Drones [cs']
+      <>
     Drones [b__,b___]
 
   , section 29 $
+    Drones [cs']
+      <>
     Drones [b__,b___]
 
   , section 30 $
+    Drones [gs',cs']
+      <>
     Drones [b__,b___]
 
   , section 31 $
+    Drones [as'', ds'', gs',cs']
+      <>
     Drones [b__,b___]
   , section 32 $ Drones [b__,b___]
   , section 33 $ Drones [b__,b___]
