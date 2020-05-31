@@ -344,9 +344,13 @@ sketch =
     Drones [g,c,d_]
 
   , section 58 $
+    Line (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
+      <>
     Drones [a,e,b_,f_]
 
   , section 59 $
+    Line (v $ concat [d,[e,d]|/2,g,f,e,d,g_,e_])
+      <>
     Drones [bb,f,c]
 
   , section 60 $
