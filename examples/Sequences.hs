@@ -205,7 +205,10 @@ sketch =
       <>
     Drones [b__,b___]
 
-  , section 32 $ Drones [b__,b___]
+  , section 32 $
+    Line (above _P8 $ down m2 $ v motC)
+      <>
+    Drones [b__,b___]
 
   , section 33 $ Drones [b__,b___]
 
