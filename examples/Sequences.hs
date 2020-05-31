@@ -379,7 +379,9 @@ sketch =
       <>
     Drones [d__,d___]
 
-  , section 106 Rest -- TODO
+  , section 106 $
+    -- TODO line
+    Drones [d__,d___]
 
   , section 107 $
     down m7 $ Line (v motCToV)
@@ -415,7 +417,9 @@ sketch =
       <>
     Drones [c_,c__]
 
-  , section 113 Rest -- TODO
+  , section 113 $
+    -- TODO line
+    Drones [c_,c__]
 
   , section 114 $
     Line (v motC)
