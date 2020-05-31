@@ -163,12 +163,19 @@ sketch =
   [ section 24 $
     Drones [cs', fs, b_]
       <>
+    _8vb (Canon [cs, ds, g, f])
+      <>
     Drones [b__,b___]
 
   , section 25 $
+    -- TODO what?
     Drones [b__,b___]
 
   , section 26 $
+    Drones [cs', fs, b_]
+      <>
+    _8vb (above _M3 $ Canon [g, f, cs, ds])
+      <>
     Drones [b__,b___]
 
   , section 27 $
