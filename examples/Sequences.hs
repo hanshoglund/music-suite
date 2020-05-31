@@ -164,14 +164,27 @@ sketch =
     Drones [cs', fs, b_]
       <>
     Drones [b__,b___]
-  , section 25 $ Drones [b__,b___]
-  , section 26 $ Drones [b__,b___]
-  , section 27 $ Drones [b__,b___]
-  , section 28 $ Drones [b__,b___]
-  , section 29 $ Drones [b__,b___]
-  , section 30 $ Drones [b__,b___]
 
-  , section 31 $ Drones [b__,b___]
+  , section 25 $
+    Drones [b__,b___]
+
+  , section 26 $
+    Drones [b__,b___]
+
+  , section 27 $
+    Drones [b__,b___]
+
+  , section 28 $
+    Drones [b__,b___]
+
+  , section 29 $
+    Drones [b__,b___]
+
+  , section 30 $
+    Drones [b__,b___]
+
+  , section 31 $
+    Drones [b__,b___]
   , section 32 $ Drones [b__,b___]
   , section 33 $ Drones [b__,b___]
   , section 34 $ Drones [b__,b___]
