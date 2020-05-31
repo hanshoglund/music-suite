@@ -263,31 +263,59 @@ sketch =
     Drones [c,f_,a__]
 
   , section 56 Rest
-  , section 57 Rest
-  , section 58 Rest
-  , section 50 Rest
-  , section 50 Rest
+  , section 56 Rest
+  , section 56 Rest
+
+  , section 57 $
+    Drones [g,c,d_]
+
+  , section 58 $
+    Drones [a,e,b_,f_]
+
+  , section 59 Rest
+
+  , section 60 Rest
 
   , section 61 Rest
+
   , section 62 Rest
+
   , section 63 Rest
+
   , section 64 Rest
+
   , section 65 Rest
+
   , section 66 Rest
+
   , section 67 Rest
+
   , section 68 Rest
-  , section 60 Rest
+
   , section 60 Rest
 
+  , section 60 Rest
+
+
   , section 71 Rest
+
   , section 72 Rest
+
   , section 73 Rest
+
   , section 74 Rest
+
+
   , section 75 Rest
+
   , section 76 Rest
+
   , section 77 Rest
+
   , section 78 Rest
+
   , section 70 Rest
+
   , section 70 Rest
   ]
   -- TODO
