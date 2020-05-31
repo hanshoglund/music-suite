@@ -132,6 +132,7 @@ opening =
 
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
+  -- A1 section
   opening
   <>
   [ section 9 $
@@ -200,19 +201,30 @@ sketch =
   , section 31 $
     Drones [as'', ds'', gs',cs']
       <>
+    Canon [fs, e]
+      <>
     Drones [b__,b___]
+
   , section 32 $ Drones [b__,b___]
+
   , section 33 $ Drones [b__,b___]
+
   , section 34 $ Drones [b__,b___]
+
   , section 35 $ Drones [b__,b___]
+
   , section 36 $ Drones [b__,b___]
+
   , section 37 $ Drones [b__,b___]
+
   , section 38 $ Drones [b__,b___]
+
   , section 39 $ Drones [b__,b___]
+
   , section 40 $ Drones [b__,b___]
   ]
   <>
-  -- TODO
+  -- B1 section
   [ section 41 $
     Drones [g, d', a']
       <>
@@ -354,7 +366,7 @@ sketch =
   , section 70 $
     Drones [f__,f___]
 
-
+  -- C section
   , section 71 $
     Drones [f'', bb', eb']
   , section 71 $
@@ -390,6 +402,7 @@ sketch =
   , section 80 $
     Drones [g', cs', fs, d, gs_]
   ]
+  -- RECAP
   <>
   opening
   <>
