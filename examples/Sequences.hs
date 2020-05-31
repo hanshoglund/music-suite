@@ -195,7 +195,6 @@ sketch =
       <>
     Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
-  -- TODO fill in all uses of Rest...
   , section 43 $
     Drones [c'',f',bb]
       <>
@@ -266,9 +265,16 @@ sketch =
   , section 55 $
     Drones [c,f_,a__]
 
-  , section 56 Rest
-  , section 56 Rest
-  , section 56 Rest
+  , section 56 $
+    Drones [g, c, d_]
+  , section 56 $
+    Canon [g, fs]
+      <>
+    Drones [c, g_, d_]
+  , section 56 $
+    Canon [g, fs]
+      <>
+    Drones [bb_, d_]
 
   , section 57 $
     Drones [g,c,d_]
@@ -279,7 +285,8 @@ sketch =
   , section 59 $
     Drones [bb,f,c]
 
-  , section 60 Rest
+  , section 60 $
+    Line (v [d,db])
 
   , section 61 $
     Drones [eb',bb,f]
@@ -316,9 +323,14 @@ sketch =
     Drones [f__,f___]
 
 
-  , section 71 Rest
+  , section 71 $
+    Drones [f'', bb', eb']
+  , section 71 $
+    Drones [f'', bb', eb', ab]
 
   , section 72 $
+    Drones [f'', bb', eb', ab]
+      <>
     Drones [gb__]
 
   , section 73 $
@@ -340,9 +352,11 @@ sketch =
   , section 78 $
     Drones [fs]
 
-  , section 79 Rest
+  , section 79 $
+    Line (v [cs,b_,a_,fs_,gs_])
 
-  , section 80 Rest
+  , section 80 $
+    Drones [g', cs', fs, d, gs_]
   ]
   <>
   opening
