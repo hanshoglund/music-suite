@@ -299,11 +299,13 @@ sketch =
     Drones [c',g]
 
   , section 53 $
-    up _P12 (Line $ v motA)
+    up _P12 (Line $ v motA) -- TODO longish
       <>
     Drones [c,f,bb,d']
 
   , section 54 $
+    up _P4 (Line $ v motALyd) -- TODO long
+      <>
     Drones [g,c,f_]
 
   -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
