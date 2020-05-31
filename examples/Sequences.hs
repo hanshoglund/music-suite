@@ -206,6 +206,7 @@ sketch =
     Drones [b__,b___]
 
   , section 32 $
+    -- TODO above composes in seq, not in par
     Line (above _P8 $ down m2 $ v motC)
       <>
     Drones [b__,b___]
@@ -216,7 +217,11 @@ sketch =
 
   , section 35 $ Drones [b__,b___]
 
-  , section 36 $ Drones [b__,b___]
+  , section 36 $
+    -- TODO above composes in seq, not in par
+    Line (above _P8 $ down m2 $ v motC)
+      <>
+    Drones [b__,b___]
 
   , section 37 $ Drones [b__,b___]
 
