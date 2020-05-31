@@ -151,11 +151,11 @@ sketch =
       <>
     Drones [e__]
 
-  , section 11 Rest
-  , section 12 Rest
-  , section 13 Rest
-  , section 14 Rest
-  , section 15 Rest
+  , section 11 $ Drone [e__]
+  , section 12 $ Drone [e__]
+  , section 13 $ Drone [fs__]
+  , section 14 $ Drone [fs__]
+  , section 15 $ Drone [fs__]
   ]
   <>
   opening
