@@ -328,6 +328,8 @@ sketch =
     Drones [c,f_,a__]
 
   , section 56 $
+    Line (_8va $ v [{-TODO rest-}e,a,e',d',fs',e])
+      <>
     Drones [g, c, d_]
   , section 56 $
     Canon [g, fs]
