@@ -272,53 +272,74 @@ sketch =
   , section 58 $
     Drones [a,e,b_,f_]
 
-  , section 59 Rest
+  , section 59 $
+    Drones [bb,f,c]
 
   , section 60 Rest
 
-  , section 61 Rest
+  , section 61 $
+    Drones [eb',bb,f]
 
-  , section 62 Rest
+  , section 62 $
+    Drones [f__,f___]
 
-  , section 63 Rest
+  , section 63 $
+    Drones [bb,f,c_]
+  , section 63 $
+    Drones [a,f,c_]
 
-  , section 64 Rest
+  , section 64 $
+    Drones [bb,f,c_]
+  , section 64 $
+    Drones [a,f,c_]
 
-  , section 65 Rest
+  , section 65 $
+    Drones [d,c_]
 
-  , section 66 Rest
+  , section 66 $
+    Drones [f__,f___]
 
-  , section 67 Rest
+  , section 67 $
+    Drones [f__,f___]
 
-  , section 68 Rest
+  , section 68 $
+    Drones [f__,f___]
 
-  , section 60 Rest
+  , section 69 $
+    Drones [f__,f___]
 
-  , section 60 Rest
+  , section 70 $
+    Drones [f__,f___]
 
 
   , section 71 Rest
 
-  , section 72 Rest
+  , section 72 $
+    Drones [gb__]
 
-  , section 73 Rest
+  , section 73 $
+    Drones [ab__]
 
-  , section 74 Rest
+  , section 74 $
+    Drones [ab__]
 
 
-  , section 75 Rest
+  , section 75 $
+    Drones [c]
 
-  , section 76 Rest
+  , section 76 $
+    Drones [d]
 
-  , section 77 Rest
+  , section 77 $
+    Drones [fs]
 
-  , section 78 Rest
+  , section 78 $
+    Drones [fs]
 
-  , section 70 Rest
+  , section 79 Rest
 
-  , section 70 Rest
+  , section 80 Rest
   ]
-  -- TODO
   <>
   opening
   <>
