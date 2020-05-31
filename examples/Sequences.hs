@@ -206,13 +206,17 @@ sketch =
     -- TODO line
 
   -- TODO transposed version of 41, deduplicate
-  , section 45 $
-    up m2 (Drones [g, d', a'])
+  , section 45 $ up m2 $
+    (Drones [g, d', a'])
       <>
-    up m2 (Line $ v $ motALyd ++ [fs, e, fs, e, c, b_])
+    (Line $ v $ motALyd ++ [fs, e, fs, e, c, b_])
 
+  -- TODO transposed version of 42, deduplicate
   -- TODO 46
-  , section 46 Rest
+  , section 46 $ up m2 $
+    Drones [g, d', a']
+      <>
+    Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
   , section 47 $ up _M3 $
     _8va (Line $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
