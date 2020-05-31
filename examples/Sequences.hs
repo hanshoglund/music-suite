@@ -160,7 +160,10 @@ sketch =
   <>
   opening
   <>
-  [ section 24 $ Drones [b__,b___]
+  [ section 24 $
+    Drones [cs', fs, b_]
+      <>
+    Drones [b__,b___]
   , section 25 $ Drones [b__,b___]
   , section 26 $ Drones [b__,b___]
   , section 27 $ Drones [b__,b___]
