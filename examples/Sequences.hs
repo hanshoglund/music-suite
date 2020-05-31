@@ -160,24 +160,24 @@ sketch =
   <>
   opening
   <>
-  [ section 24 Rest
-  , section 25 Rest
-  , section 26 Rest
-  , section 27 Rest
-  , section 28 Rest
-  , section 29 Rest
-  , section 30 Rest
+  [ section 24 $ Drones [b__,b___]
+  , section 25 $ Drones [b__,b___]
+  , section 26 $ Drones [b__,b___]
+  , section 27 $ Drones [b__,b___]
+  , section 28 $ Drones [b__,b___]
+  , section 29 $ Drones [b__,b___]
+  , section 30 $ Drones [b__,b___]
 
-  , section 31 Rest
-  , section 32 Rest
-  , section 33 Rest
-  , section 34 Rest
-  , section 35 Rest
-  , section 36 Rest
-  , section 37 Rest
-  , section 38 Rest
-  , section 39 Rest
-  , section 40 Rest
+  , section 31 $ Drones [b__,b___]
+  , section 32 $ Drones [b__,b___]
+  , section 33 $ Drones [b__,b___]
+  , section 34 $ Drones [b__,b___]
+  , section 35 $ Drones [b__,b___]
+  , section 36 $ Drones [b__,b___]
+  , section 37 $ Drones [b__,b___]
+  , section 38 $ Drones [b__,b___]
+  , section 39 $ Drones [b__,b___]
+  , section 40 $ Drones [b__,b___]
   ]
   <>
   -- TODO
