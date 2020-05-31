@@ -453,23 +453,32 @@ sketch =
              ,(v[c',a,a,f], [a,f,bb_])
              ]
       <>
-    Drones [g_,c__]
+    Drones [d, g_,c__]
 
-  , section 121 Rest
+  , section 121 $
+    -- TODO lines
+    Drones [d, g_,c_]
 
-  , section 122 Rest
+  , section 122 $
+    Drones [d, g_,bb__]
 
-  , section 123 Rest
+  , section 123 $
+    Drones [d, g_,c_]
 
-  , section 124 Rest
+  , section 124 $
+    Drones [d, g_,bb__]
 
-  , section 125 Rest
+  , section 125 $
+    Drones [c__]
 
-  , section 126 Rest
+  , section 126 $
+    Drones [g__]
 
-  , section 127 Rest
+  , section 127 $
+    Drones [c__]
 
-  , section 128 Rest
+  , section 128 $
+    Drones [g__]
 
   , section 129 $
     Drones [fs', g', d'', a'']
