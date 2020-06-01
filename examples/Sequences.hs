@@ -56,17 +56,20 @@ instance Monoid (Material v p) where
   mempty = Empty
 
 render :: Material Interval Pitch -> Music
+render Rest  = rest
+render Empty = mempty
+render (Sim a b) = render a <> render b
 render (Drones xs) = renderHarm xs
 render (Canon xs) =
   -- TODO use multiTempoCanon (using pitches composed in sequence as subject)
   ppar $ fmap fromPitch xs
-render Empty = mempty
-render Rest  = rest
-render (Sim a b) = render a <> render b
--- TODO proper rhythm:
 render (Line xs) = renderMel xs
 render (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
 
+-- TODO proper rhythm
+-- For example:
+--  * stretch by (1/8)
+--  * pad with rests at end to fill an even number of 4/4 bars
 renderMel :: Voice Pitch -> Music
 renderMel xs = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
 
