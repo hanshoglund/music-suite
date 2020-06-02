@@ -79,10 +79,11 @@ renderHarmSimple xs = ppar $ fmap fromPitch xs
 render :: Material Interval Pitch -> Music
 render Rest  = rest
 render Empty = mempty
+-- TODO simultaneous compositions of Drones with other things should see
+-- the drones stretched to fill the entire sequence.
 render (Sim a b) = render a <> render b
 render (Drones xs) = renderHarm xs
 render (Canon xs) =
-  -- TODO use multiTempoCanon (using pitches composed in sequence as subject)
   ppar $ fmap fromPitch xs
 render (Line xs) = renderMel xs
 render (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
