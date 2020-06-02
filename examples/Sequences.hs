@@ -8,9 +8,11 @@
   -fno-warn-missing-signatures
   -fno-warn-unused-imports #-}
 {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, MultiParamTypeClasses, TypeFamilies #-}
+
 import Music.Prelude
 import qualified Music.Score as S
 import Numeric.Natural
+import Ex.OrchTextures (multiTempoCanon, multiTempoCanon')
 
 -- Working title "Sequences"
 --

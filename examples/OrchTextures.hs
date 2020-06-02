@@ -2,6 +2,8 @@
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE TypeFamilies #-}
 
+module Ex.OrchTextures where
+
 {-
  - Orchestra piece
  -
