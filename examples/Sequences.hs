@@ -57,6 +57,25 @@ instance Semigroup (Material v p) where
 instance Monoid (Material v p) where
   mempty = Empty
 
+
+-- | Simple rendering, looking a bit like the original sketch.
+renderSimple :: Material Interval Pitch -> Music
+renderSimple Rest  = rest
+renderSimple Empty = mempty
+renderSimple (Sim a b) = renderSimple a <> renderSimple b
+renderSimple (Drones xs) = renderHarmSimple xs
+renderSimple (Canon xs) =
+  ppar $ fmap fromPitch xs
+renderSimple (Line xs) = renderMelSimple xs
+renderSimple (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMelSimple mel <> renderHarmSimple harm) xs
+
+renderMelSimple :: Voice Pitch -> Music
+renderMelSimple xs = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
+
+renderHarmSimple :: [Pitch] -> Music
+renderHarmSimple xs = ppar $ fmap fromPitch xs
+
+
 render :: Material Interval Pitch -> Music
 render Rest  = rest
 render Empty = mempty
