@@ -29,7 +29,7 @@ main = defaultMain music
 music :: Music
 music =
   -- TODO proper tempo
-  tempo (metronome (1 / 4) 24) $
+  tempo (metronome (1 / 4) 48) $
   -- TODO proper orchestration
 
   pseq $ fmap render $ fmap snd sketch
@@ -83,14 +83,17 @@ render Empty = mempty
 render (Sim a b) = render a <> render b
 render (Drones xs) =
   set parts' violins $
+  stretch 4 $
   renderHarm xs
+-- TODO if there's more than one canon per Sim, merge them all
+-- before rendering (e.g. Canon should be a monoid homomorphism)
 render (Canon xs) =
   -- TODO other spans
   --- TODO other aprts than strings!
   -- TODO other phases?
-  flip renderPattern (0<->4) $ multiTempoCanon
-    (zip3 (stringOrchestra ++ [doubleBasses]) (repeat _P1)
-      (zipWith (<->) (repeat 0) [1,1.1,1.5,1.12]))
+  flip renderPattern (0<->5) $ multiTempoCanon
+    (zip3 (cycle $ stringOrchestra ++ [doubleBasses]) (repeat _P1)
+      (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
   -- TODO use durations other than 1
   (v $ fmap pure xs)
 render (Line xs) =
@@ -103,9 +106,9 @@ render (LineHarm xs) =
 -- TODO proper rhythm
 -- For example:
 --  * stretch by (1/8)
---  * pad with rests at end to fill an even number of 4/4 bars
+--  * pad with rests at end to fill an even number of 4/4 bars?
 renderMel :: Voice Pitch -> Music
-renderMel xs = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
+renderMel xs = level _f $ stretch (1/8) $ fromV $ fmap fromPitch xs
 
 renderHarm :: [Pitch] -> Music
 renderHarm xs = ppar $ fmap fromPitch xs
@@ -130,11 +133,9 @@ opening =
     Canon [b, cs']
 
   , section 3 $
-    Canon [a'', g'', fs'']
+    Canon [a'', g'', fs'', as, b, cs']
       <>
     Drones [d'', g', fs']
-      <>
-    Canon [as, b, cs']
 
   , section 4 $
     Canon [a'', g'', fs'']
