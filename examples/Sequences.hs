@@ -88,7 +88,7 @@ render (Canon xs) =
   --- TODO other aprts than strings!
   -- TODO other phases?
   flip renderPattern (0<->4) $ multiTempoCanon
-    (zip3 stringOrchestra (repeat _P1)
+    (zip3 ([doubleBasses]) (repeat _P1)
       (zipWith (<->) (repeat 0) [1,1.1,1.5,1.12]))
   -- TODO use durations other than 1
   (v $ fmap pure xs)
