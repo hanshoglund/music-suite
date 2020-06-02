@@ -31,7 +31,6 @@ music =
   -- TODO proper tempo
   tempo (metronome (1 / 4) 24) $
   -- TODO proper orchestration
-  set parts' violins $
 
   pseq $ fmap render $ fmap snd sketch
 
@@ -82,18 +81,24 @@ render Empty = mempty
 -- TODO simultaneous compositions of Drones with other things should see
 -- the drones stretched to fill the entire sequence.
 render (Sim a b) = render a <> render b
-render (Drones xs) = renderHarm xs
+render (Drones xs) =
+  set parts' violins $
+  renderHarm xs
 render (Canon xs) =
   -- TODO other spans
   --- TODO other aprts than strings!
   -- TODO other phases?
   flip renderPattern (0<->4) $ multiTempoCanon
-    (zip3 ([doubleBasses]) (repeat _P1)
+    (zip3 (stringOrchestra ++ [doubleBasses]) (repeat _P1)
       (zipWith (<->) (repeat 0) [1,1.1,1.5,1.12]))
   -- TODO use durations other than 1
   (v $ fmap pure xs)
-render (Line xs) = renderMel xs
-render (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
+render (Line xs) =
+  set parts' violins $
+  renderMel xs
+render (LineHarm xs) =
+  set parts' violins $
+  stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
 
 -- TODO proper rhythm
 -- For example:
