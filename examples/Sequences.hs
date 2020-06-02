@@ -84,7 +84,10 @@ render Empty = mempty
 render (Sim a b) = render a <> render b
 render (Drones xs) = renderHarm xs
 render (Canon xs) =
-  ppar $ fmap fromPitch xs
+  -- TODO other spans
+  flip renderPattern (0<->4) $ multiTempoCanon _
+  -- TODO use durations other than 1
+  (v $ fmap pure xs)
 render (Line xs) = renderMel xs
 render (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
 
