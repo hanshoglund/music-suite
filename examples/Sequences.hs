@@ -649,6 +649,8 @@ section_CODA =
 
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
+  -- TODO temporary cuts for preview purposes
+  -- Restore!
   cut section_A1
   <>
   cut section_A2A
@@ -686,7 +688,7 @@ motB = [a,g,g,d]
 motBLong :: [Note Pitch]
 motBLong = [a,g,g,d, d',cs',cs',b] -- TODO etc
 
-motBLongHarm :: Voice Pitch
+motBLongHarm :: [(Voice Pitch, [Pitch])]
 motBLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
 
 motC :: [Note Pitch]
