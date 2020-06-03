@@ -192,6 +192,36 @@ section_A1 =
     Drones [b_, fs_, cs_]
   ]
 
+section_A2A =
+  -- A2a
+  [ section 9 $
+    Canon [a'', g'', fs'']
+      <>
+    Drones [fs', fs, b_]
+      <>
+    Drones [b_, fs_]
+      <>
+    Canon [cs_, d_, b__]
+      <>
+    -- TODO louder, slower and aligned to end
+    Line Nothing (v[cs', b, fs'])
+
+  , section 10 $
+    -- TODO louder, slower
+    Line Nothing (v[fs', e'])
+      <>
+    Drones [b, g, cs]
+    -- TODO second (delayed) Line
+      <>
+    Drones [e__]
+
+  , section 11 $ Drones [e__]
+  , section 12 $ Drones [e__]
+  , section 13 $ Drones [fs__]
+  , section 14 $ Drones [fs__]
+  , section 15 $ Drones [fs__]
+  ]
+
 section_A2B =
   [ section 24 $
     Drones [cs', fs, b_]
@@ -200,9 +230,9 @@ section_A2B =
       <>
     Drones [b__,b___]
 
-  , section 25 $
-    -- TODO what?
-    Drones [b__,b___]
+  -- , section 25 $
+  --   -- TODO what?
+  --   Drones [b__,b___]
 
   , section 26 $
     Drones [cs', fs, b_]
@@ -611,42 +641,13 @@ section_CODA =
   ]
 
 
-section_A2A =
-  -- A2a
-  [ section 9 $
-    Canon [a'', g'', fs'']
-      <>
-    Drones [fs', fs, b_]
-      <>
-    Drones [b_, fs_]
-      <>
-    Canon [cs_, d_, b__]
-      <>
-    -- TODO louder, slower and aligned to end
-    Line Nothing (v[cs', b, fs'])
-
-  , section 10 $
-    -- TODO louder, slower
-    Line Nothing (v[fs', e'])
-      <>
-    Drones [b, g, cs]
-    -- TODO second (delayed) Line
-      <>
-    Drones [e__]
-
-  , section 11 $ Drones [e__]
-  , section 12 $ Drones [e__]
-  , section 13 $ Drones [fs__]
-  , section 14 $ Drones [fs__]
-  , section 15 $ Drones [fs__]
-  ]
 
 
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
-  section_A1
+  cut section_A1
   <>
-  section_A2A
+  cut section_A2A
 
   <>
   section_A1
@@ -654,16 +655,16 @@ sketch =
   section_A2B
 
   <>
-  section_B1
+  cut section_B1
   <>
-  section_C
+  cut section_C
 
   <>
-  section_A1
+  cut section_A1
   <>
-  section_B2
+  cut section_B2
   <>
-  section_CODA
+  cut section_CODA
 
 
 
