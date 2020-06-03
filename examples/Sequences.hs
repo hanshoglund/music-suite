@@ -270,28 +270,32 @@ section_A2B =
     Drones [b__,b___]
 
   , section 33 $ Drones [b__,b___]
+      <>
+    Canon [e,fs,gs]
 
   , section 32 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
-    Drones [b__,b___]
+    Drones [b__,b___] -- TODO need drone following melody here, NOT 4 bars
 
   , section 34 $ Drones [b__,b___]
+      <>
+    Canon [e,fs,g,cs']
 
-  , section 35 $ Drones [b__,b___]
+  -- 35 cut
 
   , section 36 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
     Drones [b__,b___]
 
-  , section 37 $ Drones [b__,b___]
+  -- , section 37 $ Drones [b__,b___]
 
-  , section 38 $ Drones [b__,b___]
+  -- , section 38 $ Drones [b__,b___]
 
-  , section 39 $ Drones [b__,b___]
+  -- , section 39 $ Drones [b__,b___]
 
-  , section 40 $ Drones [b__,b___]
+  -- , section 40 $ Drones [b__,b___]
   ]
 
 section_B1 =
