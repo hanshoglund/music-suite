@@ -422,6 +422,47 @@ section_B1 =
 
   , section 70 $
     Drones [f__,f___]
+  ]
+
+section_C =
+  -- C section
+  [ section 71 $
+    Drones [f'', bb', eb']
+  , section 71 $
+    Drones [f'', bb', eb', ab]
+
+  , section 72 $
+    Drones [f'', bb', eb', ab]
+      <>
+    Drones [gb__]
+
+  , section 73 $
+    Drones [ab__]
+
+  , section 74 $
+    Drones [ab__]
+
+
+  , section 75 $
+    Drones [c]
+
+  , section 76 $
+    Drones [d]
+
+  , section 77 $
+    Drones [fs]
+
+  , section 78 $
+    Drones [fs]
+
+  , section 79 $
+    Line Nothing (v [cs,b_,a_,fs_,gs_])
+
+  , section 80 $
+    Drones [g', cs', fs, d, gs_]
+  ]
+
+
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   -- A1 section
@@ -461,42 +502,7 @@ sketch =
   <>
   section_B1
   <>
-  -- C section
-  [ section 71 $
-    Drones [f'', bb', eb']
-  , section 71 $
-    Drones [f'', bb', eb', ab]
-
-  , section 72 $
-    Drones [f'', bb', eb', ab]
-      <>
-    Drones [gb__]
-
-  , section 73 $
-    Drones [ab__]
-
-  , section 74 $
-    Drones [ab__]
-
-
-  , section 75 $
-    Drones [c]
-
-  , section 76 $
-    Drones [d]
-
-  , section 77 $
-    Drones [fs]
-
-  , section 78 $
-    Drones [fs]
-
-  , section 79 $
-    Line Nothing (v [cs,b_,a_,fs_,gs_])
-
-  , section 80 $
-    Drones [g', cs', fs, d, gs_]
-  ]
+  section_C
   -- RECAP
   <>
   section_A1
@@ -607,9 +613,10 @@ sketch =
     LineHarm [(up _P4 $ v motB,[e]),(mempty,[d]),(mempty,[e]),(mempty,[d])]
       <>
     Drones [g__]
-
+  ]
+  <>
   -- CODA
-  , section 120 $
+  [ section 120 $
     LineHarm [(v[f',d',d',bb], [bb,eb])
              ,(v[d',bb,bb,g], [g,eb])
              ,(v[c',a,a,f], [a,f,bb_])
