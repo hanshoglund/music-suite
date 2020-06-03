@@ -269,13 +269,14 @@ section_A2B =
       <>
     Drones [b__,b___]
 
+  , section 33 $ Drones [b__,b___]
+
   , section 32 $
-    -- TODO 'above' composes voices in seq, not in par
-    Line Nothing (above _P8 $ down m2 $ v motC)
+    Line Nothing (up _P8 $ down m2 $ stretch 2 $ v motC)
+      <>
+    Line Nothing (up _P1 $ down m2 $ stretch 2 $ v motC)
       <>
     Drones [b__,b___]
-
-  , section 33 $ Drones [b__,b___]
 
   , section 34 $ Drones [b__,b___]
 
