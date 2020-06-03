@@ -14,7 +14,7 @@ import qualified Music.Score as S
 import Numeric.Natural
 import Ex.OrchTextures (multiTempoCanon, multiTempoCanon')
 
--- Working title "Sequences"
+-- Working title "Sequences" (or "2020"?)
 --
 -- TODO add harmony from 2 and 4 page sketch
 -- Render using only:
