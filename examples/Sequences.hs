@@ -230,9 +230,10 @@ section_A2B =
       <>
     Drones [b__,b___]
 
-  -- , section 25 $
-  --   -- TODO what?
-  --   Drones [b__,b___]
+  , section 25 $
+    _8vb (above _M3 $ Canon [g, f, cs, ds])
+      <>
+    Drones [b__,b___]
 
   , section 26 $
     Drones [cs', fs, b_] -- TODO thin out drones here?
@@ -241,10 +242,8 @@ section_A2B =
       <>
     Drones [b__,b___]
 
-  , section 27 $
-    _8vb (above _M3 $ Canon [g, f, cs, ds])
-      <>
-    Drones [b__,b___]
+
+  -- 27 cut
 
   , section 28 $
     Drones [cs']
