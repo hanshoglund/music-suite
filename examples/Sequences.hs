@@ -198,9 +198,6 @@ sketch =
   -- A1 section
   opening
   <>
-  cut postOpening -- TODO temporary
-
-postOpening =
   [ section 9 $
     Canon [a'', g'', fs'']
       <>
