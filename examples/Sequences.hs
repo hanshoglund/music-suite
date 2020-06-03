@@ -272,9 +272,7 @@ section_A2B =
   , section 33 $ Drones [b__,b___]
 
   , section 32 $
-    Line Nothing (up _P8 $ down m2 $ stretch 2 $ v motC)
-      <>
-    Line Nothing (up _P1 $ down m2 $ stretch 2 $ v motC)
+    above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
     Drones [b__,b___]
 
@@ -283,8 +281,7 @@ section_A2B =
   , section 35 $ Drones [b__,b___]
 
   , section 36 $
-    -- TODO above composes in seq, not in par
-    Line Nothing (above _P8 $ down m2 $ v motC)
+    above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
     Drones [b__,b___]
 
