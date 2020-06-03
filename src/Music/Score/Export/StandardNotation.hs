@@ -1759,11 +1759,23 @@ exportNote :: Asp1a -> Score Midi.Message
 -- For now we throw all of this away using 'snd'
 --
 -- Arguably these should be retought, see $minorAspect in TODO.md
-exportNote (PartT (_, ((snd . runSlideT . snd . runHarmonicT . snd . runTextT . snd . runColorT . snd . runTremoloT . snd . runStaffNumberT) -> x))) = exportNoteT x
+exportNote (PartT (p, ((snd . runSlideT . snd . runHarmonicT . snd . runTextT . snd . runColorT . snd . runTremoloT . snd . runStaffNumberT) -> x))) = exportNoteT x
   where
     exportNoteT (TechniqueT (Couple (_, x))) = exportNoteA x
     exportNoteA (ArticulationT (_, x)) = exportNoteD x
-    exportNoteD (DynamicT (d, x)) = setVelocity (dynLevel d) <$> mkMidiNote x
+    exportNoteD (DynamicT (d, x)) =
+      setVelocity (compensate p $ dynLevel d) <$> mkMidiNote x
+
+    -- TODO Hardcoding
+    --
+    -- This is to compensate for a too soft violin sound in the default
+    -- Timidity patch. This should be configurable by the user.
+    compensate :: Part -> Midi.Velocity -> Midi.Velocity
+    compensate p l
+      | view Music.Parts.instrument p ==
+        Music.Parts.violin =
+          (floor (fromIntegral l * 2 - 10 :: Double) `min` 127) `max` 30
+      | otherwise = l
 
 -- TODO move this to Music.Dynamics.Balance?
 dynLevel :: Music.Dynamics.Dynamics -> Midi.Velocity
