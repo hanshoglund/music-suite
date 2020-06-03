@@ -167,6 +167,10 @@ opening =
     Drones [fs'', e'', b', gs']
       <>
     Drones [fs', cs', b, gs, fs, b_]
+    -- TODO more lines/canons here
+      <>
+    LineT (Just $ solo violin) (delayed 0.5)
+      (up _P12 subjA)
 
   , section 7 $
     Drones [fs', cs', as, fs, b_]
@@ -193,19 +197,23 @@ sketch =
   -- A1 section
   opening
   <>
-  postOpening -- TODO temporary
+  cut postOpening -- TODO temporary
 
 postOpening =
   [ section 9 $
     Canon [a'', g'', fs'']
       <>
-    Drones [fs', fs, b_] <> Line Nothing (v[cs', b, fs'])
+    Drones [fs', fs, b_]
       <>
     Drones [b_, fs_]
       <>
     Canon [cs_, d_, b__]
+      <>
+    -- TODO louder, slower and aligned to end
+    Line Nothing (v[cs', b, fs'])
 
   , section 10 $
+    -- TODO louder, slower
     Line Nothing (v[fs', e'])
       <>
     Drones [b, g, cs]
@@ -267,7 +275,7 @@ postOpening =
     Drones [b__,b___]
 
   , section 32 $
-    -- TODO above composes in seq, not in par
+    -- TODO 'above' composes voices in seq, not in par
     Line Nothing (above _P8 $ down m2 $ v motC)
       <>
     Drones [b__,b___]
