@@ -159,6 +159,9 @@ opening =
     Drones [fs'']
       <>
     Drones [fs', cs', as, fs, b_]
+      <>
+    Line (Just $ solo violin)
+      subjA
 
   , section 6 $
     Drones [fs'', e'', b', gs']
@@ -659,4 +662,5 @@ motCToV = [f,e,a,g,g' |* 4]
 
 -- TODO a variant of motA
 -- TODO "tie" first two notes (fuse does not work properly)
+subjA = ((cs' |* 4) <> v [e'|*2,d',e'|/2,d'|/2,cs'|*14] |/ 2)
 subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[e'|*2,d'|*14] |/ 2)
