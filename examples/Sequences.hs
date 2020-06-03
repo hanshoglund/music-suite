@@ -41,6 +41,8 @@ data Material v p
   -- ^ Played in sequence througout the section as a multi-tempo canon
   | Line (Maybe Part) (Voice p)
   -- ^ A single melodic line
+  | LineT (Maybe Part) Span (Voice p)
+  -- ^ A single melodic line with a transformation
   | LineHarm [(Voice p, [p])]
   -- ^ A single melodic line with accompanying harmony
   | Empty
@@ -70,6 +72,7 @@ renderSimple (Drones xs) = renderHarmSimple xs
 renderSimple (Canon xs) =
   ppar $ fmap fromPitch xs
 renderSimple (Line _p xs) = renderMelSimple xs
+renderSimple (LineT _p _t xs) = renderMelSimple xs
 renderSimple (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMelSimple mel <> renderHarmSimple harm) xs
 
 renderMelSimple :: Voice Pitch -> Music
@@ -103,6 +106,8 @@ render (Canon xs) =
 render (Line p xs) =
   set parts' (maybe violins id p) $
   renderMel xs
+render (LineT p t xs) = transform t $
+  render (Line p xs)
 render (LineHarm xs) =
   set parts' violins $
   stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
@@ -167,7 +172,7 @@ opening =
     Line (Just $ tutti corAnglais)
       subjX
       <>
-    Line (Just bassoons) (delay (3/4) $ down _P5 subjX)
+    LineT (Just bassoons) (delaying (3/4)) (down _P5 subjX)
 
   , section 8 $
     Canon [a'', g'', fs'']
