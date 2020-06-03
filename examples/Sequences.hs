@@ -290,7 +290,7 @@ section_A2B =
     Drones [b__,b___]
 
   , section 37 $
-    above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
+    above _P8 (Line Nothing (stretch 2 $ v [ds' |* 2]))
       <>
     Drones [b__,b___]
 
@@ -306,16 +306,16 @@ section_B1 =
   [ section 41 $
     Drones [g, d', a']
       <>
-    Line Nothing (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
   , section 41 $
     Drones [g, d', a']
       <>
-    Line Nothing (v[b_,d_,c,b_,b_,d_])
+    Line Nothing (v[c,b_,d_,c,b_,b_,d_])
 
   , section 42 $
     Drones [g, d', a']
       <>
-    Line Nothing (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
 
   , section 43 $
     Drones [c'',f',bb]
