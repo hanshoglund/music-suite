@@ -162,8 +162,12 @@ opening =
 
   , section 7 $
     Drones [fs', cs', as, fs, b_]
+    -- TODO abstract this 'echo' pattern
       <>
-    Line (Just $ tutti corAnglais) (cs' <> v [cs',d',cs',b,cs']|*(4/5) <> v[e'|*2,d'|*2] |/ 2)
+    Line (Just $ tutti corAnglais)
+      subjX
+      <>
+    Line (Just bassoons) (delay (3/4) $ down _P5 subjX)
 
   , section 8 $
     Canon [a'', g'', fs'']
@@ -645,3 +649,6 @@ motC = [f,e,a,g,e' |* 4]
 
 motCToV:: [Note Pitch]
 motCToV = [f,e,a,g,g' |* 4]
+
+-- TODO a variant of motA
+subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[e'|*2,d'|*14] |/ 2)
