@@ -271,7 +271,7 @@ section_A2B =
 
   , section 33 $ Drones [b__,b___]
       <>
-    Canon [e,fs,gs]
+    Canon [g,fs,e]
 
   , section 32 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
@@ -280,7 +280,7 @@ section_A2B =
 
   , section 34 $ Drones [b__,b___]
       <>
-    Canon [e,fs,g,cs']
+    Canon (reverse [e,fs,g,cs'])
 
   -- 35 cut
 
