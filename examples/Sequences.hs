@@ -23,7 +23,7 @@ import Ex.OrchTextures (cut, multiTempoCanon, multiTempoCanon')
 --  * multiTempoCanon (pattern version)
 --  * Single lines
 
-
+main :: IO ()
 main = defaultMain music
 
 music :: Music
