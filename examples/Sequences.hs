@@ -289,8 +289,8 @@ section_A2B =
       <>
     Drones [b__,b___]
 
-  , section 37 $ Drones [b__,b___]
-    above _P8 (Line Nothing (down m2 $ stretch 2 $ v [ds]))
+  , section 37 $
+    above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
     Drones [b__,b___]
 
@@ -659,12 +659,12 @@ sketch =
   cut section_A2A
 
   <>
-  section_A1
+  cut section_A1
   <>
   section_A2B
 
   <>
-  cut section_B1
+  section_B1
   <>
   cut section_C
 
