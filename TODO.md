@@ -630,7 +630,10 @@ Consider switching to a decentralized issue tracker such as:
   - OTOH the language "just basic Haskell" is maybe more important than simple syntax?
 
 - Interactive shell
-  - Move source tree into this repo
+  - [ ] Move source tree into this repo (from private project)
+  - [ ] Preview any (top-level) value at cursor, not just top-level file
+  - [ ] Refactoring mode: Show *hash* of output only (don't wait for graphics or audio to render). Useful to make
+    sure nothing changed.
   - [X] Bug: crashes on multi-page Lilypond output
   - Repeat works, should look at cache/output dir
   - See $interactive
