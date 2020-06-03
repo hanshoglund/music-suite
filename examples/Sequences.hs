@@ -39,7 +39,7 @@ data Material v p
   -- ^ Sustained throughout the section (long notes)
   | Canon [p]
   -- ^ Played in sequence througout the section as a multi-tempo canon
-  | Line (Voice p)
+  | Line (Maybe Part) (Voice p)
   -- ^ A single melodic line
   | LineHarm [(Voice p, [p])]
   -- ^ A single melodic line with accompanying harmony
@@ -69,7 +69,7 @@ renderSimple (Sim a b) = renderSimple a <> renderSimple b
 renderSimple (Drones xs) = renderHarmSimple xs
 renderSimple (Canon xs) =
   ppar $ fmap fromPitch xs
-renderSimple (Line xs) = renderMelSimple xs
+renderSimple (Line _p xs) = renderMelSimple xs
 renderSimple (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMelSimple mel <> renderHarmSimple harm) xs
 
 renderMelSimple :: Voice Pitch -> Music
@@ -100,8 +100,8 @@ render (Canon xs) =
       (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
   -- TODO use durations other than 1
   (v $ fmap pure xs)
-render (Line xs) =
-  set parts' violins $
+render (Line p xs) =
+  set parts' (maybe violins id p) $
   renderMel xs
 render (LineHarm xs) =
   set parts' violins $
@@ -180,14 +180,14 @@ sketch =
   [ section 9 $
     Canon [a'', g'', fs'']
       <>
-    Drones [fs', fs, b_] <> Line (v[cs', b, fs'])
+    Drones [fs', fs, b_] <> Line Nothing (v[cs', b, fs'])
       <>
     Drones [b_, fs_]
       <>
     Canon [cs_, d_, b__]
 
   , section 10 $
-    Line (v[fs', e'])
+    Line Nothing (v[fs', e'])
       <>
     Drones [b, g, cs]
     -- TODO second (delayed) Line
@@ -249,7 +249,7 @@ sketch =
 
   , section 32 $
     -- TODO above composes in seq, not in par
-    Line (above _P8 $ down m2 $ v motC)
+    Line Nothing (above _P8 $ down m2 $ v motC)
       <>
     Drones [b__,b___]
 
@@ -261,7 +261,7 @@ sketch =
 
   , section 36 $
     -- TODO above composes in seq, not in par
-    Line (above _P8 $ down m2 $ v motC)
+    Line Nothing (above _P8 $ down m2 $ v motC)
       <>
     Drones [b__,b___]
 
@@ -278,21 +278,21 @@ sketch =
   [ section 41 $
     Drones [g, d', a']
       <>
-    Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    Line Nothing (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
   , section 41 $
     Drones [g, d', a']
       <>
-    Line (v[b_,d_,c,b_,b_,d_])
+    Line Nothing (v[b_,d_,c,b_,b_,d_])
 
   , section 42 $
     Drones [g, d', a']
       <>
-    Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    Line Nothing (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
   , section 43 $
     Drones [c'',f',bb]
       <>
-    Line (up d5 $ v motA) -- TODO long version of motA
+    Line Nothing (up d5 $ v motA) -- TODO long version of motA
 
   , section 44 $
     Drones [c'',f',bb]
@@ -302,35 +302,35 @@ sketch =
   , section 45 $ up m2 $
     (Drones [g, d', a'])
       <>
-    (Line $ v $ motALyd ++ [fs, e, fs, e, c, b_])
+    (Line Nothing $ v $ motALyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO transposed version of 42, deduplicate
   -- TODO 46
   , section 46 $ up m2 $
     Drones [g, d', a']
       <>
-    Line (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    Line Nothing (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
   , section 47 $ up _M3 $
-    _8va (Line $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line Nothing $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     Drones [gb, c, f_]
 
   , section 48 $ up _M3 $
-    _8va (Line $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line Nothing $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     Drones [gb, c, f_,bb__]
 
   , section 49 $
     -- TODO parallel diatonic thirds below in Bb minor/Db major
-    _8va (Line $ v [f,eb,db,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
+    _8va (Line Nothing $ v [f,eb,db,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
       <>
     Drones [gb, c, f_]
       <>
     Canon [bb__,a] -- TODO delay switch from drone bb to canon [bb,ab]?
 
   , section 50 $
-    _8va (Line $ v [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
+    _8va (Line Nothing $ v [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
       <>
     Drones [cs,fs, b_, e_, a__]
 
@@ -341,36 +341,36 @@ sketch =
     Drones [c',g]
 
   , section 53 $
-    up _P12 (Line $ v motA) -- TODO longish
+    up _P12 (Line Nothing $ v motA) -- TODO longish
       <>
     Drones [c,f,bb,d']
 
   , section 54 $
-    up _P4 (Line $ v motALyd) -- TODO long
+    up _P4 (Line Nothing $ v motALyd) -- TODO long
       <>
     Drones [g,c,f_]
 
   -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
   -- still alternate at a pace unsynchronized with the main line
   , section 55 $
-    Line (v motC)
+    Line Nothing (v motC)
       <>
     Drones [c,f_,bb__]
   , section 55 $
-    Line (v motC)
+    Line Nothing (v motC)
       <>
     Drones [c,f_,a__]
   , section 55 $
-    Line (v motC)
+    Line Nothing (v motC)
       <>
     Drones [c,f_,bb__]
   , section 55 $
-    Line (v motC)
+    Line Nothing (v motC)
       <>
     Drones [c,f_,a__]
 
   , section 56 $
-    Line (_8va $ v [{-TODO rest-}e,a,e',d',fs',e])
+    Line Nothing (_8va $ v [{-TODO rest-}e,a,e',d',fs',e])
       <>
     Drones [g, c, d_]
   , section 56 $
@@ -386,17 +386,17 @@ sketch =
     Drones [g,c,d_]
 
   , section 58 $
-    Line (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
+    Line Nothing (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
       <>
     Drones [a,e,b_,f_]
 
   , section 59 $
-    Line (v $ concat [d,[e,d]|/2,g,f,e,d,g_,e_])
+    Line Nothing (v $ concat [d,[e,d]|/2,g,f,e,d,g_,e_])
       <>
     Drones [bb,f,c]
 
   , section 60 $
-    Line (v [d,db])
+    Line Nothing (v [d,db])
 
   , section 61 $
     Drones [eb',bb,f]
@@ -463,7 +463,7 @@ sketch =
     Drones [fs]
 
   , section 79 $
-    Line (v [cs,b_,a_,fs_,gs_])
+    Line Nothing (v [cs,b_,a_,fs_,gs_])
 
   , section 80 $
     Drones [g', cs', fs, d, gs_]
@@ -474,12 +474,12 @@ sketch =
   <>
   -- B2
   [ section 100 $
-    down _P4 (Line $ v $ motALyd ++ motALyd)
+    down _P4 (Line Nothing $ v $ motALyd ++ motALyd)
       <>
     Drones (down _P15 [a,d',g',c''])
 
   , section 101 $
-    down _P4 (Line $ v $ motA)
+    down _P4 (Line Nothing $ v $ motA)
       <>
     Drones (down _P15 [a,d',g',c''])
 
@@ -498,10 +498,10 @@ sketch =
       <>
     Drones [g__,g___]
   , section 103 $
-    Line (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
+    Line Nothing (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
 
   , section 104 $
-    Line (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
+    Line Nothing (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
 
   , section 105 $
     down _P4 (LineHarm motBLongHarm)
@@ -513,7 +513,7 @@ sketch =
     Drones [d__,d___]
 
   , section 107 $
-    down m7 $ Line (v motCToV)
+    down m7 $ Line Nothing (v motCToV)
 
   , section 108 $
     -- TODO line
@@ -537,12 +537,12 @@ sketch =
     Drones [fs, d, g_]
 
   , section 111 $
-    Line (v motALyd)
+    Line Nothing (v motALyd)
       <>
     Drones [f,c,g_]
 
   , section 112 $
-    Line (v motC)
+    Line Nothing (v motC)
       <>
     Drones [c_,c__]
 
@@ -551,7 +551,7 @@ sketch =
     Drones [c_,c__]
 
   , section 114 $
-    Line (v motC)
+    Line Nothing (v motC)
       <>
     Drones [c_,c__]
 
