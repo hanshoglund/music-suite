@@ -169,7 +169,7 @@ opening =
     Drones [fs', cs', b, gs, fs, b_]
     -- TODO more lines/canons here
       <>
-    LineT (Just $ solo violin) (delayed 0.5)
+    LineT (Just $ solo violin) (delaying 0.5)
       (up _P12 subjA)
 
   , section 7 $
