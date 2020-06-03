@@ -644,9 +644,9 @@ section_A2A =
 
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
-  cut section_A1
+  section_A1
   <>
-  cut section_A2A
+  section_A2A
 
   <>
   section_A1
