@@ -117,7 +117,7 @@ render (LineHarm xs) =
 --  * stretch by (1/8)
 --  * pad with rests at end to fill an even number of 4/4 bars?
 renderMel :: Voice Pitch -> Music
-renderMel xs = level _f $ stretch (1/8) $ fromV $ fmap fromPitch xs
+renderMel xs = stretch (1/8) $ fromV $ fmap fromPitch xs
 
 renderHarm :: [Pitch] -> Music
 renderHarm xs = ppar $ fmap fromPitch xs
