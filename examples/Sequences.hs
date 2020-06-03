@@ -174,7 +174,7 @@ opening =
       <>
     LineT (Just bassoons) (delaying (7/8)) (down _P4 subjX)
       <>
-    LineT (Just oboes) (delaying (19/8)) (up _P4 subjX)
+    LineT (Just oboes) (delaying (17/8)) (up _P4 subjX)
 
   , section 8 $
     Canon [a'', g'', fs'']
