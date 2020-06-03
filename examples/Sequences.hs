@@ -658,4 +658,5 @@ motCToV:: [Note Pitch]
 motCToV = [f,e,a,g,g' |* 4]
 
 -- TODO a variant of motA
+-- TODO "tie" first two notes (fuse does not work properly)
 subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[e'|*2,d'|*14] |/ 2)
