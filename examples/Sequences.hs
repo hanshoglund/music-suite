@@ -686,6 +686,7 @@ motB = [a,g,g,d]
 motBLong :: [Note Pitch]
 motBLong = [a,g,g,d, d',cs',cs',b] -- TODO etc
 
+motBLongHarm :: Voice Pitch
 motBLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
 
 motC :: [Note Pitch]
@@ -696,5 +697,8 @@ motCToV = [f,e,a,g,g' |* 4]
 
 -- TODO a variant of motA
 -- TODO "tie" first two notes (fuse does not work properly)
+subjA :: Voice Pitch
 subjA = ((cs' |* 4) <> v [e'|*2,d',e'|/2,d'|/2,cs'|*14] |/ 2)
+
+subjX :: Voice Pitch
 subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[e'|*2,d'|*14] |/ 2)
