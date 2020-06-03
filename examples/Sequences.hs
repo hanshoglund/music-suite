@@ -12,7 +12,7 @@
 import Music.Prelude
 import qualified Music.Score as S
 import Numeric.Natural
-import Ex.OrchTextures (multiTempoCanon, multiTempoCanon')
+import Ex.OrchTextures (cut, multiTempoCanon, multiTempoCanon')
 
 -- Working title "Sequences" (or "2020"?)
 --
@@ -162,6 +162,8 @@ opening =
 
   , section 7 $
     Drones [fs', cs', as, fs, b_]
+      <>
+    Line (Just $ tutti corAnglais) (v [cs',d',cs',b,cs',e'|*2,d'|*2] |/ 2)
 
   , section 8 $
     Canon [a'', g'', fs'']
@@ -177,6 +179,9 @@ sketch =
   -- A1 section
   opening
   <>
+  cut postOpening -- TODO temporary
+
+postOpening =
   [ section 9 $
     Canon [a'', g'', fs'']
       <>
