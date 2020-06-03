@@ -289,7 +289,10 @@ section_A2B =
       <>
     Drones [b__,b___]
 
-  -- , section 37 $ Drones [b__,b___]
+  , section 37 $ Drones [b__,b___]
+    above _P8 (Line Nothing (down m2 $ stretch 2 $ v [ds]))
+      <>
+    Drones [b__,b___]
 
   -- , section 38 $ Drones [b__,b___]
 
