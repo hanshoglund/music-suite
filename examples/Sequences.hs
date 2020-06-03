@@ -36,9 +36,13 @@ music =
 
 data Material v p
   = Drones [p]
+  -- ^ Sustained throughout the section (long notes)
   | Canon [p]
+  -- ^ Played in sequence througout the section as a multi-tempo canon
   | Line (Voice p)
+  -- ^ A single melodic line
   | LineHarm [(Voice p, [p])]
+  -- ^ A single melodic line with accompanying harmony
   | Empty
   | Rest -- For unfilled bars
   | Sim (Material v p) (Material v p)
