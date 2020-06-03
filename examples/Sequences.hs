@@ -163,7 +163,7 @@ opening =
   , section 7 $
     Drones [fs', cs', as, fs, b_]
       <>
-    Line (Just $ tutti corAnglais) (v [cs',d',cs',b,cs',e'|*2,d'|*2] |/ 2)
+    Line (Just $ tutti corAnglais) (cs' <> v [cs',d',cs',b,cs']|*(4/5) <> v[e'|*2,d'|*2] |/ 2)
 
   , section 8 $
     Canon [a'', g'', fs'']
