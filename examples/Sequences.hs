@@ -162,15 +162,16 @@ opening =
       <>
     Line (Just $ solo violin)
       subjA
+    -- TODO more lines/canons here
 
   , section 6 $
     Drones [fs'', e'', b', gs']
       <>
     Drones [fs', cs', b, gs, fs, b_]
-    -- TODO more lines/canons here
       <>
     LineT (Just $ solo violin) (delaying 0.5)
       (up _P12 subjA)
+    -- TODO more lines/canons here
 
   , section 7 $
     Drones [fs', cs', as, fs, b_]
