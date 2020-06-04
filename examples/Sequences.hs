@@ -52,7 +52,6 @@ data Material v p
   -- ^ A single melodic line with accompanying harmony
 
   | Empty
-  | Rest -- For unfilled bars
   | Sim (Material v p) (Material v p)
   deriving (Functor, Foldable, Traversable)
   -- TODO add other info from sketch, e.g. dynamics, orchestration
@@ -71,7 +70,6 @@ instance Monoid (Material v p) where
 
 -- | Simple rendering, looking a bit like the original sketch.
 renderSimple :: Material Interval Pitch -> Music
-renderSimple Rest  = rest
 renderSimple Empty = mempty
 renderSimple (Sim a b) = renderSimple a <> renderSimple b
 renderSimple (Drones xs) = renderHarmSimple xs
@@ -89,7 +87,6 @@ renderHarmSimple xs = ppar $ fmap fromPitch xs
 
 
 render :: Material Interval Pitch -> Music
-render Rest  = rest
 render Empty = mempty
 -- TODO simultaneous compositions of Drones with other things should see
 -- the drones stretched to fill the entire sequence.
