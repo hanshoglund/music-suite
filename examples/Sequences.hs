@@ -464,6 +464,14 @@ section_B1 =
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
+    Line Nothing (_8va $ v [{-TODO rest-}e,a,e',d',fs',e])
+      <>
+    Canon [g, fs]
+      <>
+    FlexDrones [c, g_, d_]
+  , section 56 $
+    Line Nothing (_8va $ v [{-TODO rest-}a_,d,a,d',c',e',d'])
+      <>
     Canon [g, fs]
       <>
     Drones [bb_, d_]
