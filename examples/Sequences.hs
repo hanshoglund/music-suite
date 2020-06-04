@@ -359,16 +359,16 @@ section_B1 =
   [ section 41 $
     FlexDrones [g, d', a']
       <>
-    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c, b_])
+    Line (Just violas) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c, b_])
   , section 41 $
     FlexDrones [g, d', a']
       <>
-    Line Nothing (v[c,b_,d_,c,b_,b_,d_])
+    Line (Just cellos) (v[c,b_,d_,c,b_,b_,d_])
 
   , section 42 $
     FlexDrones [g, d', a']
       <>
-    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
+    Line (Just violas) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
 
   , section 43 $
     FlexDrones [c'',f',bb]
@@ -378,23 +378,23 @@ section_B1 =
   , section 44 $
     FlexDrones [c'',f',bb]
       <>
-    Line Nothing (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
+    Line (Just oboes) (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
 
   -- TODO transposed version of 41, deduplicate
   , section 45 $ up m2 $
     (FlexDrones [g, d', a'])
       <>
-    (Line Nothing $ v $ motALyd ++ [fs, e, fs, e, c, b_])
+    (Line (Just horns) $ v $ motALyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO transposed version of 42, deduplicate
   -- TODO 46
   , section 46 $ up m2 $
     FlexDrones [g, d', a']
       <>
-    Line Nothing (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    Line (Just bassoons) (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
   , section 47 $ up _M3 $
-    _8va (Line Nothing $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line (Just oboes) $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_]
 
