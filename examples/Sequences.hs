@@ -465,7 +465,7 @@ section_B1 =
     FlexDrones [c,f_,a__]
 
   , section 56 $
-    Line Nothing (_8va $ v [{-TODO rest-}e,a,e',d',fs',e])
+    LineT Nothing (delaying 1) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
       <>
     FlexDrones [g, c, d_]
   , section 56 $
@@ -473,7 +473,7 @@ section_B1 =
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
-    Line Nothing (_8va $ v [{-TODO rest-}e,a,e',d',fs',e])
+    LineT Nothing (delaying 1) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
       <>
     Canon [g, fs]
       <>
@@ -729,26 +729,26 @@ sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   -- TODO temporary cuts for preview purposes
   -- Restore!
-  cut section_A1
+  section_A1
   <>
-  cut section_A2A
+  section_A2A
 
   <>
-  cut section_A1
+  section_A1
   <>
-  cut section_A2B
+  section_A2B
 
   <>
   section_B1
   <>
-  cut section_C
+  section_C
 
   <>
-  cut section_A1
+  section_A1
   <>
-  cut section_B2
+  section_B2
   <>
-  cut section_CODA
+  section_CODA
 
 
 
