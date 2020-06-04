@@ -159,12 +159,13 @@ renderNEW = go . foo
       renderMel v
     renderAtDur _ (LineHarmG vs) =
       set parts' violins $
+      -- TODO this should NOT use stretchTo, but behave like LineG with sequential composition
       stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) vs
 
     dur :: MaterialG a -> Maybe Duration
     dur (DronesG _ _) = Nothing
     dur (CanonG _ _) = Nothing
-    dur (LineG _ mt v) = Just $ maybe id transform mt $ _duration v
+    dur (LineG _ mt v) = Just $ maybe id transform mt $ stretch (1/8) $ _duration v
     dur (LineHarmG vs) = Just $ sum $ fmap (_duration . fst) vs
 
 
@@ -358,17 +359,16 @@ section_A2B =
 section_B1 =
   -- B1 section
   [ section 41 $
-    Drones [g, d', a']
+    FlexDrones [g, d', a']
       <>
     Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
-    -- TODO shorter drone here
   , section 41 $
     Drones [g, d', a']
       <>
     Line Nothing (v[c,b_,d_,c,b_,b_,d_])
 
   , section 42 $
-    Drones [g, d', a']
+    FlexDrones [g, d', a']
       <>
     Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
 
