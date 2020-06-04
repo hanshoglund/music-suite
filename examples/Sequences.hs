@@ -116,10 +116,8 @@ safeMax xs = case concat $ fmap toList xs of
   [] -> Nothing
   xs -> Just (maximum xs)
 
-render = renderNEW
-
-renderNEW :: Material Interval Pitch -> Music
-renderNEW = go . foo
+render :: Material Interval Pitch -> Music
+render = go . foo
   where
     -- | Render a single parallel composition of materials.
     go :: [MaterialG Pitch] -> Music
