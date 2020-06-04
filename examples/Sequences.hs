@@ -127,23 +127,33 @@ renderNEW = go . foo
       in ppar $ fmap (renderAtDur d) xs
 
     renderAtDur :: Maybe Duration -> MaterialG Pitch -> Music
-    renderAtDur _ (DronesG NoFlex xs) =
-      set parts' violins $
-      stretch 4 $
-      renderHarm xs
-    renderAtDur _ (DronesG Flex xs) = undefined
-    renderAtDur _ (CanonG NoFlex xs) =
-      -- TODO if there's more than one canon per Sim, merge them all
-      -- before rendering (e.g. Canon should be a monoid homomorphism)
-      -- TODO other spans
-      --- TODO other aprts than strings!
-      -- TODO other phases?
-      flip renderPattern (0<->5) $ multiTempoCanon
-        (zip3 (cycle $ stringOrchestra ++ [doubleBasses]) (repeat _P1)
-          (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
-        -- TODO use durations other than 1
-        (v $ fmap pure xs)
-    renderAtDur _ (CanonG Flex xs) = undefined
+    renderAtDur md (DronesG flex xs) =
+      let dur =
+            case (md, flex) of
+              (Just d, Flex) -> d
+              _ -> 4
+      in
+        set parts' violins $
+        stretch dur $
+        renderHarm xs
+    renderAtDur md (CanonG flex xs) =
+      let endPoint =
+              case (md, flex) of
+                (Just d, Flex) -> 0 .+^ d
+                -- Use duration from context
+                _ -> 5
+                -- Arbitrary fixed duration
+      in
+        -- TODO if there's more than one canon per Sim, merge them all
+        -- before rendering (e.g. Canon should be a monoid homomorphism)
+        -- TODO other spans
+        --- TODO other aprts than strings!
+        -- TODO other phases?
+        flip renderPattern (0 <-> endPoint) $ multiTempoCanon
+          (zip3 (cycle $ stringOrchestra ++ [doubleBasses]) (repeat _P1)
+            (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
+          -- TODO use durations other than 1 in the pattern melody
+          (v $ fmap pure xs)
     renderAtDur _ (LineG mp mt v) = maybe id transform mt $
       set parts' (maybe violins id mp) $
       renderMel v
@@ -157,36 +167,6 @@ renderNEW = go . foo
     dur (LineG _ mt v) = Just $ maybe id transform mt $ _duration v
     dur (LineHarmG vs) = Just $ sum $ fmap (_duration . fst) vs
 
-renderOLD :: Material Interval Pitch -> Music
-renderOLD Empty = mempty
--- TODO simultaneous compositions of Drones with other things should see
--- the drones stretched to fill the entire sequence.
-renderOLD (Sim a b) = renderOLD a <> renderOLD b
-renderOLD (FlexDrones _) = undefined
-renderOLD (FlexCanon _) = undefined
-renderOLD (Drones xs) =
-  set parts' violins $
-  stretch 4 $
-  renderHarm xs
-renderOLD (Canon xs) =
-  -- TODO if there's more than one canon per Sim, merge them all
-  -- before rendering (e.g. Canon should be a monoid homomorphism)
-  -- TODO other spans
-  --- TODO other aprts than strings!
-  -- TODO other phases?
-  flip renderPattern (0<->5) $ multiTempoCanon
-    (zip3 (cycle $ stringOrchestra ++ [doubleBasses]) (repeat _P1)
-      (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
-  -- TODO use durations other than 1
-  (v $ fmap pure xs)
-renderOLD (Line p xs) =
-  set parts' (maybe violins id p) $
-  renderMel xs
-renderOLD (LineT p t xs) = transform t $
-  renderOLD (Line p xs)
-renderOLD (LineHarm xs) =
-  set parts' violins $
-  stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
 
 -- TODO pad with rests at end to fill an even number of 4/4 bars?
 renderMel :: Voice Pitch -> Music
