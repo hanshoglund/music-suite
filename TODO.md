@@ -646,6 +646,7 @@ Consider switching to a decentralized issue tracker such as:
     - Run Typesetting/RenderingAudio in parallel
     - "Interpret at selection" a la most Lisp interpreters
 
+- [ ] Bug: ebClarinet renders as piano in MIDI output (or is it because of "too many sounds"? - see MIDI export)
 
 - [X] Fix lawless (HasPosition (Score a))
   - Preference: Idea 1!!
