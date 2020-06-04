@@ -381,39 +381,39 @@ section_B1 =
 
   -- TODO transposed version of 41, deduplicate
   , section 45 $ up m2 $
-    (Drones [g, d', a'])
+    (FlexDrones [g, d', a'])
       <>
     (Line Nothing $ v $ motALyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO transposed version of 42, deduplicate
   -- TODO 46
   , section 46 $ up m2 $
-    Drones [g, d', a']
+    FlexDrones [g, d', a']
       <>
     Line Nothing (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
   , section 47 $ up _M3 $
     _8va (Line Nothing $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
-    Drones [gb, c, f_]
+    FlexDrones [gb, c, f_]
 
   , section 48 $ up _M3 $
     _8va (Line Nothing $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
-    Drones [gb, c, f_,bb__]
+    FlexDrones [gb, c, f_,bb__]
 
   , section 49 $
     -- TODO parallel diatonic thirds below in Bb minor/Db major
     _8va (Line Nothing $ v [f,eb,db,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
       <>
-    Drones [gb, c, f_]
+    FlexDrones [gb, c, f_]
       <>
     Canon [bb__,a] -- TODO delay switch from drone bb to canon [bb,ab]?
 
   , section 50 $
     _8va (Line Nothing $ v [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
       <>
-    Drones [cs,fs, b_, e_, a__]
+    FlexDrones [cs,fs, b_, e_, a__]
 
   , section 51 $
     Drones [d', g, d, a__]
