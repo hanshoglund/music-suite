@@ -508,6 +508,8 @@ section_B1 =
     Drones [eb',bb,f]
 
   , section 62 $
+    Line Nothing (down _P5 $ v motC)
+      <>
     Drones [f__,f___]
 
   , section 63 $
@@ -524,12 +526,16 @@ section_B1 =
     Drones [d,c_]
 
   , section 66 $
+    Line Nothing (down _P5 $ v motC)
+      <>
     Drones [f__,f___]
 
   , section 67 $
     Drones [f__,f___]
 
   , section 68 $
+    Line Nothing (down _P5 $ v motC)
+      <>
     Drones [f__,f___]
 
   , section 69 $
