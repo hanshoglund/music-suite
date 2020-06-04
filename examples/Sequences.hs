@@ -448,7 +448,7 @@ section_B1 =
   -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
   -- still alternate at a pace unsynchronized with the main line
   , section 55 $
-    Line Nothing (v motC)
+    Line Nothing (v motCToI <> _8va (v motCVar))
       <>
     FlexDrones [c,f_,bb__]
   , section 55 $
@@ -465,7 +465,7 @@ section_B1 =
     FlexDrones [c,f_,a__]
 
   , section 56 $
-    LineT Nothing (delaying 1) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
+    LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
       <>
     FlexDrones [g, c, d_]
   , section 56 $
@@ -473,13 +473,13 @@ section_B1 =
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
-    LineT Nothing (delaying 1) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
+    LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
       <>
     Canon [g, fs]
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
-    Line Nothing (_8va $ v [{-TODO rest-}a_,d,a,d',c',e',d'])
+    LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}a_,d,a,d',c',e',d'])
       <>
     Canon [g, fs]
       <>
@@ -487,6 +487,8 @@ section_B1 =
 
   , section 57 $
     Drones [g,c,d_]
+      <>
+    (below _M3 $ Line Nothing ,b,a,a,c,c,f,f,a]) -- TODO etc
 
   , section 58 $
     Line Nothing (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
@@ -729,26 +731,26 @@ sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   -- TODO temporary cuts for preview purposes
   -- Restore!
-  section_A1
+  cut section_A1
   <>
-  section_A2A
+  cut section_A2A
 
   <>
-  section_A1
+  cut section_A1
   <>
-  section_A2B
+  cut section_A2B
 
   <>
   section_B1
   <>
-  section_C
+  cut section_C
 
   <>
-  section_A1
+  cut section_A1
   <>
-  section_B2
+  cut section_B2
   <>
-  section_CODA
+  cut section_CODA
 
 
 
@@ -774,6 +776,8 @@ motC = [f,e,a,g,e' |* 4]
 
 motCToV:: [Note Pitch]
 motCToV = [f,e,a,g,g' |* 4]
+motCToI = [f,e,a,g,c' |* 4]
+motCVar = [e,d,g,f,d' |* 4]
 
 -- TODO a variant of motA
 -- TODO "tie" first two notes (fuse does not work properly)
