@@ -452,15 +452,15 @@ section_B1 =
       <>
     FlexDrones [c,f_,bb__]
   , section 55 $
-    Line Nothing (v motC)
+    Line Nothing (v motCToI <> _8va (v motCVar))
       <>
     FlexDrones [c,f_,a__]
   , section 55 $
-    Line Nothing (v motC)
+    Line Nothing (v motCToI <> _8va (v motCVar))
       <>
     FlexDrones [c,f_,bb__]
   , section 55 $
-    Line Nothing (v motC)
+    Line Nothing (v motCToI <> _8va (v motCVar))
       <>
     FlexDrones [c,f_,a__]
 
