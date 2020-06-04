@@ -123,7 +123,8 @@ safeMax xs = case concat $ fmap toList xs of
 -- >>> roundTo1 3.2
 -- 4
 roundTo1 :: Duration -> Duration
-roundTo1 d = let (_q,r) = d `divModDur` 1 in d + (1 - r)
+roundTo1 d = let (_q,r) = d `divModDur` 1 in
+  if r > 0 then d + (1 - r) else d
 
 render :: Material Interval Pitch -> Music
 render = go . foo
