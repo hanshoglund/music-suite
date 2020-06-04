@@ -223,6 +223,7 @@ section_A2A =
   ]
 
 section_A2B =
+  -- TODO throughout: fs,gs vs f,g (WT around B vs quartal around B)
   [ section 24 $
     Drones [cs', fs, b_]
       <>
@@ -307,6 +308,7 @@ section_B1 =
     Drones [g, d', a']
       <>
     Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
+    -- TODO shorter drone here
   , section 41 $
     Drones [g, d', a']
       <>
