@@ -36,15 +36,21 @@ music =
 
 data Material v p
   = Drones [p]
-  -- ^ Sustained throughout the section (long notes)
+  -- ^ Sustained throughout the section (long notes). Duration 4.
   | Canon [p]
-  -- ^ Played in sequence througout the section as a multi-tempo canon
+  -- ^ Played in sequence througout the section as a multi-tempo canon. Duration 5.
+
+  -- FlexDrones [p]
+  -- FlexCanon [p]
+  -- TODO like the above, but stretch to fit the duration of line material
+
   | Line (Maybe Part) (Voice p)
   -- ^ A single melodic line
   | LineT (Maybe Part) Span (Voice p)
   -- ^ A single melodic line with a transformation
   | LineHarm [(Voice p, [p])]
   -- ^ A single melodic line with accompanying harmony
+
   | Empty
   | Rest -- For unfilled bars
   | Sim (Material v p) (Material v p)
