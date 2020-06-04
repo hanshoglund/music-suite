@@ -116,6 +116,15 @@ safeMax xs = case concat $ fmap toList xs of
   [] -> Nothing
   xs -> Just (maximum xs)
 
+-- |
+-- >>> roundTo1 3
+-- 3
+--
+-- >>> roundTo1 3.2
+-- 4
+roundTo1 :: Duration -> Duration
+roundTo1 d = let (_q,r) = d `divModDur` 1 in d + (1 - r)
+
 render :: Material Interval Pitch -> Music
 render = go . foo
   where
@@ -128,7 +137,7 @@ render = go . foo
     renderAtDur md (DronesG flex xs) =
       let dur =
             case (md, flex) of
-              (Just d, Flex) -> d
+              (Just d, Flex) -> roundTo1 d
               _ -> 4
       in
         set parts' violins $
@@ -773,3 +782,11 @@ subjA = ((cs' |* 4) <> v [e'|*2,d',e'|/2,d'|/2,cs'|*14] |/ 2)
 
 subjX :: Voice Pitch
 subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[e'|*2,d'|*14] |/ 2)
+
+divModDur :: Duration -> Duration -> (Integer, Duration)
+divModDur x v = (n, r)
+  where
+    n = floor (x / v)
+    -- r follows from (v*^n ^+^ r = x)
+    r = x ^-^ (v *^ fromIntegral n)
+{-# INLINE divModDur #-}
