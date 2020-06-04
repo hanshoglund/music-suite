@@ -489,7 +489,7 @@ section_B1 =
   , section 57 $
     FlexDrones [g,cs,d_]
       <>
-    (below _M3 $ Line Nothing $ v $ [b,a,a,f,f,g,g,a]<>[cs',b,b,g,g,a,a,b]) -- TODO etc
+    (below _M3 $ Line Nothing $ v $ let x = [b,a,a,f,f,g,g,a] in x<>x<>[cs',b,b,g,g,a,a,b]) -- TODO etc
 
   , section 58 $
     Line Nothing (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
