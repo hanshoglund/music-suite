@@ -502,7 +502,7 @@ section_B1 =
     Drones [bb,f,c]
 
   , section 60 $
-    Line Nothing (v [d,db])
+    LineT Nothing (stretched 4) (v [d,db])
 
   , section 61 $
     Drones [eb',bb,f]
