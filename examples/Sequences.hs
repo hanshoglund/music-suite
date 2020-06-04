@@ -488,7 +488,7 @@ section_B1 =
   , section 57 $
     Drones [g,c,d_]
       <>
-    (below _M3 $ Line Nothing ,b,a,a,c,c,f,f,a]) -- TODO etc
+    (below _M3 $ Line Nothing $ v [b,a,a,c,c,f,f,a]) -- TODO etc
 
   , section 58 $
     Line Nothing (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
