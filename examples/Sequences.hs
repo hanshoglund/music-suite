@@ -427,7 +427,7 @@ section_B1 =
     FlexDrones [c',g]
 
   , section 53 $
-    up _P12 (Line (Just ebClarinet) $ v motA) -- TODO longish
+    up _P12 (Line (Just ebClarinets) $ v motA) -- TODO longish
       <>
     FlexDrones [c,f,bb,d']
 
