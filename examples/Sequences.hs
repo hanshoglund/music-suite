@@ -10,6 +10,7 @@
 {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, MultiParamTypeClasses, TypeFamilies #-}
 
 import Music.Prelude
+import Data.Foldable (toList)
 import qualified Music.Score as S
 import Numeric.Natural
 import Ex.OrchTextures (cut, multiTempoCanon, multiTempoCanon')
@@ -40,9 +41,10 @@ data Material v p
   | Canon [p]
   -- ^ Played in sequence througout the section as a multi-tempo canon. Duration 5.
 
-  -- FlexDrones [p]
-  -- FlexCanon [p]
-  -- TODO like the above, but stretch to fit the duration of line material
+  | FlexDrones [p]
+  -- TODO like Drones, but stretched to fit the duration of line material
+  | FlexCanon [p]
+  -- TODO like Canon, but stretched to fit the duration of line material
 
   | Line (Maybe Part) (Voice p)
   -- ^ A single melodic line
@@ -68,6 +70,26 @@ instance Monoid (Material v p) where
   mempty = Empty
 
 
+data Flex = Flex | NoFlex
+data MaterialG p
+  = DronesG Flex [p]
+  | CanonG Flex [p]
+  | LineG (Maybe Part) (Maybe Span) (Voice p)
+  | LineHarmG [(Voice p, [p])]
+foo :: Material v p -> [MaterialG p]
+foo = go
+  where
+    go Empty = []
+    go (Sim x y) = go x ++ go y
+    go (Drones xs) = [DronesG NoFlex xs]
+    go (Canon xs) = [CanonG NoFlex xs]
+    go (FlexDrones xs) = [DronesG Flex xs]
+    go (FlexCanon xs) = [CanonG Flex xs]
+    go (Line p v) = [LineG p Nothing v]
+    go (LineT p t v) = [LineG p (Just t) v]
+    go (LineHarm ts) = [LineHarmG ts]
+
+
 -- | Simple rendering, looking a bit like the original sketch.
 renderSimple :: Material Interval Pitch -> Music
 renderSimple Empty = mempty
@@ -75,6 +97,8 @@ renderSimple (Sim a b) = renderSimple a <> renderSimple b
 renderSimple (Drones xs) = renderHarmSimple xs
 renderSimple (Canon xs) =
   ppar $ fmap fromPitch xs
+renderSimple (FlexDrones xs) = renderSimple (Drones xs)
+renderSimple (FlexCanon xs) = renderSimple (Canon xs)
 renderSimple (Line _p xs) = renderMelSimple xs
 renderSimple (LineT _p _t xs) = renderMelSimple xs
 renderSimple (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMelSimple mel <> renderHarmSimple harm) xs
@@ -87,20 +111,66 @@ renderHarmSimple xs = ppar $ fmap fromPitch xs
 
 
 
+safeMax :: Ord a => [Maybe a] -> Maybe a
+safeMax xs = case concat $ fmap toList xs of
+  [] -> Nothing
+  xs -> Just (maximum xs)
 
+render = renderNEW
 
-render :: Material Interval Pitch -> Music
-render Empty = mempty
+renderNEW :: Material Interval Pitch -> Music
+renderNEW = go . foo
+  where
+    -- | Render a single parallel composition of materials.
+    go :: [MaterialG Pitch] -> Music
+    go xs = let d = safeMax (fmap dur xs)
+      in ppar $ fmap (renderAtDur d) xs
+
+    renderAtDur :: Maybe Duration -> MaterialG Pitch -> Music
+    renderAtDur _ (DronesG NoFlex xs) =
+      set parts' violins $
+      stretch 4 $
+      renderHarm xs
+    renderAtDur _ (DronesG Flex xs) = undefined
+    renderAtDur _ (CanonG NoFlex xs) =
+      -- TODO if there's more than one canon per Sim, merge them all
+      -- before rendering (e.g. Canon should be a monoid homomorphism)
+      -- TODO other spans
+      --- TODO other aprts than strings!
+      -- TODO other phases?
+      flip renderPattern (0<->5) $ multiTempoCanon
+        (zip3 (cycle $ stringOrchestra ++ [doubleBasses]) (repeat _P1)
+          (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
+        -- TODO use durations other than 1
+        (v $ fmap pure xs)
+    renderAtDur _ (CanonG Flex xs) = undefined
+    renderAtDur _ (LineG mp mt v) = maybe id transform mt $
+      set parts' (maybe violins id mp) $
+      renderMel v
+    renderAtDur _ (LineHarmG vs) =
+      set parts' violins $
+      stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) vs
+
+    dur :: MaterialG a -> Maybe Duration
+    dur (DronesG _ _) = Nothing
+    dur (CanonG _ _) = Nothing
+    dur (LineG _ mt v) = Just $ maybe id transform mt $ _duration v
+    dur (LineHarmG vs) = Just $ sum $ fmap (_duration . fst) vs
+
+renderOLD :: Material Interval Pitch -> Music
+renderOLD Empty = mempty
 -- TODO simultaneous compositions of Drones with other things should see
 -- the drones stretched to fill the entire sequence.
-render (Sim a b) = render a <> render b
-render (Drones xs) =
+renderOLD (Sim a b) = renderOLD a <> renderOLD b
+renderOLD (FlexDrones _) = undefined
+renderOLD (FlexCanon _) = undefined
+renderOLD (Drones xs) =
   set parts' violins $
   stretch 4 $
   renderHarm xs
--- TODO if there's more than one canon per Sim, merge them all
--- before rendering (e.g. Canon should be a monoid homomorphism)
-render (Canon xs) =
+renderOLD (Canon xs) =
+  -- TODO if there's more than one canon per Sim, merge them all
+  -- before rendering (e.g. Canon should be a monoid homomorphism)
   -- TODO other spans
   --- TODO other aprts than strings!
   -- TODO other phases?
@@ -109,12 +179,12 @@ render (Canon xs) =
       (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
   -- TODO use durations other than 1
   (v $ fmap pure xs)
-render (Line p xs) =
+renderOLD (Line p xs) =
   set parts' (maybe violins id p) $
   renderMel xs
-render (LineT p t xs) = transform t $
-  render (Line p xs)
-render (LineHarm xs) =
+renderOLD (LineT p t xs) = transform t $
+  renderOLD (Line p xs)
+renderOLD (LineHarm xs) =
   set parts' violins $
   stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
 
@@ -659,26 +729,26 @@ sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   -- TODO temporary cuts for preview purposes
   -- Restore!
-  cut section_A1
+  section_A1
   <>
-  cut section_A2A
+  section_A2A
 
   <>
-  cut section_A1
+  section_A1
   <>
   section_A2B
 
   <>
   section_B1
   <>
-  cut section_C
+  section_C
 
   <>
-  cut section_A1
+  section_A1
   <>
-  cut section_B2
+  section_B2
   <>
-  cut section_CODA
+  section_CODA
 
 
 
