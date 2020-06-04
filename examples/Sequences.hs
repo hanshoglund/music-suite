@@ -359,16 +359,16 @@ section_B1 =
   [ section 41 $
     FlexDrones [g, d', a']
       <>
-    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
+    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c, b_])
   , section 41 $
-    Drones [g, d', a']
+    FlexDrones [g, d', a']
       <>
     Line Nothing (v[c,b_,d_,c,b_,b_,d_])
 
   , section 42 $
     FlexDrones [g, d', a']
       <>
-    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
+    Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
 
   , section 43 $
     FlexDrones [c'',f',bb]
@@ -417,48 +417,48 @@ section_B1 =
     FlexDrones [cs,fs, b_, e_, a__]
 
   , section 51 $
-    Drones [d', g, d, a__]
+    FlexDrones [d', g, d, a__]
 
   , section 52 $
-    Drones [c',g]
+    FlexDrones [c',g]
 
   , section 53 $
     up _P12 (Line Nothing $ v motA) -- TODO longish
       <>
-    Drones [c,f,bb,d']
+    FlexDrones [c,f,bb,d']
 
   , section 54 $
     up _P4 (Line Nothing $ v motALyd) -- TODO long
       <>
-    Drones [g,c,f_]
+    FlexDrones [g,c,f_]
 
   -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
   -- still alternate at a pace unsynchronized with the main line
   , section 55 $
     Line Nothing (v motC)
       <>
-    Drones [c,f_,bb__]
+    FlexDrones [c,f_,bb__]
   , section 55 $
     Line Nothing (v motC)
       <>
-    Drones [c,f_,a__]
+    FlexDrones [c,f_,a__]
   , section 55 $
     Line Nothing (v motC)
       <>
-    Drones [c,f_,bb__]
+    FlexDrones [c,f_,bb__]
   , section 55 $
     Line Nothing (v motC)
       <>
-    Drones [c,f_,a__]
+    FlexDrones [c,f_,a__]
 
   , section 56 $
     Line Nothing (_8va $ v [{-TODO rest-}e,a,e',d',fs',e])
       <>
-    Drones [g, c, d_]
+    FlexDrones [g, c, d_]
   , section 56 $
     Canon [g, fs]
       <>
-    Drones [c, g_, d_]
+    FlexDrones [c, g_, d_]
   , section 56 $
     Canon [g, fs]
       <>
