@@ -634,8 +634,12 @@ Consider switching to a decentralized issue tracker such as:
   - [ ] Preview any (top-level) value at cursor, not just top-level file
   - [ ] Refactoring mode: Show *hash* of output only (don't wait for graphics or audio to render). Useful to make
     sure nothing changed.
+  - Sync Lilypond and audio output (if possible)
+    - [ ] Clicking on bar moves playback
+    - [ ] Show playhead/playing bar in score output
   - [X] Bug: crashes on multi-page Lilypond output
   - Repeat works, should look at cache/output dir
+  - Prevent closing with Ctrl-W (happens all the time)
   - See $interactive
   - Make feedback loop faster:
     - Optimize "Compiling" (Haskell) phase
