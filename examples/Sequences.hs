@@ -371,13 +371,14 @@ section_B1 =
     Line Nothing (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
 
   , section 43 $
-    Drones [c'',f',bb]
+    FlexDrones [c'',f',bb]
       <>
     Line Nothing (up d5 $ v motA) -- TODO long version of motA
 
   , section 44 $
-    Drones [c'',f',bb]
-    -- TODO line
+    FlexDrones [c'',f',bb]
+      <>
+    Line Nothing (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
 
   -- TODO transposed version of 41, deduplicate
   , section 45 $ up m2 $
