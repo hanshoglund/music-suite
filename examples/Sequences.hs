@@ -86,6 +86,9 @@ renderHarmSimple :: [Pitch] -> Music
 renderHarmSimple xs = ppar $ fmap fromPitch xs
 
 
+
+
+
 render :: Material Interval Pitch -> Music
 render Empty = mempty
 -- TODO simultaneous compositions of Drones with other things should see
@@ -115,10 +118,7 @@ render (LineHarm xs) =
   set parts' violins $
   stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) xs
 
--- TODO proper rhythm
--- For example:
---  * stretch by (1/8)
---  * pad with rests at end to fill an even number of 4/4 bars?
+-- TODO pad with rests at end to fill an even number of 4/4 bars?
 renderMel :: Voice Pitch -> Music
 renderMel xs = stretch (1/8) $ fromV $ fmap fromPitch xs
 
