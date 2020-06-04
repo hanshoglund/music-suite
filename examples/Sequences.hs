@@ -330,7 +330,7 @@ section_A2B =
   , section 32 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
-    Drones [b__,b___] -- TODO need drone following melody here, NOT 4 bars
+    FlexDrones [b__,b___]
 
   , section 34 $ Drones [b__,b___]
       <>
@@ -709,26 +709,26 @@ sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   -- TODO temporary cuts for preview purposes
   -- Restore!
-  section_A1
+  cut section_A1
   <>
-  section_A2A
+  cut section_A2A
 
   <>
-  section_A1
+  cut section_A1
   <>
   section_A2B
 
   <>
   section_B1
   <>
-  section_C
+  cut section_C
 
   <>
-  section_A1
+  cut section_A1
   <>
-  section_B2
+  cut section_B2
   <>
-  section_CODA
+  cut section_CODA
 
 
 
