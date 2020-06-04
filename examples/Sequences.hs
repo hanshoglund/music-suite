@@ -418,6 +418,8 @@ section_B1 =
 
   , section 51 $
     FlexDrones [d', g, d, a__]
+      <>
+    Line (Just horns) (up _M2 $ v motALyd)
 
   , section 52 $
     FlexDrones [c',g]
