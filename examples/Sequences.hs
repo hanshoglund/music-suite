@@ -381,13 +381,14 @@ section_B1 =
     Line (Just oboes) (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
 
   -- TODO transposed version of 41, deduplicate
+  -- TODO also wrong rhythm!
   , section 45 $ up m2 $
     (FlexDrones [g, d', a'])
       <>
     (Line (Just horns) $ v $ motALyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO transposed version of 42, deduplicate
-  -- TODO 46
+  -- TODO also wrong rhythm!
   , section 46 $ up m2 $
     FlexDrones [g, d', a']
       <>
@@ -399,7 +400,8 @@ section_B1 =
     FlexDrones [gb, c, f_]
 
   , section 48 $ up _M3 $
-    _8va (Line Nothing $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    -- TODO fl+cl
+    _8va (Line (Just flutes) $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_,bb__]
 
@@ -425,7 +427,7 @@ section_B1 =
     FlexDrones [c',g]
 
   , section 53 $
-    up _P12 (Line Nothing $ v motA) -- TODO longish
+    up _P12 (Line (Just ebClarinet) $ v motA) -- TODO longish
       <>
     FlexDrones [c,f,bb,d']
 
