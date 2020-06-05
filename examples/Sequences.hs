@@ -369,7 +369,7 @@ section_B1 =
   [ section 41 $
     FlexDrones [g, d', a']
       <>
-    Line (Just violas) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c, b_])
+    Line (Just violas) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
   , section 41 $
     FlexDrones [g, d', a']
       <>
@@ -395,39 +395,38 @@ section_B1 =
   , section 45 $ up m2 $
     (FlexDrones [g, d', a'])
       <>
-    (Line (Just horns) $ v $ motALyd ++ [fs, e, fs, e, c, b_])
+    (Line (Just horns) $ v $ motALyd ++ []) -- TODO
 
   -- TODO transposed version of 42, deduplicate
   -- TODO wrong rhythm!
   , section 46 $ up m2 $
     FlexDrones [g, d', a']
       <>
-    Line (Just bassoons) (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
+    Line (Just bassoons) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
 
   -- TODO wrong rhythm!
   , section 47 $ up _M3 $
-    _8va (Line (Just oboes) $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line (Just oboes) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_]
 
   -- TODO wrong rhythm!
   , section 48 $ up _M3 $
     -- TODO fl+cl
-    _8va (Line (Just flutes) $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line (Just flutes) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_,bb__]
 
-  -- TODO wrong rhythm!
   , section 49 $
-    _8va (Line Nothing $ v [f,eb,db,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
+    _8va (Line Nothing $ v [f,eb|/2,db|/2,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
       <>
     FlexDrones [gb, c, f_]
       <>
-    Canon [bb__,a] -- TODO delay switch from drone bb to canon [bb,ab]?
+    Canon [bb__,a__] -- TODO delay switch from drone bb to canon [bb,ab]?
 
   -- TODO wrong rhythm!
   , section 50 $
-    _8va (Line Nothing $ v [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
+    _8va (Line Nothing $ v [e,ds|/2,e|/2,ds,b_,b_,cs,cs,ds]) -- TODO etc
       <>
     FlexDrones [cs',fs, b_, e_, a__]
 
