@@ -361,7 +361,7 @@ section_A2B =
       <>
     Line (Just horns) (v [fs,e] |* 16)
       <>
-    Line (Just horns) (v [as,gs] |* 16)
+    Line (Just horns) (v [ds,cs] |* 16)
       <>
     Drones [b__,b___]
 
