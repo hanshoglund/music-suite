@@ -503,7 +503,8 @@ section_B1 =
       let x = [b,a,a,f,f,g,g,a]
       in mconcat [x, x, [cs',b,b,g,g,a,a,b],
       [cs',b,b,g],
-      [cs',b,b,g]
+      [cs',b,b,g],
+      [cs',b,b,g] |* 2
       ]) -- TODO etc
 
   , section 58 $
