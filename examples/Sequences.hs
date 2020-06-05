@@ -745,9 +745,9 @@ sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   -- TODO temporary cuts for preview purposes
   -- Restore!
-  section_A1
+  cut section_A1
   <>
-  section_A2A
+  cut section_A2A
 
   <>
   section_A1
@@ -757,14 +757,14 @@ sketch =
   <>
   section_B1
   <>
-  section_C
+  cut section_C
 
   <>
-  section_A1
+  cut section_A1
   <>
-  section_B2
+  cut section_B2
   <>
-  section_CODA
+  cut section_CODA
 
 
 
