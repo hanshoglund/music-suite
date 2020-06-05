@@ -339,6 +339,8 @@ section_A2B =
   , section 32 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
+    Line (Just horns) (v [fs] |* 16)
+      <>
     FlexDrones [b__,b___]
 
   , section 34 $ Drones [b__,b___]
@@ -350,7 +352,9 @@ section_A2B =
   , section 36 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
-    Drones [b__,b___]
+    Line (Just horns) (v [fs,e] |* 16)
+      <>
+    FlexDrones [b__,b___]
 
   , section 37 $
     above _P8 (Line Nothing (stretch 2 $ v [ds' |* 2]))
