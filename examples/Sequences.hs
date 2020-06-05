@@ -391,42 +391,45 @@ section_B1 =
     Line (Just oboes) (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
 
   -- TODO transposed version of 41, deduplicate
-  -- TODO also wrong rhythm!
+  -- TODO wrong rhythm!
   , section 45 $ up m2 $
     (FlexDrones [g, d', a'])
       <>
     (Line (Just horns) $ v $ motALyd ++ [fs, e, fs, e, c, b_])
 
   -- TODO transposed version of 42, deduplicate
-  -- TODO also wrong rhythm!
+  -- TODO wrong rhythm!
   , section 46 $ up m2 $
     FlexDrones [g, d', a']
       <>
     Line (Just bassoons) (v[fs, e, fs, e, c, c, e, fs, e, fs, e, c, b_])
 
+  -- TODO wrong rhythm!
   , section 47 $ up _M3 $
     _8va (Line (Just oboes) $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_]
 
+  -- TODO wrong rhythm!
   , section 48 $ up _M3 $
     -- TODO fl+cl
     _8va (Line (Just flutes) $ v [eb,db,eb,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_,bb__]
 
+  -- TODO wrong rhythm!
   , section 49 $
-    -- TODO parallel diatonic thirds below in Bb minor/Db major
     _8va (Line Nothing $ v [f,eb,db,eb,f,eb,db,eb,f,eb,eb,gb,f,eb,db,eb])
       <>
     FlexDrones [gb, c, f_]
       <>
     Canon [bb__,a] -- TODO delay switch from drone bb to canon [bb,ab]?
 
+  -- TODO wrong rhythm!
   , section 50 $
     _8va (Line Nothing $ v [e,ds,e,ds,b_,b_,cs,cs,ds]) -- TODO etc
       <>
-    FlexDrones [cs,fs, b_, e_, a__]
+    FlexDrones [cs',fs, b_, e_, a__]
 
   , section 51 $
     FlexDrones [d', g, d, a__]
