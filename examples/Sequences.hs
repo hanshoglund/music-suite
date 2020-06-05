@@ -359,6 +359,10 @@ section_A2B =
   , section 37 $
     above _P8 (Line Nothing (stretch 2 $ v [ds' |* 2]))
       <>
+    Line (Just horns) (v [fs,e] |* 16)
+      <>
+    Line (Just horns) (v [as,gs] |* 16)
+      <>
     Drones [b__,b___]
 
   -- , section 38 $ Drones [b__,b___]
