@@ -257,20 +257,20 @@ section_A1 =
 section_A2A =
   -- A2a
   [ section 9 $
-    Canon [a'', g'', fs'']
+    FlexCanon [a'', g'', fs'']
       <>
-    Drones [fs', fs, b_]
+    FlexDrones [fs', fs, b_]
       <>
-    Drones [b_, fs_]
+    FlexDrones [b_, fs_]
       <>
-    Canon [cs_, d_, b__]
+    FlexCanon [cs_, d_, b__]
       <>
     -- TODO louder, slower and aligned to end
-    Line Nothing (v[cs', b, fs'])
+    Line Nothing (v[cs', b, fs']|*(8*2/3))
 
   , section 10 $
     -- TODO louder, slower
-    Line Nothing (v[fs', e'])
+    Line Nothing (v[fs', e']|*8)
       <>
     Drones [b, g, cs]
     -- TODO second (delayed) Line
@@ -745,26 +745,26 @@ sketch :: [(Natural, Material Interval Pitch)]
 sketch =
   -- TODO temporary cuts for preview purposes
   -- Restore!
-  cut section_A1
+  section_A1
   <>
-  cut section_A2A
+  section_A2A
 
   <>
-  cut section_A1
+  section_A1
   <>
-  cut section_A2B
+  section_A2B
 
   <>
   section_B1
   <>
-  cut section_C
+  section_C
 
   <>
-  cut section_A1
+  section_A1
   <>
-  cut section_B2
+  section_B2
   <>
-  cut section_CODA
+  section_CODA
 
 
 
