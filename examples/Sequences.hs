@@ -534,48 +534,48 @@ section_B1 =
       <>
     FlexDrones [bb,f,c]
 
-  , section 60 $
-    LineT Nothing (stretching 4) (v [d,db])
+  -- , section 60 $
+  --  LineT Nothing (stretching 4) (v [d,db])
 
-  , section 61 $
-    Drones [eb',bb,f]
+  --, section 61 $
+  --  Drones [eb',bb,f]
 
   , section 62 $
     Line Nothing (down _P5 $ v motC)
       <>
-    Drones [f__,f___]
+    FlexDrones [f__,f___]
 
   , section 63 $
-    Drones [bb,f,c_]
+    FlexDrones [bb,f,c_]
   , section 63 $
-    Drones [a,f,c_]
+    FlexDrones [a,f,c_]
 
   , section 64 $
-    Drones [bb,f,c_]
+    FlexDrones [bb,f,c_]
   , section 64 $
-    Drones [a,f,c_]
+    FlexDrones [a,f,c_]
 
   , section 65 $
-    Drones [d,c_]
+    FlexDrones [d,c_]
 
   , section 66 $
     Line Nothing (down _P5 $ v motC)
       <>
-    Drones [f__,f___]
+    FlexDrones [f__,f___]
 
   , section 67 $
-    Drones [f__,f___]
+    FlexDrones [f__,f___]
 
   , section 68 $
     Line Nothing (down _P5 $ v motC)
       <>
-    Drones [f__,f___]
+    FlexDrones [f__,f___]
 
   , section 69 $
-    Drones [f__,f___]
+    FlexDrones [f__,f___]
 
   , section 70 $
-    Drones [f__,f___]
+    FlexDrones [f__,f___]
   ]
 
 section_C =
