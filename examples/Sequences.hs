@@ -405,28 +405,30 @@ section_B1 =
     FlexDrones [c'',f',bb]
       <>
     Line (Just oboes) (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
+    -- TODO longer
 
   -- TODO transposed version of 41, deduplicate
-  -- TODO wrong rhythm!
+  -- TODO deduplicate!
   , section 45 $ up m2 $
     (FlexDrones [g, d', a'])
       <>
     (Line (Just horns) $ v $ motALyd ++ []) -- TODO
 
   -- TODO transposed version of 42, deduplicate
-  -- TODO wrong rhythm!
+  -- TODO deduplicate!
   , section 46 $ up m2 $
     FlexDrones [g, d', a']
       <>
     Line (Just bassoons) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
 
-  -- TODO wrong rhythm!
+  -- TODO too abrupt
+  -- TODO deduplicate!
   , section 47 $ up _M3 $
     _8va (Line (Just oboes) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_]
 
-  -- TODO wrong rhythm!
+  -- TODO deduplicate!
   , section 48 $ up _M3 $
     -- TODO fl+cl
     _8va (Line (Just flutes) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
@@ -440,7 +442,6 @@ section_B1 =
       <>
     Canon [bb__,a__] -- TODO delay switch from drone bb to canon [bb,ab]?
 
-  -- TODO wrong rhythm!
   , section 50 $
     _8va (Line Nothing $ v [e,ds|/2,e|/2,ds,b_,b_,cs,cs,ds]) -- TODO etc
       <>
@@ -457,17 +458,20 @@ section_B1 =
     FlexDrones [c',g]
 
   , section 53 $
-    up _P12 (Line (Just ebClarinets) $ v motA) -- TODO longish
+    up _P12 (Line (Just ebClarinets) $ v motA) -- TODO longer
       <>
     FlexDrones [c,f,bb,d']
 
   , section 54 $
-    up _P4 (Line Nothing $ v motALyd) -- TODO long
+    up _P4 (Line Nothing $ v motALyd) -- TODO slightly longer
       <>
     FlexDrones [g,c,f_]
 
   -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
   -- still alternate at a pace unsynchronized with the main line
+  --
+  -- Length of this section is OK but we need more variation, either from
+  -- switching the sync or adding more layers
   , section 55 $
     Line Nothing (v motCToI <> _8va (v motCVar))
       <>
@@ -484,6 +488,7 @@ section_B1 =
     Line Nothing (v motCToI <> _8va (v motCVar))
       <>
     FlexDrones [c,f_,a__]
+
 
   , section 56 $
     LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
@@ -500,12 +505,14 @@ section_B1 =
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
+    -- TODO longer
     LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}a_,d,a,d',c',e',d'])
       <>
-    Canon [g, fs]
+    FlexCanon [g, fs]
       <>
-    Drones [bb_, d_]
+    FlexDrones [bb_, d_]
 
+  -- TODO vary bass note or similar
   , section 57 $
     FlexDrones [g,cs,d_]
       <>
@@ -518,14 +525,14 @@ section_B1 =
       ]) -- TODO etc
 
   , section 58 $
-    Line Nothing (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
+    Line (Just $ solo violin) (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
       <>
-    Drones [a,e,b_,f_]
+    FlexDrones [a,e,b_,f_]
 
   , section 59 $
-    Line Nothing (v $ concat [d,[e,d]|/2,g,f,e,d,g_,e_])
+    Line (Just trumpets) (v $ concat [d,[e,d]|/2,g,f,e,d,g_,e_])
       <>
-    Drones [bb,f,c]
+    FlexDrones [bb,f,c]
 
   , section 60 $
     LineT Nothing (stretching 4) (v [d,db])
