@@ -46,9 +46,9 @@ data Material v p
   | FlexCanon [p]
   -- TODO like Canon, but stretched to fit the duration of line material
 
-  | Line (Maybe Part) (Voice p)
+  | Line (Maybe [Part]) (Voice p)
   -- ^ A single melodic line
-  | LineT (Maybe Part) Span (Voice p)
+  | LineT (Maybe [Part]) Span (Voice p)
   -- ^ A single melodic line with a transformation
   | LineHarm [(Voice p, [p])]
   -- ^ A single melodic line with accompanying harmony
@@ -74,7 +74,7 @@ data Flex = Flex | NoFlex
 data MaterialG p
   = DronesG Flex [p]
   | CanonG Flex [p]
-  | LineG (Maybe Part) (Maybe Span) (Voice p)
+  | LineG (Maybe [Part]) (Maybe Span) (Voice p)
   | LineHarmG [(Voice p, [p])]
 foo :: Material v p -> [MaterialG p]
 foo = go
@@ -163,7 +163,7 @@ render = go . foo
           -- TODO use durations other than 1 in the pattern melody
           (v $ fmap pure xs)
     renderAtDur _ (LineG mp mt v) = maybe id transform mt $
-      set parts' (maybe violins id mp) $
+      (maybe (set parts' violins) (ppar . fmap (set parts')) mp) $
       renderMel v
     renderAtDur _ (LineHarmG vs) =
       set parts' violins $
@@ -222,7 +222,7 @@ section_A1 =
       <>
     Drones [fs', cs', as, fs, b_]
       <>
-    Line (Just $ solo violin)
+    Line (Just [solo violin])
       subjA
     -- TODO more lines/canons here
 
@@ -231,7 +231,7 @@ section_A1 =
       <>
     Drones [fs', cs', b, gs, fs, b_]
       <>
-    LineT (Just $ solo violin) (delaying 0.5)
+    LineT (Just [solo violin]) (delaying 0.5)
       (up _P12 subjA)
     -- TODO more lines/canons here
 
@@ -239,12 +239,12 @@ section_A1 =
     Drones [fs', cs', as, fs, b_]
     -- TODO abstract this 'echo' pattern
       <>
-    Line (Just $ tutti corAnglais)
+    Line (Just [tutti corAnglais])
       subjX
       <>
-    LineT (Just bassoons) (delaying (7/8)) (down _P5 subjX)
+    LineT (Just [bassoons]) (delaying (7/8)) (down _P5 subjX)
       <>
-    LineT (Just oboes) (delaying (17/8)) (up _P4 subjX)
+    LineT (Just [oboes]) (delaying (17/8)) (up _P4 subjX)
 
   , section 8 $
     Canon [a'', g'', fs'']
@@ -347,7 +347,7 @@ section_A2B =
   , section 32 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
-    Line (Just horns) (v [fs] |* 16)
+    Line (Just [horns]) (v [fs] |* 16)
       <>
     FlexDrones [b__,b___]
 
@@ -360,16 +360,16 @@ section_A2B =
   , section 36 $
     above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
       <>
-    Line (Just horns) (v [fs,e] |* 16)
+    Line (Just [horns]) (v [fs,e] |* 16)
       <>
     FlexDrones [b__,b___]
 
   , section 37 $
     above _P8 (Line Nothing (stretch 2 $ v [ds' |* 2]))
       <>
-    Line (Just horns) (v [fs,e] |* 16)
+    Line (Just [horns]) (v [fs,e] |* 16)
       <>
-    Line (Just horns) (v [ds,cs] |* 16)
+    Line (Just [horns]) (v [ds,cs] |* 16)
       <>
     Drones [b__,b___]
 
@@ -385,16 +385,16 @@ section_B1 =
   [ section 41 $
     FlexDrones [g, d', a']
       <>
-    Line (Just violas) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
+    Line (Just [violas]) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
   , section 41 $
     FlexDrones [g, d', a']
       <>
-    Line (Just cellos) (v[c,b_,d_,c,b_,b_,d_])
+    Line (Just [cellos]) (v[c,b_,d_,c,b_,b_,d_])
 
   , section 42 $
     FlexDrones [g, d', a']
       <>
-    Line (Just violas) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
+    Line (Just [violas]) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
 
   , section 43 $
     FlexDrones [c'',f',bb]
@@ -404,7 +404,7 @@ section_B1 =
   , section 44 $
     FlexDrones [c'',f',bb]
       <>
-    Line (Just oboes) (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
+    Line (Just [oboes]) (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
     -- TODO longer
 
   -- TODO transposed version of 41, deduplicate
@@ -412,26 +412,26 @@ section_B1 =
   , section 45 $ up m2 $
     (FlexDrones [g, d', a'])
       <>
-    (Line (Just horns) $ v $ motALyd ++ []) -- TODO
+    (Line (Just [horns]) $ v $ motALyd ++ []) -- TODO
 
   -- TODO transposed version of 42, deduplicate
   -- TODO deduplicate!
   , section 46 $ up m2 $
     FlexDrones [g, d', a']
       <>
-    Line (Just bassoons) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
+    Line (Just [bassoons]) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
 
   -- TODO too abrupt
   -- TODO deduplicate!
   , section 47 $ up _M3 $
-    _8va (Line (Just oboes) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line (Just [oboes]) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_]
 
   -- TODO deduplicate!
   , section 48 $ up _M3 $
     -- TODO fl+cl
-    _8va (Line (Just flutes) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line (Just [flutes, clarinets]) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
       <>
     FlexDrones [gb, c, f_,bb__]
 
@@ -450,7 +450,7 @@ section_B1 =
   , section 51 $
     FlexDrones [d', g, d, a__]
       <>
-    Line (Just horns) (up _M2 $ v motALyd)
+    Line (Just [horns]) (up _M2 $ v motALyd)
 
   , section 52 $
     LineT Nothing mempty (up _M2 $ v motB)
@@ -458,7 +458,7 @@ section_B1 =
     FlexDrones [c',g]
 
   , section 53 $
-    up _P12 (Line (Just ebClarinets) $ v motA) -- TODO longer
+    up _P12 (Line (Just [ebClarinets]) $ v motA) -- TODO longer
       <>
     FlexDrones [c,f,bb,d']
 
@@ -525,12 +525,12 @@ section_B1 =
       ]) -- TODO etc
 
   , section 58 $
-    Line (Just $ solo violin) (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
+    Line (Just [solo violin]) (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
       <>
     FlexDrones [a,e,b_,f_]
 
   , section 59 $
-    Line (Just trumpets) (v $ concat [d,[e,d]|/2,g,f,e,d,g_,e_])
+    Line (Just [trumpets]) (v $ concat [d,[e,d]|/2,g,f,e,d,g_,e_])
       <>
     FlexDrones [bb,f,c]
 
