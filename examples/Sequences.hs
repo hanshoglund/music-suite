@@ -316,7 +316,7 @@ section_A2B =
     Drones [b__,b___]
 
   , section 29 $
-    LineT Nothing (delaying 0) (up d5 $ v subjX) -- TODO transpose?
+    LineT Nothing (delaying 0) (up d5 $ subjX) -- TODO transpose?
       <>
     LineT Nothing (delaying 1) (up d5 $ v motA) -- TODO transpose?
       <>
@@ -325,7 +325,7 @@ section_A2B =
     Drones [b__,b___]
 
   , section 30 $
-    LineT Nothing (delaying 0) (up d5 $ v subjX) -- TODO transpose?
+    LineT Nothing (delaying 0) (up d5 $ subjX) -- TODO transpose?
       <>
     LineT Nothing (delaying 1) (up d5 $ v motA) -- TODO transpose?
       <>
