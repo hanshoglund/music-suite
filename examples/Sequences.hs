@@ -776,7 +776,7 @@ sketch =
   cut section_A2A
 
   <>
-  section_A1
+  cut section_A1
   <>
   section_A2B
 
