@@ -558,7 +558,7 @@ section_B1 =
 
   -- TODO what's going on here?
   , section 65 $
-    Canon [g_,a_,b_]
+    Canon [d_,a_,e]
       <>
     FlexDrones [d,c_]
 
