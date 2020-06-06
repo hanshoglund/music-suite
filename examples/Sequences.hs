@@ -495,13 +495,14 @@ section_B1 =
       <>
     FlexDrones [g, c, d_]
   , section 56 $
+    -- TODO need some action/texture here
     Canon [g, fs]
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
     LineT Nothing (delaying (1/8)) (_8va $ v [e,a,e',e',d',fs',e'])
       <>
-    Canon [g, fs]
+    FlexCanon [g, fs]
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
@@ -516,7 +517,7 @@ section_B1 =
   , section 57 $
     FlexDrones [g,cs,d_]
       <>
-    (below _M3 $ Line Nothing $ v $
+    (below _M3 $ Line (Just [cellos,horns,bassoons]) $ v $
       let x = [b,a,a,f,f,g,g,a]
       in mconcat [x, x, [cs',b,b,g,g,a,a,b],
       [cs',b,b,g],
