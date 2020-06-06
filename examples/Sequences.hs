@@ -555,7 +555,10 @@ section_B1 =
   , section 64 $
     FlexDrones [a,f,c_]
 
+  -- TODO what's going on here?
   , section 65 $
+    Canon [g_,a_,b_]
+      <>
     FlexDrones [d,c_]
 
   , section 66 $
