@@ -491,7 +491,7 @@ section_B1 =
 
 
   , section 56 $
-    LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
+    LineT Nothing (delaying (1/8)) (_8va $ v [e,a,e',e',d',fs',e'])
       <>
     FlexDrones [g, c, d_]
   , section 56 $
@@ -499,14 +499,14 @@ section_B1 =
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
-    LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}e,a,e',e',d',fs',e'])
+    LineT Nothing (delaying (1/8)) (_8va $ v [e,a,e',e',d',fs',e'])
       <>
     Canon [g, fs]
       <>
     FlexDrones [c, g_, d_]
   , section 56 $
     -- TODO longer
-    LineT Nothing (delaying (1/8)) (_8va $ v [{-TODO rest-}a_,d,a,d',c',e',d'])
+    LineT Nothing (delaying (1/8)) (_8va $ v [a_,d,a,d',c',e',d'])
       <>
     FlexCanon [g, fs]
       <>
