@@ -546,6 +546,7 @@ section_B1 =
       <>
     FlexDrones [f__,f___]
 
+  -- TODO need more lines througout here to end of F drone
   , section 63 $
     FlexDrones [bb,f,c_]
   , section 63 $
