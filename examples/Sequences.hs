@@ -452,6 +452,8 @@ section_B1 =
     Line (Just horns) (up _M2 $ v motALyd)
 
   , section 52 $
+    LinesT Nothing mempty (up _M2 $ v motB)
+      <>
     FlexDrones [c',g]
 
   , section 53 $
