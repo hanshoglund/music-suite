@@ -2006,7 +2006,7 @@ toStandardNotation :: (StandardNotationExportM m) => Asp -> m Work
 toStandardNotation sc' = do
   -- TODO poor man's deepseq:
   say "Evaluating music"
-  say $ show $ length $ show $ sc'
+  say $ "  Done, size " ++ (show $ length $ show $ sc')
   say "Simplifying pitches"
   -- Simplify pitch spelling
   let postPitchSimplification = Music.Score.Pitch.simplifyPitches normScore
@@ -2018,7 +2018,7 @@ toStandardNotation sc' = do
 
   -- Change aspect type as we need Semigroup to compose all simultanous notes
   -- Merge simultanous notes into chords, to simplify voice-separation
-  say "Merging overlapping notes into chords"
+  say "Merging overlapping chords"
   let postChordMerge :: [(Music.Parts.Part, Score Asp2)] = (fmap . fmap) (simultaneous . fmap asp1ToAsp2) postPartExtract
   -- postChordMerge :: [(Music.Parts.Part,Score Asp2)]
 
@@ -2085,7 +2085,7 @@ toStandardNotation sc' = do
   -- postQuantize :: [(Music.Parts.Part,[Rhythm (Maybe Asp3)])]
 
   -- Group staves, generating brackets and braces
-  say "Generate staff groups"
+  say "Generating staff groups"
   let postStaffGrouping ::
         LabelTree BracketType (Part, List0To4 [Rhythm (Maybe Asp3)]) =
           generateStaffGrouping postQuantize
