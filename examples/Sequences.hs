@@ -169,7 +169,7 @@ render = go . renderMaterial
         flip renderPattern (0 <-> endPoint) $ multiTempoCanon
           (zip3 (cycle $ stringOrchestra ++ [doubleBasses]) (repeat _P1)
             (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
-          -- TODO use base durations other than 1 in the pattern melody
+          -- TODO $patDur use base durations other than 1 in the pattern melody
           (v $ fmap pure xs)
     renderAtDur _ (LineG mp mt v) = maybe id transform mt $
       (maybe (set parts' violins) (ppar . fmap (set parts')) mp) $
@@ -213,6 +213,7 @@ section = (,)
 --  Remove hardcoded lines (build from motives whenever possible)
 --  Explore motives/variations more
 --  Use renderSimple to get a grip of the harmony
+--  Make canons more melodic (non troppo), see $patDur
 
 section_A1 =
   [ section 1 $
