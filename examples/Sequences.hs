@@ -30,7 +30,7 @@ main = defaultMain music
 music :: Music
 music =
   -- TODO proper tempo
-  tempo (metronome (1 / 4) 48) $
+  tempo (metronome (1 / 4) {- TODO working tempo, revert to 48 -}56) $
   -- TODO proper orchestration
 
   pseq $ fmap render $ fmap snd sketch
