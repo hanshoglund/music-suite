@@ -168,7 +168,7 @@ render = go . foo
     renderAtDur _ (LineHarmG vs) =
       set parts' violins $
       -- TODO this should NOT use stretchTo, but behave like LineG with sequential composition
-      stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMel mel <> renderHarm harm) vs
+      pseq $ fmap (\(mel, harm) -> renderMel mel `sustain` renderHarm harm) vs
 
     dur :: MaterialG a -> Maybe Duration
     dur (DronesG _ _) = Nothing
@@ -270,7 +270,7 @@ section_A2A =
 
   , section 10 $
     -- TODO louder, slower
-    Line Nothing (v[fs', e']|*8)
+    below _P8 (Line Nothing (v[fs', e']|*8))
       <>
     Drones [b, g, cs]
     -- TODO second (delayed) Line
@@ -626,27 +626,27 @@ section_B2 =
   [ section 100 $
     down _P4 (Line Nothing $ v $ motALyd ++ motALyd)
       <>
-    Drones (down _P15 [a,d',g',c''])
+    FlexDrones (down _P15 [a,d',g',c''])
 
   , section 101 $
     down _P4 (Line Nothing $ v $ motA)
       <>
-    Drones (down _P15 [a,d',g',c''])
+    FlexDrones (down _P15 [a,d',g',c''])
 
   -- TODO melodies of 102
   , section 102 $
-    Drones [g__,d_,g_,c]
+    FlexDrones [g__,d_,g_,c]
   , section 102 $
-    Drones [a__,d_,g_,c]
+    FlexDrones [a__,d_,g_,c]
   , section 102 $
-    Drones [g__,d_,g_,c]
+    FlexDrones [g__,d_,g_,c]
   , section 102 $
-    Drones [a__,d_,g_,c]
+    FlexDrones [a__,d_,g_,c]
 
   , section 103 $
     LineHarm motBLongHarm
       <>
-    Drones [g__,g___]
+    FlexDrones [g__,g___]
   , section 103 $
     Line Nothing (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
 
@@ -656,78 +656,78 @@ section_B2 =
   , section 105 $
     down _P4 (LineHarm motBLongHarm)
       <>
-    Drones [d__,d___]
+    FlexDrones [d__,d___]
 
   , section 106 $
     -- TODO line
-    Drones [d__,d___]
+    FlexDrones [d__,d___]
 
   , section 107 $
     down m7 $ Line Nothing (v motCToV)
 
   , section 108 $
     -- TODO line
-    Drones [e',a]
+    FlexDrones [e',a]
   , section 108 $
     -- TODO line
-    Drones [e',gs]
+    FlexDrones [e',gs]
 
   , section 109 $
     -- TODO line
-    Drones [ds',gs]
+    FlexDrones [ds',gs]
   , section 109 $
     -- TODO line
-    Drones [gs]
+    FlexDrones [gs]
 
   , section 110 $
     -- TODO line
-    Drones [fs,c_]
+    FlexDrones [fs,c_]
   , section 110 $
     -- TODO line
-    Drones [fs, d, g_]
+    FlexDrones [fs, d, g_]
 
   , section 111 $
     Line Nothing (v motALyd)
       <>
-    Drones [f,c,g_]
+    FlexDrones [f,c,g_]
 
   , section 112 $
     Line Nothing (v motC)
       <>
-    Drones [c_,c__]
+    FlexDrones [c_,c__]
 
   , section 113 $
     -- TODO line
-    Drones [c_,c__]
+    FlexDrones [c_,c__]
 
   , section 114 $
     Line Nothing (v motC)
       <>
-    Drones [c_,c__]
+    FlexDrones [c_,c__]
 
   , section 115 $
     LineHarm [(v motB,[d,bb_]),(v [d',c',c',g],[e])]
       <>
-    Drones [g__]
+    FlexDrones [g__]
 
   , section 116 $
     LineHarm [(v motB,[d,bb_]),(v [d',c',c',g],[e])]
       <>
-    Drones [g__]
+    FlexDrones [g__]
 
   , section 117 $
     -- TODO line
-    Drones [g__]
+    FlexDrones [g__]
 
   , section 118 $
     LineHarm [(up _P4 $ v motB,[d,bb_]),(mempty,[e]),(mempty,[d])]
       <>
-    Drones [g__]
+    FlexDrones [g__]
 
   , section 119 $
     LineHarm [(up _P4 $ v motB,[e]),(mempty,[d]),(mempty,[e]),(mempty,[d])]
       <>
-    Drones [g__]
+    FlexDrones [g__]
   ]
 
 section_CODA =
@@ -783,19 +783,19 @@ sketch =
   <>
   cut section_A1
   <>
-  section_A2B
+  cut section_A2B
 
   <>
-  section_B1
+  cut section_B1
   <>
   cut section_C
 
   <>
   cut section_A1
   <>
-  cut section_B2
+  section_B2
   <>
-  cut section_CODA
+  section_CODA
 
 
 
