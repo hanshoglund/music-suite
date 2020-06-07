@@ -164,15 +164,12 @@ render = go . renderMaterial
                 _ -> 5
                 -- Arbitrary fixed duration
       in
-        -- TODO if there's more than one canon per Sim, merge them all
-        -- before rendering (e.g. Canon should be a monoid homomorphism)
-        -- TODO other spans
-        --- TODO other aprts than strings!
+        -- TODO other aprts than strings!
         -- TODO other phases?
         flip renderPattern (0 <-> endPoint) $ multiTempoCanon
           (zip3 (cycle $ stringOrchestra ++ [doubleBasses]) (repeat _P1)
             (zipWith (<->) (repeat 0) [10/8, 13/8, 15/8, 17/8, 21/8]))
-          -- TODO use durations other than 1 in the pattern melody
+          -- TODO use base durations other than 1 in the pattern melody
           (v $ fmap pure xs)
     renderAtDur _ (LineG mp mt v) = maybe id transform mt $
       (maybe (set parts' violins) (ppar . fmap (set parts')) mp) $
@@ -194,7 +191,6 @@ snd4 (_,x,_,_) = x
 doubleIn :: (HasParts' a, Monoid a) => [S.Part a] -> a -> a
 doubleIn parts x = ppar $ fmap (\p -> set parts' p x) parts
 
--- TODO pad with rests at end to fill an even number of 4/4 bars?
 renderMel :: Voice Pitch -> Music
 renderMel xs = stretch (1/8) $ fromV $ fmap fromPitch xs
 
