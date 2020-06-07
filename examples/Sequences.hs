@@ -207,6 +207,13 @@ v = view voice
 section :: Natural -> Material v p -> (Natural, Material v p)
 section = (,)
 
+-- BIG TODOs
+--  Dynamics support
+--  More orch details
+--  Remove hardcoded lines (build from motives whenever possible)
+--  Explore motives/variations more
+--  Use renderSimple to get a grip of the harmony
+
 section_A1 =
   [ section 1 $
     Drones [fs', g', d'', a'']
