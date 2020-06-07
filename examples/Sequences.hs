@@ -33,7 +33,7 @@ music =
   tempo (metronome (1 / 4) {- TODO working tempo, revert to 48 -}56) $
   -- TODO proper orchestration
 
-  pseq $ fmap render $ fmap snd sketch
+  pseqSnapToGrid $ fmap render $ fmap snd sketch
 
 data Material v p
   = Drones [p]
@@ -76,8 +76,9 @@ data MaterialG p
   | CanonG Flex [p]
   | LineG (Maybe [Part]) (Maybe Span) (Voice p)
   | LineHarmG [(Maybe [Part], Voice p, Maybe [Part], [p])]
-foo :: Material v p -> [MaterialG p]
-foo = go
+
+renderMaterial :: Material v p -> [MaterialG p]
+renderMaterial = go
   where
     go Empty = []
     go (Sim x y) = go x ++ go y
@@ -126,8 +127,19 @@ roundTo1 :: Duration -> Duration
 roundTo1 d = let (_q,r) = d `divModDur` 1 in
   if r > 0 then d + (1 - r) else d
 
+-- |
+-- >>> afterSnapToGrid  ([(0 <-> 4.5,())^.event]^.score) ([(2 <-> 4,())^.event]^.score)
+-- [(0 <-> 4.5,())^.event,(5 <-> 7,())^.event]^.score
+afterSnapToGrid :: (Transformable a, Semigroup a, HasPosition a) => a -> a -> a
+afterSnapToGrid x y = case _era x of
+  Nothing -> x <> y
+  Just e -> x <> startAt (relative 0 roundTo1 $ view offset e) y
+
+pseqSnapToGrid :: (Transformable a, Monoid a, HasPosition a) => [a] -> a
+pseqSnapToGrid = foldr afterSnapToGrid mempty
+
 render :: Material Interval Pitch -> Music
-render = go . foo
+render = go . renderMaterial
   where
     -- | Render a single parallel composition of materials.
     go :: [MaterialG Pitch] -> Music
@@ -794,8 +806,6 @@ section_CODA =
 
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
-  -- TODO temporary cuts for preview purposes
-  -- Restore!
   xx section_A1
   <>
   xx section_A2A
@@ -817,6 +827,8 @@ sketch =
   <>
   section_CODA
     where
+      -- TODO temporary cuts for preview purposes
+      -- Restore!
       xx = id
 
 
