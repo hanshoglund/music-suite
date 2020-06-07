@@ -409,21 +409,29 @@ section_A2B =
   -- , section 40 $ Drones [b__,b___]
   ]
 
+t1 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
+t2 = [c,b_,d_,c,b_,b_,d_]
+t3 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
+t4 :: [Note Pitch]
+t4 = [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c]
+
 section_B1 =
   -- B1 section
   [ section 41 $
     FlexDrones [g, d', a']
       <>
-    Line (Just [violas]) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
+    Line (Just [violas]) (v
+      t1
+      )
   , section 41 $
     FlexDrones [g, d', a']
       <>
-    Line (Just [cellos]) (v[c,b_,d_,c,b_,b_,d_])
+    Line (Just [cellos]) (v t2)
 
   , section 42 $
     FlexDrones [g, d', a']
       <>
-    Line (Just [violas]) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c])
+    Line (Just [violas]) (v t3)
 
   , section 43 $
     FlexDrones [c'',f',bb]
@@ -433,7 +441,9 @@ section_B1 =
   , section 44 $
     FlexDrones [c'',f',bb]
       <>
-    Line (Just [oboes]) (_8va $ v [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c])
+    Line (Just [oboes]) (_8va $ v
+      t4
+      )
     -- TODO longer
 
   -- TODO transposed version of 41, deduplicate
@@ -777,6 +787,7 @@ section_B2 =
 section_CODA =
   -- CODA
   [ section 120 $
+    -- NOTE this is a var on motB using stacked thirds (alt minor/major, fitting into P5 stack)
     LineHarm [(Nothing, v[f',d',d',bb], Nothing, [bb,eb])
              ,(Nothing, v[d',bb,bb,g], Nothing, [g,eb])
              ,(Nothing, v[c',a,a,f], Nothing, [a,f,bb_])
