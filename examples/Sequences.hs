@@ -50,7 +50,7 @@ data Material v p
   -- ^ A single melodic line
   | LineT (Maybe [Part]) Span (Voice p)
   -- ^ A single melodic line with a transformation
-  | LineHarm [(Voice p, [p])]
+  | LineHarm [(Maybe [Part], Voice p, Maybe [Part], [p])]
   -- ^ A single melodic line with accompanying harmony
 
   | Empty
@@ -75,7 +75,7 @@ data MaterialG p
   = DronesG Flex [p]
   | CanonG Flex [p]
   | LineG (Maybe [Part]) (Maybe Span) (Voice p)
-  | LineHarmG [(Voice p, [p])]
+  | LineHarmG [(Maybe [Part], Voice p, Maybe [Part], [p])]
 foo :: Material v p -> [MaterialG p]
 foo = go
   where
@@ -101,7 +101,7 @@ renderSimple (FlexDrones xs) = renderSimple (Drones xs)
 renderSimple (FlexCanon xs) = renderSimple (Canon xs)
 renderSimple (Line _p xs) = renderMelSimple xs
 renderSimple (LineT _p _t xs) = renderMelSimple xs
-renderSimple (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(mel, harm) -> renderMelSimple mel <> renderHarmSimple harm) xs
+renderSimple (LineHarm xs) = stretchTo 1 $ pseq $ fmap (\(_, mel, _, harm) -> renderMelSimple mel <> renderHarmSimple harm) xs
 
 renderMelSimple :: Voice Pitch -> Music
 renderMelSimple xs = level _f $ stretchTo 1 $ fromV $ fmap fromPitch xs
@@ -166,16 +166,21 @@ render = go . foo
       (maybe (set parts' violins) (ppar . fmap (set parts')) mp) $
       renderMel v
     renderAtDur _ (LineHarmG vs) =
-      set parts' violins $
-      -- TODO this should NOT use stretchTo, but behave like LineG with sequential composition
-      pseq $ fmap (\(mel, harm) -> renderMel mel `sustain` renderHarm harm) vs
+      pseq $ fmap (\(melParts, mel, harmParts, harm) ->
+        doubleIn melParts (renderMel mel)
+          `sustain`
+        doubleIn harmParts (renderHarm harm)) vs
 
     dur :: MaterialG a -> Maybe Duration
     dur (DronesG _ _) = Nothing
     dur (CanonG _ _) = Nothing
     dur (LineG _ mt v) = Just $ maybe id transform mt $ stretch (1/8) $ _duration v
-    dur (LineHarmG vs) = Just $ sum $ fmap (stretch (1/8) . _duration . fst) vs
+    dur (LineHarmG vs) = Just $ sum $ fmap (stretch (1/8) . _duration . snd4) vs
 
+snd4 (_,x,_,_) = x
+
+doubleIn Nothing x = x
+doubleIn (Just parts) x = ppar $ fmap (\p -> set parts' p x) parts
 
 -- TODO pad with rests at end to fill an even number of 4/4 bars?
 renderMel :: Voice Pitch -> Music
@@ -652,19 +657,21 @@ section_B2 =
     FlexDrones [a__,d_,g_,c]
 
   , section 103 $
-    LineHarm motBLongHarm
+    LineHarm (motBLongHarm [horns] [cellos])
       <>
     FlexDrones [g__,g___]
   , section 103 $
-    Line Nothing (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
+    Line (Just [horns]) (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
       <>
-    FlexDrones [g__,g___]
+    FlexDrones [g__,g___] -- TODO too short!
 
   , section 104 $
     Line Nothing (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
+      <>
+    FlexDrones [g__,g___] -- TODO too short!
 
   , section 105 $
-    down _P4 (LineHarm motBLongHarm)
+    down _P4 (LineHarm $ motBLongHarm [horns] [trumpets])
       <>
     FlexDrones [d__,d___]
 
@@ -716,12 +723,12 @@ section_B2 =
     FlexDrones [c_,c__]
 
   , section 115 $
-    LineHarm [(v motB,[d,bb_]),(v [d',c',c',g],[e])]
+    LineHarm [(Nothing, v motB,Nothing,[d,bb_]),(Nothing,v [d',c',c',g],Nothing,[e])]
       <>
     FlexDrones [g__]
 
   , section 116 $
-    LineHarm [(v motB,[d,bb_]),(v [d',c',c',g],[e])]
+    LineHarm [(Nothing,v motB,Nothing,[d,bb_]),(Nothing,v [d',c',c',g],Nothing,[e])]
       <>
     FlexDrones [g__]
 
@@ -730,12 +737,15 @@ section_B2 =
     FlexDrones [g__]
 
   , section 118 $
-    LineHarm [(up _P4 $ v motB,[d,bb_]),(mempty,[e]),(mempty,[d])]
+    LineHarm
+      [ (Nothing,up _P4 $ v motB,Nothing,[d,bb_])
+      , (Nothing,mempty,Nothing,[e])
+      , (Nothing,mempty,Nothing, [d])]
       <>
     FlexDrones [g__]
 
   , section 119 $
-    LineHarm [(up _P4 $ v motB,[e]),(mempty,[d]),(mempty,[e]),(mempty,[d])]
+    LineHarm [(Nothing,up _P4 $ v motB,Nothing,[e]),(Nothing,mempty,Nothing,[d]),(Nothing,mempty,Nothing,[e]),(Nothing,mempty,Nothing,[d])]
       <>
     FlexDrones [g__]
   ]
@@ -743,9 +753,9 @@ section_B2 =
 section_CODA =
   -- CODA
   [ section 120 $
-    LineHarm [(v[f',d',d',bb], [bb,eb])
-             ,(v[d',bb,bb,g], [g,eb])
-             ,(v[c',a,a,f], [a,f,bb_])
+    LineHarm [(Nothing, v[f',d',d',bb], Nothing, [bb,eb])
+             ,(Nothing, v[d',bb,bb,g], Nothing, [g,eb])
+             ,(Nothing, v[c',a,a,f], Nothing, [a,f,bb_])
              ]
       <>
     Drones [d, g_,c__]
@@ -823,8 +833,10 @@ motB = [a,g,g,d]
 motBLong :: [Note Pitch]
 motBLong = [a,g,g,d, d',cs',cs',b] -- TODO etc
 
-motBLongHarm :: [(Voice Pitch, [Pitch])]
-motBLongHarm = [(v[a,g,g,d], [d,b_]), (v[d',cs',cs',b], [a,e])] -- TODO etc
+motBLongHarm :: [Part] -> [Part] -> [(Maybe [Part], Voice Pitch, Maybe [Part], [Pitch])]
+motBLongHarm melPart harmPart =
+  [(Just melPart, v[a,g,g,d], Just harmPart, [d,b_])
+  ,(Just melPart, v[d',cs',cs',b], Just harmPart, [a,e])] -- TODO etc
 
 motC :: [Note Pitch]
 motC = [f,e,a,g,e' |* 4]
