@@ -286,19 +286,28 @@ section_A2A =
     Line Nothing (v[cs', b, fs']|*(8*2/3))
 
   , section 10 $
-    -- TODO louder, slower
+    -- TODO louder,
     below _P8 (Line Nothing (v[fs', e']|*8))
       <>
     Drones [b, g, cs]
-    -- TODO second (delayed) Line
+    -- TODO missing (delayed) bassoon line
       <>
     Drones [e__]
 
   , section 11 $ Drones [e__]
+    -- TODO missing str WT material
+
   , section 12 $ Drones [e__]
+    -- TODO missing str motives (mf, cresc.)
+
   , section 13 $ Drones [fs__]
+    -- TODO missing str canons (poco f)
+
   , section 14 $ Drones [fs__]
+    -- TODO missing canons (f)
+
   , section 15 $ Drones [fs__]
+    -- TODO missing canons (ff)
   ]
 
 section_A2B =
