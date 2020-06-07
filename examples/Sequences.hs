@@ -167,9 +167,9 @@ render = go . foo
       renderMel v
     renderAtDur _ (LineHarmG vs) =
       pseq $ fmap (\(melParts, mel, harmParts, harm) ->
-        doubleIn melParts (renderMel mel)
+        doubleIn (maybe [violins] id melParts) (renderMel mel)
           `sustain`
-        doubleIn harmParts (renderHarm harm)) vs
+        doubleIn (maybe [violins] id harmParts) (renderHarm harm)) vs
 
     dur :: MaterialG a -> Maybe Duration
     dur (DronesG _ _) = Nothing
@@ -179,8 +179,8 @@ render = go . foo
 
 snd4 (_,x,_,_) = x
 
-doubleIn Nothing x = x
-doubleIn (Just parts) x = ppar $ fmap (\p -> set parts' p x) parts
+doubleIn :: (HasParts' a, Monoid a) => [S.Part a] -> a -> a
+doubleIn parts x = ppar $ fmap (\p -> set parts' p x) parts
 
 -- TODO pad with rests at end to fill an even number of 4/4 bars?
 renderMel :: Voice Pitch -> Music
