@@ -174,7 +174,7 @@ render = go . foo
     dur (DronesG _ _) = Nothing
     dur (CanonG _ _) = Nothing
     dur (LineG _ mt v) = Just $ maybe id transform mt $ stretch (1/8) $ _duration v
-    dur (LineHarmG vs) = Just $ sum $ fmap (_duration . fst) vs
+    dur (LineHarmG vs) = Just $ sum $ fmap (stretch (1/8) . _duration . fst) vs
 
 
 -- TODO pad with rests at end to fill an even number of 4/4 bars?
@@ -635,12 +635,20 @@ section_B2 =
 
   -- TODO melodies of 102
   , section 102 $
+    Line Nothing (up _M2 $ v motB)
+      <>
     FlexDrones [g__,d_,g_,c]
   , section 102 $
+    Line Nothing (up _M2 $ v motB)
+      <>
     FlexDrones [a__,d_,g_,c]
   , section 102 $
+    Line Nothing (up _M2 $ v motB)
+      <>
     FlexDrones [g__,d_,g_,c]
   , section 102 $
+    Line Nothing (up _M2 $ v motB)
+      <>
     FlexDrones [a__,d_,g_,c]
 
   , section 103 $
@@ -649,6 +657,8 @@ section_B2 =
     FlexDrones [g__,g___]
   , section 103 $
     Line Nothing (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
+      <>
+    FlexDrones [g__,g___]
 
   , section 104 $
     Line Nothing (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
