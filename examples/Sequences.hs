@@ -626,12 +626,12 @@ section_B2 =
   [ section 100 $
     down _P4 (Line Nothing $ v $ motALyd ++ motALyd)
       <>
-    FlexDrones (down _P15 [a,d',g',c''])
+    FlexDrones ([a__,d_,g_,c])
 
   , section 101 $
     down _P4 (Line Nothing $ v $ motA)
       <>
-    FlexDrones (down _P15 [a,d',g',c''])
+    FlexDrones ([a__,d_,c])
 
   -- TODO melodies of 102
   , section 102 $
