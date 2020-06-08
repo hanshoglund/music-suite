@@ -893,7 +893,7 @@ subjA :: Voice Pitch
 subjA = ((cs' |* 4) <> v [ e'|*2,d',e'|/2,d'|/2,cs'|*14] |/ 2)
 
 subjX :: Voice Pitch
-subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[e'|*2,d'|*14] |/ 2)
+subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[ e'|*2,d'|*14] |/ 2)
 
 t1 :: [Note Pitch]
 t1 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
