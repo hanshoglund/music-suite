@@ -752,6 +752,7 @@ t4 = [f,  eb, eb, db, db, c,  c,  db] ++
 
 t5 :: Voice Pitch
 t5 =
+  -- Shares rhythmic structure with motA
   v $ concat [a, [g, e] |/ 2, e', d', a, g, g, d, a', g', g', d']
 
 t6 :: Voice Pitch
