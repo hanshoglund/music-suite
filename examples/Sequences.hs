@@ -742,7 +742,7 @@ t1 = down _P4 motALyd ++ down _P4 (take 5 motALyd)
 t2 :: [Note Pitch]
 t2 = [c, b_, d_, c, b_, b_, d_]
 
-t3 = [fs, e |/ 2, fs |/ 2, e, c, c, e, fs, e |/ 2, fs |/ 2, e, c]
+t3 = t1
 
 t4 :: [Note Pitch]
 t4 = [f, eb, eb, db, db, c, c, db, eb, db, db, c, c, bb_, bb_, c]
