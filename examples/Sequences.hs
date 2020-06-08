@@ -410,21 +410,6 @@ section_A2B =
   -- , section 40 $ Drones [b__,b___]
   ]
 
-t1 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
-t2 = [c,b_,d_,c,b_,b_,d_]
-t3 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
-t4 :: [Note Pitch]
-t4 = [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c]
-t5 =
-      (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
-t6 =
-      (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b])
-t7 =
-      (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
-t8 =
-      [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db]
-t9 =
-      [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db]
 
 section_B1 =
   -- B1 section
@@ -909,6 +894,37 @@ subjA = ((cs' |* 4) <> v [e'|*2,d',e'|/2,d'|/2,cs'|*14] |/ 2)
 
 subjX :: Voice Pitch
 subjX = ((cs' |* 4) <> v [cs',d',cs',b,cs']|*(4/(5*2)) <> v[e'|*2,d'|*14] |/ 2)
+
+t1 :: [Note Pitch]
+t1 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
+
+t2 :: [Note Pitch]
+t2 = [c,b_,d_,c,b_,b_,d_]
+
+t3 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
+
+t4 :: [Note Pitch]
+t4 = [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c]
+
+t5 :: Voice Pitch
+t5 =
+      (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
+
+t6 :: Voice Pitch
+t6 =
+      (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b])
+
+t7 :: Voice Pitch
+t7 =
+      (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
+
+t8 :: [Note Pitch]
+t8 =
+      [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db]
+
+t9 :: [Note Pitch]
+t9 =
+      [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db]
 
 divModDur :: Duration -> Duration -> (Integer, Duration)
 divModDur x v = (n, r)
