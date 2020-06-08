@@ -728,8 +728,6 @@ motCToI = [f, e, a, g, c' |* 4]
 
 motCVar = [e, d, g, f, d' |* 4]
 
-
-
 -- TODO a variant of motA
 -- TODO "tie" first two notes (fuse does not work properly)
 subjA :: Voice Pitch
@@ -745,8 +743,9 @@ t2 :: [Note Pitch]
 t2 = [c, b_, d_, c, b_, b_, d_]
 
 t4 :: [Note Pitch]
-t4 = [f,  eb, eb, db, db, c,  c,  db] ++
-     [eb, db, db, c,  c,  bb_,bb_, c]
+t4 =
+  [f, eb, eb, db, db, c, c, db]
+    ++ [eb, db, db, c, c, bb_, bb_, c]
 
 t5 :: Voice Pitch
 t5 =
@@ -759,13 +758,12 @@ t6 =
 
 t7 :: Voice Pitch
 t7 =
-  v $ t1 ++ [ b_]
+  v $ t1 ++ [b_]
 
 t8 :: [Note Pitch]
 t8 =
   -- TODO this is a not a lydian variant of motA but some other mode
   take 4 (down _A5 motALyd) ++ [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
-
 
 divModDur :: Duration -> Duration -> (Integer, Duration)
 divModDur x v = (n, r)
