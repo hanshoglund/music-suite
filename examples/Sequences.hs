@@ -415,6 +415,16 @@ t2 = [c,b_,d_,c,b_,b_,d_]
 t3 = [fs, e|/2, fs|/2, e, c, c, e, fs, e|/2, fs|/2, e, c]
 t4 :: [Note Pitch]
 t4 = [f,eb,eb,db,db,c,c,db,eb,db,db,c,c,bb_,bb_,c]
+t5 =
+      (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
+t6 =
+      (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b])
+t7 =
+      (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
+t8 =
+      [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db]
+t9 =
+      [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db]
 
 section_B1 =
   -- B1 section
@@ -459,19 +469,24 @@ section_B1 =
   , section 46 $ up m2 $
     FlexDrones [g, d', a']
       <>
-    Line (Just [bassoons]) (v[fs, e|/2, fs|/2, e, c, c, e, fs, e, fs, e, c, b_])
+    Line (Just [bassoons])
+      t7
 
   -- TODO too abrupt
   -- TODO deduplicate!
   , section 47 $ up _M3 $
-    _8va (Line (Just [oboes]) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line (Just [oboes]) $ v
+      t8
+      )
       <>
     FlexDrones [gb, c, f_]
 
   -- TODO deduplicate!
   , section 48 $ up _M3 $
     -- TODO fl+cl
-    _8va (Line (Just [flutes, clarinets]) $ v [eb,db|/2,eb|/2,db,bb_,bb_,c,c,db,eb,db,c,f,eb,db,c,db])
+    _8va (Line (Just [flutes, clarinets]) $ v
+      t9
+      )
       <>
     FlexDrones [gb, c, f_,bb__]
 
@@ -566,7 +581,8 @@ section_B1 =
       ]) -- TODO etc
 
   , section 58 $
-    Line (Just [solo violin]) (v $ concat [a,[g,e]|/2, e',d', a,g,g,d,a',g',g',d'])
+    Line (Just [solo violin])
+      t5
       <>
     FlexDrones [a,e,b_,f_]
 
@@ -696,7 +712,9 @@ section_B2 =
       <>
     FlexDrones [g__,g___]
   , section 103 $
-    Line (Just [horns]) (v[a,g,g,d,d,d',d',cs', b,e',e',d',d',cs',cs',b]) -- TODO etc
+    Line (Just [horns])
+      t6
+      -- TODO etc
       <>
     FlexDrones [g__,g___] -- TODO too short!
 
