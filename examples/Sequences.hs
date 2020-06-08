@@ -719,7 +719,7 @@ section_B2 =
     FlexDrones [g__,g___] -- TODO too short!
 
   , section 104 $
-    Line Nothing (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
+    Line (Just [flutes, violins]) (v [e',d',d',a, c',b,b,g, g,a,a,b]) -- TODO etc
       <>
     FlexDrones [g__,g___] -- TODO too short!
 
