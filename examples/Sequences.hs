@@ -728,6 +728,8 @@ motCToI = [f, e, a, g, c' |* 4]
 
 motCVar = [e, d, g, f, d' |* 4]
 
+
+
 -- TODO a variant of motA
 -- TODO "tie" first two notes (fuse does not work properly)
 subjA :: Voice Pitch
@@ -745,7 +747,8 @@ t2 = [c, b_, d_, c, b_, b_, d_]
 t3 = t1
 
 t4 :: [Note Pitch]
-t4 = [f, eb, eb, db, db, c, c, db, eb, db, db, c, c, bb_, bb_, c]
+t4 = [f,  eb, eb, db, db, c,  c,  db] ++
+     [eb, db, db, c,  c,  bb_,bb_, c]
 
 t5 :: Voice Pitch
 t5 =
