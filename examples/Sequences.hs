@@ -377,7 +377,7 @@ section_B1 =
         <> Line (Just [cellos]) (v t2),
     section 42 $
       FlexDrones [g, d', a']
-        <> Line (Just [violas]) (v t3),
+        <> Line (Just [violas]) (v t1),
     section 43 $
       FlexDrones [c'', f', bb]
         <> Line Nothing (up d5 $ v motA), -- TODO long version of motA
@@ -419,7 +419,7 @@ section_B1 =
       _8va
         ( Line (Just [flutes, clarinets]) $
             v
-              t9
+              t8
         )
         <> FlexDrones [gb, c, f_, bb__],
     section 49 $
@@ -744,8 +744,6 @@ t1 = down _P4 motALyd ++ down _P4 (take 5 motALyd)
 t2 :: [Note Pitch]
 t2 = [c, b_, d_, c, b_, b_, d_]
 
-t3 = t1
-
 t4 :: [Note Pitch]
 t4 = [f,  eb, eb, db, db, c,  c,  db] ++
      [eb, db, db, c,  c,  bb_,bb_, c]
@@ -768,8 +766,6 @@ t8 =
   -- TODO this is a not a lydian variant of motA but some other mode
   take 4 (down _A5 motALyd) ++ [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
 
-t9 :: [Note Pitch]
-t9 = t8
 
 divModDur :: Duration -> Duration -> (Integer, Duration)
 divModDur x v = (n, r)
