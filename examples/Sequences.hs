@@ -752,15 +752,15 @@ t4 = [f,  eb, eb, db, db, c,  c,  db] ++
 
 t5 :: Voice Pitch
 t5 =
-  (v $ concat [a, [g, e] |/ 2, e', d', a, g, g, d, a', g', g', d'])
+  v $ concat [a, [g, e] |/ 2, e', d', a, g, g, d, a', g', g', d']
 
 t6 :: Voice Pitch
 t6 =
-  (v [a, g, g, d, d, d', d', cs', b, e', e', d', d', cs', cs', b])
+  v [a, g, g, d, d, d', d', cs', b, e', e', d', d', cs', cs', b]
 
 t7 :: Voice Pitch
 t7 =
-  (v $ down _P4 motALyd ++ down _P4 (take 5 motALyd) ++ [ b_])
+  v $ t1 ++ [ b_]
 
 t8 :: [Note Pitch]
 t8 =
