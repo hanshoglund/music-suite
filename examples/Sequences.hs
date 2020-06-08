@@ -737,7 +737,7 @@ subjX :: Voice Pitch
 subjX = ((cs' |* 4) <> v [cs', d', cs', b, cs'] |* (4 / (5 * 2)) <> v [e' |* 2, d' |* 14] |/ 2)
 
 t1 :: [Note Pitch]
-t1 = [fs, e |/ 2, fs |/ 2, e, c, c, e, fs, e |/ 2, fs |/ 2, e, c]
+t1 = down _P4 motALyd ++ down _P4 (take 5 motALyd)
 
 t2 :: [Note Pitch]
 t2 = [c, b_, d_, c, b_, b_, d_]
