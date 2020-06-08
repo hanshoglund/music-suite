@@ -757,15 +757,15 @@ t6 =
 
 t7 :: Voice Pitch
 t7 =
-  (v [fs, e |/ 2, fs |/ 2, e, c, c, e, fs, e, fs, e, c, b_])
+  (v $ down _P4 motALyd ++ down _P4 (take 5 motALyd) ++ [ b_])
 
 t8 :: [Note Pitch]
 t8 =
-  [eb, db |/ 2, eb |/ 2, db, bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
+  -- TODO this is a not a lydian variant of motA but some other mode
+  take 4 (down _A5 motALyd) ++ [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
 
 t9 :: [Note Pitch]
-t9 =
-  [eb, db |/ 2, eb |/ 2, db, bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
+t9 = t8
 
 divModDur :: Duration -> Duration -> (Integer, Duration)
 divModDur x v = (n, r)
