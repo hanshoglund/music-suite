@@ -699,7 +699,11 @@ sketch =
     -- Restore!
     xx = id
 
--- TODO use these everywhere applicable
+-- Melodic ideas
+--
+-- All melody derived from falling motion (Urlinie-like)
+-- Main 3 motives: motA, motB and motC
+
 motALyd :: [Note Pitch]
 motALyd = concat [b, [a, b] |/ 2, a, f, f, a]
 
@@ -728,24 +732,32 @@ motCToI = [f, e, a, g, c' |* 4]
 
 motCVar = [e, d, g, f, d' |* 4]
 
--- TODO a variant of motA
+-- Variant of motA
 -- TODO "tie" first two notes (fuse does not work properly)
 subjA :: Voice Pitch
 subjA = ((cs' |* 4) <> v [e' |* 2, d', e' |/ 2, d' |/ 2, cs' |* 14] |/ 2)
 
+-- Variant of motA
 subjX :: Voice Pitch
 subjX = ((cs' |* 4) <> v [cs', d', cs', b, cs'] |* (4 / (5 * 2)) <> v [e' |* 2, d' |* 14] |/ 2)
 
 t1 :: [Note Pitch]
+-- From motA
 t1 = down _P4 motALyd ++ down _P4 (take 5 motALyd)
 
+t7 :: Voice Pitch
+t7 =
+  v $ t1 ++ [b_ |* 2]
+
 t2 :: [Note Pitch]
+-- From motC (loosely)
 t2 = [c |* 2, b_, d_, c, b_, b_, d_]
 
 t4 :: [Note Pitch]
+-- (Diatonic) seq built on falling motion (motA)
 t4 =
-  [f, eb, eb, db, db, c, c, db]
-    ++ [eb, db, db, c, c, bb_, bb_, c]
+       [f, eb, eb, db] ++ [db, c, c, db]
+    ++ [eb, db, db, c] ++ [c, bb_, bb_, c]
 
 t5 :: Voice Pitch
 t5 =
@@ -753,16 +765,16 @@ t5 =
   v $ concat [a, [g, e] |/ 2, e', d', a, g, g, d, a', g', g', d']
 
 t6 :: Voice Pitch
-t6 =
-  v [a, g, g, d, d, d', d', cs', b, e', e', d', d', cs', cs', b]
+t6 = v $
+    -- Variation on motB
+     [a, g, g, d]    ++ [d, d', d', cs']
+     -- Falling motion
+  ++ [b, e', e', d'] ++ [d', cs', cs', b]
 
-t7 :: Voice Pitch
-t7 =
-  v $ t1 ++ [b_ |* 2]
 
 t8 :: [Note Pitch]
 t8 =
-  -- TODO this is a not a lydian variant of motA but some other mode
+  -- TODO this is a not a lydian variant of motA but some other mode (mixolydian?)
   take 4 (down _A5 motALyd) ++ [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
 
 divModDur :: Duration -> Duration -> (Integer, Duration)
