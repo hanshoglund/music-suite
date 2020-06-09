@@ -535,28 +535,42 @@ section_B1 =
 section_C =
   -- C section
   [ section 71 $
-      Drones [f'', bb', eb'],
+      Line (Just [flutes]) (v $ _8va $ down _M2 motA)
+      -- TODO use inversion of motA: f',gb',f,bb',gb'...
+        <>
+      FlexDrones [f'', bb', eb'],
     section 71 $
-      Drones [f'', bb', eb', ab],
+      FlexDrones [f'', bb', eb', ab],
+
     section 72 $
-      Drones [f'', bb', eb', ab]
-        <> Drones [gb__],
+      FlexDrones [f'', bb', eb', ab]
+        <>
+      FlexDrones [gb__],
+
     section 73 $
-      Drones [eb',ab,ab__],
+      FlexDrones [eb',ab,ab__],
     section 74 $
-      Drones [bb_,ab_,db_,ab__],
+      FlexDrones [bb_,ab_,db_,ab__],
+
     section 75 $
-      Drones [a,d,g_,c_],
+      FlexDrones [a,d,g_,c_],
     section 76 $
-      Drones [a,d_,f__],
+      FlexDrones [a,d_,f__],
     section 77 $
-      Drones [bb,eb,gb_],
+      -- TODO factor out this line
+      Line (Just [flutes]) (_8va $ v [cb',bb,bb,eb])
+        <>
+      FlexDrones [bb,eb,gb_],
     section 78 $
-      Drones [cs,fs,b_,fs_],
+      Line Nothing (let m = [e,fs,fs,ds] in v (m ++ downDiatonic e 1 m))
+        <>
+      FlexDrones [cs,fs,b_,fs_],
     section 79 $
       Line Nothing (v [cs, b_, a_, fs_, gs_]),
     section 80 $
-      Drones [g', cs', fs, d, gs_]
+      -- TODO add fading gs_
+      Line Nothing (v $ up _P5 $ take 4 motA)
+      FlexDrones [g', cs', fs, d]
   ]
 
 section_B2 =
@@ -700,7 +714,7 @@ sketch =
   where
     -- TODO temporary cuts for preview purposes
     -- Restore!
-    xx = id
+    xx = cut
 
 -- Melodic ideas
 --
