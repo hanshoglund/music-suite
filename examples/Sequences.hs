@@ -570,6 +570,7 @@ section_C =
     section 80 $
       -- TODO add fading gs_
       Line Nothing (v $ up _P5 $ take 4 motA)
+        <>
       FlexDrones [g', cs', fs, d]
   ]
 
