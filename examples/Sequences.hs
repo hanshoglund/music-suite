@@ -700,7 +700,7 @@ sketch =
   where
     -- TODO temporary cuts for preview purposes
     -- Restore!
-    xx = cut
+    xx = id
 
 -- Melodic ideas
 --
