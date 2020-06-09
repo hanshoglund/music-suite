@@ -542,17 +542,17 @@ section_C =
       Drones [f'', bb', eb', ab]
         <> Drones [gb__],
     section 73 $
-      Drones [ab__],
+      Drones [eb',ab,ab__],
     section 74 $
-      Drones [ab__],
+      Drones [bb_,ab_,db_,ab__],
     section 75 $
-      Drones [c],
+      Drones [a,d,g_,c_],
     section 76 $
-      Drones [d],
+      Drones [a,d_,f__],
     section 77 $
-      Drones [fs],
+      Drones [bb,eb,gb_],
     section 78 $
-      Drones [fs],
+      Drones [cs,fs,b_,fs_],
     section 79 $
       Line Nothing (v [cs, b_, a_, fs_, gs_]),
     section 80 $
@@ -672,16 +672,19 @@ section_CODA =
     section 124 $
       Drones [d, g_, bb__],
     section 125 $
-      Drones [c__],
+      Drones $ stackFifths 7 c__,
     section 126 $
-      Drones [g__],
+      Drones $ stackFifths 7 g__,
     section 127 $
-      Drones [c__],
+      Drones $ stackFifths 7 c__,
     section 128 $
-      Drones [g__],
+      Drones $ stackFifths 7 g__,
     section 129 $
       Drones [fs', g', d'', a'']
   ]
+
+stackFifths :: Int -> Pitch -> [Pitch]
+stackFifths n p = take n $ [p,p .+^ _P5..]
 
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
@@ -690,14 +693,14 @@ sketch =
     <> xx section_A1
     <> xx section_A2B
     <> xx section_B1
-    <> xx section_C
+    <> section_C
     <> xx section_A1
-    <> section_B2
-    <> section_CODA
+    <> xx section_B2
+    <> xx section_CODA
   where
     -- TODO temporary cuts for preview purposes
     -- Restore!
-    xx = id
+    xx = cut
 
 -- Melodic ideas
 --
