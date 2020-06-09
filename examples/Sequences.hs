@@ -522,7 +522,7 @@ section_B1 =
     section 64 $
       FlexCanon [gs',fs']
         <>
-      FlexDrones [as'ds']
+      FlexDrones [as', ds']
         <>
       FlexDrones [bb, f, c_],
     section 64 $
