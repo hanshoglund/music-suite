@@ -42,17 +42,19 @@ music =
     $ fmap render
     $ fmap snd sketch
 
+-- TODO DEPRECATE Drones/Canon: Use FlexDrones/FlexCanons everywhere
 data Material v p
   = -- | Sustained throughout the section (long notes). Duration 4.
     Drones [p]
   | -- | Played in sequence througout the section as a multi-tempo canon. Duration 5.
     Canon [p]
-  | FlexDrones [p]
-  | -- TODO like Drones, but stretched to fit the duration of line material
+  | -- | Like Drones, but stretched to fit the duration of line material
+    FlexDrones [p]
+  | -- | Like Drones, but stretched to fit the duration of line material
+    FlexDronesI [Part] [p]
+  | -- | Like Canon, but stretched to fit the duration of line material
     FlexCanon [p]
-  | -- TODO like Canon, but stretched to fit the duration of line material
-
-    -- | A single melodic line
+  | -- | A single melodic line
     Line (Maybe [Part]) (Voice p)
   | -- | A single melodic line with a transformation
     LineT (Maybe [Part]) Span (Voice p)
@@ -80,7 +82,7 @@ instance Monoid (Material v p) where
 data Flex = Flex | NoFlex
 
 data MaterialG p
-  = DronesG Flex [p]
+  = DronesG Flex (Maybe [Part]) [p]
   | CanonG Flex [p]
   | LineG (Maybe [Part]) (Maybe Span) (Voice p)
   | LineHarmG [(Maybe [Part], Voice p, Maybe [Part], [p])]
@@ -90,9 +92,10 @@ renderMaterial = go
   where
     go Empty = []
     go (Sim x y) = go x ++ go y
-    go (Drones xs) = [DronesG NoFlex xs]
+    go (Drones xs) = [DronesG NoFlex Nothing xs]
     go (Canon xs) = [CanonG NoFlex xs]
-    go (FlexDrones xs) = [DronesG Flex xs]
+    go (FlexDrones xs) = [DronesG Flex Nothing xs]
+    go (FlexDronesI ps xs) = [DronesG Flex (Just ps) xs]
     go (FlexCanon xs) = [CanonG Flex xs]
     go (Line p v) = [LineG p Nothing v]
     go (LineT p t v) = [LineG p (Just t) v]
@@ -106,6 +109,7 @@ renderSimple (Drones xs) = renderHarmSimple xs
 renderSimple (Canon xs) =
   ppar $ fmap fromPitch xs
 renderSimple (FlexDrones xs) = renderSimple (Drones xs)
+renderSimple (FlexDronesI _parts xs) = renderSimple (Drones xs)
 renderSimple (FlexCanon xs) = renderSimple (Canon xs)
 renderSimple (Line _p xs) = renderMelSimple xs
 renderSimple (LineT _p _t xs) = renderMelSimple xs
@@ -152,12 +156,12 @@ render = go . renderMaterial
       let d = safeMax (fmap dur xs)
        in ppar $ fmap (renderAtDur d) xs
     renderAtDur :: Maybe Duration -> MaterialG Pitch -> Music
-    renderAtDur md (DronesG flex xs) =
+    renderAtDur md (DronesG flex parts xs) =
       let dur =
             case (md, flex) of
               (Just d, Flex) -> roundTo1 d
               _ -> 4
-       in set parts' violins
+       in doubleIn (maybe [violins] id parts)
             $ stretch dur
             $ renderHarm xs
     renderAtDur md (CanonG flex xs) =
@@ -192,7 +196,7 @@ render = go . renderMaterial
           )
           vs
     dur :: MaterialG a -> Maybe Duration
-    dur (DronesG _ _) = Nothing
+    dur (DronesG _ _ _) = Nothing
     dur (CanonG _ _) = Nothing
     dur (LineG _ mt v) = Just $ maybe id transform mt $ stretch (1 / 8) $ _duration v
     dur (LineHarmG vs) = Just $ sum $ fmap (stretch (1 / 8) . _duration . snd4) vs
@@ -514,19 +518,21 @@ section_B1 =
       FlexDrones [d,a]
         <>
       FlexDrones [f__, f___],
+
     -- TODO need more lines througout here to end of F drone
+    -- (see sketch)
     section 63 $
-      FlexDrones [bb, f, c_],
+      FlexDronesI [trombones] [bb, f, c_],
     section 63 $
-      FlexDrones [a, f, c_],
+      FlexDronesI [trombones] [a, f, c_],
     section 64 $
       FlexCanon [gs',fs']
         <>
       FlexDrones [as', ds']
         <>
-      FlexDrones [bb, f, c_],
+      FlexDronesI [trombones] [bb, f, c_],
     section 64 $
-      FlexDrones [a, f, c_],
+      FlexDronesI [trombones] [a, f, c_],
     -- TODO what's going on here?
     section 65 $
       Canon [d_, a_, e]
