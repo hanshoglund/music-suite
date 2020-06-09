@@ -504,20 +504,34 @@ section_B1 =
 
     section 62 $
       Line Nothing (down _P5 $ v motC)
-        <> FlexDrones [f__, f___],
+        <>
+      FlexDrones [f__, f___],
+    section 62 $
+      Line Nothing (down _P5 $ v motC)
+        <>
+      FlexCanon [e'',d'']
+        <>
+      FlexDrones [d,a]
+        <>
+      FlexDrones [f__, f___],
     -- TODO need more lines througout here to end of F drone
     section 63 $
       FlexDrones [bb, f, c_],
     section 63 $
       FlexDrones [a, f, c_],
     section 64 $
+      FlexCanon [gs',fs']
+        <>
+      FlexDrones [as'ds']
+        <>
       FlexDrones [bb, f, c_],
     section 64 $
       FlexDrones [a, f, c_],
     -- TODO what's going on here?
     section 65 $
       Canon [d_, a_, e]
-        <> FlexDrones [d, c_],
+        <>
+      FlexDrones [d, c_],
     section 66 $
       Line Nothing (down _P5 $ v motC)
         <> FlexDrones [f__, f___],
@@ -569,7 +583,7 @@ section_C =
       Line Nothing (v [cs, b_, a_, fs_, gs_]),
     section 80 $
       -- TODO add fading gs_
-      Line Nothing (v $ up _P5 $ take 4 motA)
+      Line Nothing (v $ up (_P8+_P5) $ take 4 motA)
         <>
       FlexDrones [g', cs', fs, d]
   ]
@@ -707,7 +721,7 @@ sketch =
     <> xx section_A2A
     <> xx section_A1
     <> xx section_A2B
-    <> xx section_B1
+    <> section_B1
     <> section_C
     <> xx section_A1
     <> xx section_B2
