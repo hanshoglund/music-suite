@@ -752,9 +752,11 @@ subjA = ((cs' |* 4) <> v [e' |* 2, d', e' |/ 2, d' |/ 2, cs' |* 14] |/ 2)
 subjX :: Voice Pitch
 subjX = ((cs' |* 4) <> v [cs', d', cs', b, cs'] |* (4 / (5 * 2)) <> v [e' |* 2, d' |* 14] |/ 2)
 
+
+
 t1 :: [Note Pitch]
 -- From motA
-t1 = down _P4 motALyd ++ down _P4 (take 5 motALyd)
+t1 = down _P4 (motALyd ++ take 5 motALyd)
 
 t7 :: Voice Pitch
 t7 =
@@ -770,6 +772,10 @@ t4 :: [Note Pitch]
 t4 =
        [f, eb, eb, db] ++ [db, c, c, db]
     ++ [eb, db, db, c] ++ [c, bb_, bb_, c]
+
+  -- downDiatonic db 1 [[eb,db,db,c],[c,bb_,bb_,c]]
+  -- downDiatonic db 2 [[db,c,c,bb_],[bb_,ab_,ab_,bb_]]
+  -- downDiatonic db 3 [[c,bb_,bb_,ab_],[ab_,gb_,gb_,ab_]]
 
 t5 :: Voice Pitch
 t5 =
