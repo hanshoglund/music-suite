@@ -740,7 +740,7 @@ t1 :: [Note Pitch]
 t1 = down _P4 motALyd ++ down _P4 (take 5 motALyd)
 
 t2 :: [Note Pitch]
-t2 = [c, b_, d_, c, b_, b_, d_]
+t2 = [c |* 2, b_, d_, c, b_, b_, d_]
 
 t4 :: [Note Pitch]
 t4 =
@@ -758,7 +758,7 @@ t6 =
 
 t7 :: Voice Pitch
 t7 =
-  v $ t1 ++ [b_]
+  v $ t1 ++ [b_ |* 2]
 
 t8 :: [Note Pitch]
 t8 =
