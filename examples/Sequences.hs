@@ -522,17 +522,17 @@ section_B1 =
     -- TODO need more lines througout here to end of F drone
     -- (see sketch)
     section 63 $
-      FlexDronesI [trombones] [bb, f, c_],
+      FlexDronesI [trombones] [bb_, f_, c_],
     section 63 $
-      FlexDronesI [trombones] [a, f, c_],
+      FlexDronesI [trombones] [a_, f_, c_],
     section 64 $
       FlexCanon [gs',fs']
         <>
       FlexDrones [as', ds']
         <>
-      FlexDronesI [trombones] [bb, f, c_],
+      FlexDronesI [trombones] [bb_, f_, c_],
     section 64 $
-      FlexDronesI [trombones] [a, f, c_],
+      FlexDronesI [trombones] [a_, f_, c_],
     -- TODO what's going on here?
     section 65 $
       Canon [d_, a_, e]
