@@ -703,12 +703,23 @@ sketch =
 --
 -- All melody derived from falling motion (Urlinie-like)
 -- Main 3 motives: motA, motB and motC
+--
+-- The 3 main motives all fit into a single P5 (or P4)
+-- Placement of tone/semitone gives them different modal flavors
+-- We can also alter them into WT versions
+--
+-- By forming sequences/concatentation we can build larger scales/spaces which
+-- are not necessarily octave-repeating (but may fit into a quartal harmonic field).
+-- In "development"/middle section harmony moves around quartal fields.
+--
+-- In beginning/"recap"/"coda" sections we are more "monotonal", fitting our fields
+-- around a few very long drones, giving the music a more stable/tonal feel.
 
 motALyd :: [Note Pitch]
-motALyd = concat [b, [a, b] |/ 2, a, f, f, a]
+motALyd = concat [b, [a, b] |/ 2, a, f] ++ [f, a]
 
 motA :: [Note Pitch]
-motA = concat [c, [b_, c] |/ 2, b_, g_, g_, a_, a_, b_] -- TODO etd
+motA = concat [c, [b_, c] |/ 2, b_, g_] ++ [g_, a_, a_, b_] -- TODO etd
 
 motB :: [Note Pitch]
 motB = [a, g, g, d]
@@ -751,7 +762,8 @@ t7 =
 
 t2 :: [Note Pitch]
 -- From motC (loosely)
-t2 = [c |* 2, b_, d_, c, b_, b_, d_]
+-- Also similar to motC starting with (-m2) insted of (-M2)
+t2 = [c |* 2, b_, d_] ++ [c, b_, b_, d_]
 
 t4 :: [Note Pitch]
 -- (Diatonic) seq built on falling motion (motA)
