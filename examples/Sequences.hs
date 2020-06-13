@@ -382,7 +382,7 @@ section_B1 =
           ),
     section 41 $
       FlexDrones [g, d', a']
-        <> Line (Just [cellos]) (t2),
+        <> Line (Just [cellos]) (ll t2),
     section 42 $
       FlexDrones [g, d', a']
         <> Line (Just [violas]) (ll t1),
@@ -792,7 +792,7 @@ t7 =
 t2 :: Voice Pitch
 -- From motC (loosely)
 -- Also similar to motC starting with (-m2) insted of (-M2)
-t2 = v [c |* 2, b_, d_] <> v [c, b_, b_, d_]
+t2 = ss $ v [c |* 2, b_, d_] <> v [c, b_, b_, d_]
 
 t4 :: Voice Pitch
 -- (Diatonic) seq built on falling motion (motA)
