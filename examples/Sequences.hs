@@ -402,7 +402,7 @@ section_B1 =
     -- TODO deduplicate!
     section 45 $ up m2 $
       (FlexDrones [g, d', a'])
-        <> (Line (Just [horns]) $ motALyd), -- TODO
+        <> (Line (Just [horns]) $ ll motALyd), -- TODO
 
     -- TODO transposed version of 42, deduplicate
     -- TODO deduplicate!
@@ -436,7 +436,7 @@ section_B1 =
         <> FlexDrones [cs', fs, b_, e_, a__],
     section 51 $
       FlexDrones [d', g, d, a__]
-        <> Line (Just [horns]) (up _M2 motALyd),
+        <> Line (Just [horns]) (up _M2 $ ll motALyd),
     section 52 $
       LineT Nothing mempty (up _M2 $ motB)
         <> FlexDrones [c', g],
@@ -444,7 +444,7 @@ section_B1 =
       up _P12 (Line (Just [ebClarinets]) $ motA) -- TODO longer
         <> FlexDrones [c, f, bb, d'],
     section 54 $
-      up _P4 (Line Nothing $ motALyd) -- TODO slightly longer
+      up _P4 (Line Nothing $ ll motALyd) -- TODO slightly longer
         <> FlexDrones [g, c, f_],
     -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
     -- still alternate at a pace unsynchronized with the main line
@@ -582,7 +582,7 @@ section_C =
 section_B2 =
   -- B2
   [ section 100 $
-      down _P4 (Line Nothing $ motALyd <> motALyd)
+      down _P4 (Line Nothing $ ll motALyd <> ll motALyd)
         <> FlexDrones ([a__, d_, g_, c]),
     section 101 $
       down _P4 (Line Nothing $ motA)
@@ -640,7 +640,7 @@ section_B2 =
       -- TODO line
       FlexDrones [fs, d, g_],
     section 111 $
-      Line Nothing (motALyd)
+      Line Nothing (ll motALyd)
         <> FlexDrones [f, c, g_],
     section 112 $
       Line Nothing (motC)
@@ -743,7 +743,7 @@ sketch =
 -- around a few very long drones, giving the music a more stable/tonal feel.
 
 motALyd :: Voice Pitch
-motALyd = v $ concat [b, [a, b] |/ 2, a, f] ++ [f, a]
+motALyd = ss $ v $ concat [b, [a, b] |/ 2, a, f] ++ [f, a]
 
 motA :: Voice Pitch
 motA = v $ concat [c, [b_, c] |/ 2, b_, g_] ++ [g_, a_, a_, b_] -- TODO etd
@@ -783,7 +783,7 @@ subjX = ((cs' |* 4) <> v [cs', d', cs', b, cs'] |* (4 / (5 * 2)) <> v [e' |* 2, 
 
 t1 :: Voice Pitch
 -- From motA
-t1 = ss $ down _P4 (motALyd <> takeV 5 motALyd)
+t1 = ss $ down _P4 (ll motALyd <> takeV 5 (ll motALyd))
 
 t7 :: Voice Pitch
 t7 =
@@ -822,7 +822,7 @@ t6 =
 t8 :: Voice Pitch
 t8 = ss $
   -- TODO this is a not a lydian variant of motA but some other mode (mixolydian?)
-  takeV 4 (down _A5 motALyd) <> v [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
+  takeV 4 (down _A5 $ ll  motALyd) <> v [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
 
 divModDur :: Duration -> Duration -> (Integer, Duration)
 divModDur x v = (n, r)
