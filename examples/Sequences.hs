@@ -394,7 +394,7 @@ section_B1 =
         <> Line
           (Just [oboes])
           ( _8va $
-              t4
+              ll t4
           ),
     -- TODO longer
 
@@ -496,7 +496,7 @@ section_B1 =
     section 58 $
       Line
         (Just [solo violin])
-        t5
+        (ll t5)
         <> FlexDrones [a, e, b_, f_],
     section 59 $
       Line (Just [trumpets]) (v $ concat [d, [e, d] |/ 2, g, f, e, d, g_, e_])
@@ -796,8 +796,7 @@ t2 = ss $ v [c |* 2, b_, d_] <> v [c, b_, b_, d_]
 
 t4 :: Voice Pitch
 -- (Diatonic) seq built on falling motion (motA)
-t4 =
-  v $
+t4 = ss $ v $
     [f, eb, eb, db] ++ [db, c, c, db]
       ++ [eb, db, db, c]
       ++ [c, bb_, bb_, c]
@@ -807,7 +806,7 @@ t4 =
 -- downDiatonic db 3 [[c,bb_,bb_,ab_],[ab_,gb_,gb_,ab_]]
 
 t5 :: Voice Pitch
-t5 =
+t5 = ss $
   -- Shares rhythmic structure with motA
   v $ concat [a, [g, e] |/ 2, e', d', a, g, g, d, a', g', g', d']
 
