@@ -606,7 +606,7 @@ section_B2 =
     section 103 $
       Line
         (Just [horns])
-        t6
+        (ll t6)
         -- TODO etc
         <> FlexDrones [g__, g___], -- TODO too short!
     section 104 $
@@ -812,7 +812,7 @@ t5 = ss $
 
 t6 :: Voice Pitch
 t6 =
-  v $
+  ss $ v $
     -- Variation on motB
     [a, g, g, d] ++ [d, d', d', cs']
       -- Falling motion
