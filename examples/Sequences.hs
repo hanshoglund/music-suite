@@ -233,20 +233,20 @@ section _ x = x
 
 section_A1 = pseqSnapToGrid $ fmap render
   [ section 1 $
-      Drones [fs', g', d'', a''],
+      FlexDrones [fs', g', d'', a''],
     section 2 $
-      Drones [fs', g', d'', a'']
+      FlexDrones [fs', g', d'', a'']
         <> Canon [b, cs'],
     section 3 $
       Canon [a'', g'', fs'', as, b, cs']
-        <> Drones [d'', g', fs'],
+        <> FlexDrones [d'', g', fs'],
     section 4 $
       Canon [a'', g'', fs'']
-        <> Drones [d'', g', fs']
+        <> FlexDrones [d'', g', fs']
         <> Canon [as, b, cs']
         <> Canon [e, fs],
     section 5 $
-      Drones [fs'']
+      FlexDrones [fs'']
         <> Drones [fs', cs', as, fs, b_]
         <> Line
           (Just [solo violin])
@@ -289,9 +289,9 @@ section_A2A = pseqSnapToGrid $ fmap (render)
     section 10 $
       -- TODO louder,
       below _P8 (Line Nothing (v [fs', e'] |* 8))
-        <> Drones [b, g, cs]
+        <> FlexDrones [b, g, cs]
         -- TODO missing (delayed) bassoon line
-        <> Drones [e__],
+        <> FlexDrones [e__],
     section 11 $ Drones [e__],
     -- TODO missing str WT material
 
