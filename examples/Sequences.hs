@@ -29,9 +29,7 @@ import Numeric.Natural
 --  * Single lines
 
 music :: Music
-music =
-    pseqSnapToGrid
-    $ sketch
+music = sketch
 
 main :: IO ()
 main = defaultMain music
@@ -233,7 +231,7 @@ section _ x = x
 --  Use renderSimple to get a grip of the harmony
 --  Make canons more melodic (non troppo), see $patDur
 
-section_A1 = fmap render
+section_A1 = pseqSnapToGrid $ fmap render
   [ section 1 $
       Drones [fs', g', d'', a''],
     section 2 $
@@ -278,7 +276,7 @@ section_A1 = fmap render
         <> Drones [b_, fs_, cs_]
   ]
 
-section_A2A = fmap (render)
+section_A2A = pseqSnapToGrid $ fmap (render)
   -- A2a
   [ section 9 $
       FlexCanon [a'', g'', fs'']
@@ -310,7 +308,7 @@ section_A2A = fmap (render)
     -- TODO missing canons (ff)
   ]
 
-section_A2B = fmap (render)
+section_A2B = pseqSnapToGrid $ fmap (render)
   -- TODO throughout: fs,gs vs f,g (WT around B vs quartal around B)
   [ section 24 $
       Drones [cs', fs, b_]
@@ -371,7 +369,7 @@ section_A2B = fmap (render)
     -- , section 40 $ Drones [b__,b___]
   ]
 
-section_B1 = fmap (render)
+section_B1 = pseqSnapToGrid $ fmap (render)
   -- B1 section
   [ section 41 $
       FlexDrones [g, d', a']
@@ -544,7 +542,7 @@ section_B1 = fmap (render)
       FlexDrones [f__, f___]
   ]
 
-section_C = fmap (render)
+section_C = pseqSnapToGrid $ fmap (render)
   -- C section
   [ section 71 $
       Line (Just [flutes]) (_8va $ down _M2 $ ll motA)
@@ -578,7 +576,7 @@ section_C = fmap (render)
         <> FlexDrones [g', cs', fs, d]
   ]
 
-section_B2 = fmap (render)
+section_B2 = pseqSnapToGrid $ fmap (render)
   -- B2
   [ section 100 $
       down _P4 (Line Nothing $ ll motALyd <> ll motALyd)
@@ -671,7 +669,7 @@ section_B2 = fmap (render)
         <> FlexDrones [g__]
   ]
 
-section_CODA = fmap (render)
+section_CODA = pseqSnapToGrid $ fmap (render)
   -- CODA
   [ section 120 $
       -- NOTE this is a var on motB using stacked thirds (alt minor/major, fitting into P5 stack)
@@ -709,17 +707,19 @@ section_CODA = fmap (render)
 stackFifths :: Int -> Pitch -> [Pitch]
 stackFifths n p = take n $ [p, p .+^ _P5 ..]
 
-sketch :: [Music]
-sketch =
+sketch :: Music
+sketch = pseqSnapToGrid
+  [
   xx section_A1
-    <> xx section_A2A
-    <> xx section_A1
-    <> xx section_A2B
-    <> section_B1
-    <> section_C
-    <> xx section_A1
-    <> xx section_B2
-    <> xx section_CODA
+    , xx section_A2A
+    , xx section_A1
+    , xx section_A2B
+    , section_B1
+    , section_C
+    , xx section_A1
+    , xx section_B2
+    , xx section_CODA
+    ]
   where
     -- TODO temporary cuts for preview purposes
     -- Restore!
