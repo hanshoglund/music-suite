@@ -416,7 +416,7 @@ section_B1 =
     section 47 $ up _M3 $
       _8va
         ( Line (Just [oboes]) $
-            t8
+            ll t8
         )
         <> FlexDrones [gb, c, f_],
     -- TODO deduplicate!
@@ -424,7 +424,7 @@ section_B1 =
       -- TODO fl+cl
       _8va
         ( Line (Just [flutes, clarinets]) $
-            t8
+            ll t8
         )
         <> FlexDrones [gb, c, f_, bb__],
     section 49 $
@@ -820,7 +820,7 @@ t6 =
       ++ [d', cs', cs', b]
 
 t8 :: Voice Pitch
-t8 =
+t8 = ss $
   -- TODO this is a not a lydian variant of motA but some other mode (mixolydian?)
   takeV 4 (down _A5 motALyd) <> v [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
 
