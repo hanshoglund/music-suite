@@ -31,7 +31,6 @@ import Numeric.Natural
 music :: Music
 music =
     pseqSnapToGrid
-    $ fmap (snd . fmap render)
     $ sketch
 
 main :: IO ()
@@ -223,8 +222,8 @@ ll = stretch 8
 -- TODO factor out this
 ss = compress 8
 
-section :: Natural -> Material v p -> (Natural, Material v p)
-section = (,)
+section :: Natural -> a -> a
+section _ x = x
 
 -- BIG TODOs
 --  Dynamics support
@@ -234,7 +233,7 @@ section = (,)
 --  Use renderSimple to get a grip of the harmony
 --  Make canons more melodic (non troppo), see $patDur
 
-section_A1 =
+section_A1 = fmap render
   [ section 1 $
       Drones [fs', g', d'', a''],
     section 2 $
@@ -279,7 +278,7 @@ section_A1 =
         <> Drones [b_, fs_, cs_]
   ]
 
-section_A2A =
+section_A2A = fmap (render)
   -- A2a
   [ section 9 $
       FlexCanon [a'', g'', fs'']
@@ -311,7 +310,7 @@ section_A2A =
     -- TODO missing canons (ff)
   ]
 
-section_A2B =
+section_A2B = fmap (render)
   -- TODO throughout: fs,gs vs f,g (WT around B vs quartal around B)
   [ section 24 $
       Drones [cs', fs, b_]
@@ -372,7 +371,7 @@ section_A2B =
     -- , section 40 $ Drones [b__,b___]
   ]
 
-section_B1 =
+section_B1 = fmap (render)
   -- B1 section
   [ section 41 $
       FlexDrones [g, d', a']
@@ -545,7 +544,7 @@ section_B1 =
       FlexDrones [f__, f___]
   ]
 
-section_C =
+section_C = fmap (render)
   -- C section
   [ section 71 $
       Line (Just [flutes]) (_8va $ down _M2 $ ll motA)
@@ -579,7 +578,7 @@ section_C =
         <> FlexDrones [g', cs', fs, d]
   ]
 
-section_B2 =
+section_B2 = fmap (render)
   -- B2
   [ section 100 $
       down _P4 (Line Nothing $ ll motALyd <> ll motALyd)
@@ -672,7 +671,7 @@ section_B2 =
         <> FlexDrones [g__]
   ]
 
-section_CODA =
+section_CODA = fmap (render)
   -- CODA
   [ section 120 $
       -- NOTE this is a var on motB using stacked thirds (alt minor/major, fitting into P5 stack)
@@ -710,7 +709,7 @@ section_CODA =
 stackFifths :: Int -> Pitch -> [Pitch]
 stackFifths n p = take n $ [p, p .+^ _P5 ..]
 
-sketch :: [(Natural, Material Interval Pitch)]
+sketch :: [Music]
 sketch =
   xx section_A1
     <> xx section_A2A
