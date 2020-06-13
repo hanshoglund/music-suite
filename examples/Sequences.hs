@@ -373,8 +373,7 @@ section_B1 =
       FlexDrones [g, d', a']
         <> Line
           (Just [violas])
-          (
-              t1
+          ( t1
           ),
     section 41 $
       FlexDrones [g, d', a']
@@ -390,7 +389,7 @@ section_B1 =
         <> Line
           (Just [oboes])
           ( _8va $
-                t4
+              t4
           ),
     -- TODO longer
 
@@ -412,7 +411,7 @@ section_B1 =
     section 47 $ up _M3 $
       _8va
         ( Line (Just [oboes]) $
-              t8
+            t8
         )
         <> FlexDrones [gb, c, f_],
     -- TODO deduplicate!
@@ -420,7 +419,7 @@ section_B1 =
       -- TODO fl+cl
       _8va
         ( Line (Just [flutes, clarinets]) $
-              t8
+            t8
         )
         <> FlexDrones [gb, c, f_, bb__],
     section 49 $
@@ -505,17 +504,12 @@ section_B1 =
 
     section 62 $
       Line Nothing (down _P5 $ motC)
-        <>
-      FlexDrones [f__, f___],
+        <> FlexDrones [f__, f___],
     section 62 $
       Line Nothing (down _P5 $ motC)
-        <>
-      FlexCanon [e'',d'']
-        <>
-      FlexDrones [d,a]
-        <>
-      FlexDrones [f__, f___],
-
+        <> FlexCanon [e'', d'']
+        <> FlexDrones [d, a]
+        <> FlexDrones [f__, f___],
     -- TODO need more lines througout here to end of F drone
     -- (see sketch)
     section 63 $
@@ -523,18 +517,15 @@ section_B1 =
     section 63 $
       FlexDronesI [trombones] [a_, f_, c_],
     section 64 $
-      FlexCanon [gs',fs']
-        <>
-      FlexDrones [as', ds']
-        <>
-      FlexDronesI [trombones] [bb_, f_, c_],
+      FlexCanon [gs', fs']
+        <> FlexDrones [as', ds']
+        <> FlexDronesI [trombones] [bb_, f_, c_],
     section 64 $
       FlexDronesI [trombones] [a_, f_, c_],
     -- TODO what's going on here?
     section 65 $
       Canon [d_, a_, e]
-        <>
-      FlexDrones [d, c_],
+        <> FlexDrones [d, c_],
     section 66 $
       Line Nothing (down _P5 $ motC)
         <> FlexDrones [f__, f___],
@@ -553,42 +544,34 @@ section_C =
   -- C section
   [ section 71 $
       Line (Just [flutes]) (_8va $ down _M2 motA)
-      -- TODO use inversion of motA: f',gb',f,bb',gb'...
-        <>
-      FlexDrones [f'', bb', eb'],
+        -- TODO use inversion of motA: f',gb',f,bb',gb'...
+        <> FlexDrones [f'', bb', eb'],
     section 71 $
       FlexDrones [f'', bb', eb', ab],
-
     section 72 $
       FlexDrones [f'', bb', eb', ab]
-        <>
-      FlexDrones [gb__],
-
+        <> FlexDrones [gb__],
     section 73 $
-      FlexDrones [eb',ab,ab__],
+      FlexDrones [eb', ab, ab__],
     section 74 $
-      FlexDrones [bb_,ab_,db_,ab__],
-
+      FlexDrones [bb_, ab_, db_, ab__],
     section 75 $
-      FlexDrones [a,d,g_,c_],
+      FlexDrones [a, d, g_, c_],
     section 76 $
-      FlexDrones [a,d_,f__],
+      FlexDrones [a, d_, f__],
     section 77 $
       -- TODO factor out this line
-      Line (Just [flutes]) (_8va $ v [cb',bb,bb,eb])
-        <>
-      FlexDrones [bb,eb,gb_],
+      Line (Just [flutes]) (_8va $ v [cb', bb, bb, eb])
+        <> FlexDrones [bb, eb, gb_],
     section 78 $
-      Line Nothing (let m = [e,fs,fs,ds] in v (m ++ downDiatonic e 1 m))
-        <>
-      FlexDrones [cs,fs,b_,fs_],
+      Line Nothing (let m = [e, fs, fs, ds] in v (m ++ downDiatonic e 1 m))
+        <> FlexDrones [cs, fs, b_, fs_],
     section 79 $
       Line Nothing (v [cs, b_, a_, fs_, gs_]),
     section 80 $
       -- TODO add fading gs_
-      Line Nothing (up (_P8+_P5) $ takeV 4 motA)
-        <>
-      FlexDrones [g', cs', fs, d]
+      Line Nothing (up (_P8 + _P5) $ takeV 4 motA)
+        <> FlexDrones [g', cs', fs, d]
   ]
 
 section_B2 =
@@ -703,20 +686,24 @@ section_CODA =
       Drones [d, g_, c_],
     section 124 $
       Drones [d, g_, bb__],
-    section 125 $
-      Drones $ stackFifths 7 c__,
-    section 126 $
-      Drones $ stackFifths 7 g__,
-    section 127 $
-      Drones $ stackFifths 7 c__,
-    section 128 $
-      Drones $ stackFifths 7 g__,
+    section 125
+      $ Drones
+      $ stackFifths 7 c__,
+    section 126
+      $ Drones
+      $ stackFifths 7 g__,
+    section 127
+      $ Drones
+      $ stackFifths 7 c__,
+    section 128
+      $ Drones
+      $ stackFifths 7 g__,
     section 129 $
       Drones [fs', g', d'', a'']
   ]
 
 stackFifths :: Int -> Pitch -> [Pitch]
-stackFifths n p = take n $ [p,p .+^ _P5..]
+stackFifths n p = take n $ [p, p .+^ _P5 ..]
 
 sketch :: [(Natural, Material Interval Pitch)]
 sketch =
@@ -789,8 +776,6 @@ subjA = ((cs' |* 4) <> v [e' |* 2, d', e' |/ 2, d' |/ 2, cs' |* 14] |/ 2)
 subjX :: Voice Pitch
 subjX = ((cs' |* 4) <> v [cs', d', cs', b, cs'] |* (4 / (5 * 2)) <> v [e' |* 2, d' |* 14] |/ 2)
 
-
-
 t1 :: Voice Pitch
 -- From motA
 t1 = down _P4 (motALyd <> takeV 5 motALyd)
@@ -806,13 +791,15 @@ t2 = v [c |* 2, b_, d_] <> v [c, b_, b_, d_]
 
 t4 :: Voice Pitch
 -- (Diatonic) seq built on falling motion (motA)
-t4 = v $
-       [f, eb, eb, db] ++ [db, c, c, db]
-    ++ [eb, db, db, c] ++ [c, bb_, bb_, c]
+t4 =
+  v $
+    [f, eb, eb, db] ++ [db, c, c, db]
+      ++ [eb, db, db, c]
+      ++ [c, bb_, bb_, c]
 
-  -- downDiatonic db 1 [[eb,db,db,c],[c,bb_,bb_,c]]
-  -- downDiatonic db 2 [[db,c,c,bb_],[bb_,ab_,ab_,bb_]]
-  -- downDiatonic db 3 [[c,bb_,bb_,ab_],[ab_,gb_,gb_,ab_]]
+-- downDiatonic db 1 [[eb,db,db,c],[c,bb_,bb_,c]]
+-- downDiatonic db 2 [[db,c,c,bb_],[bb_,ab_,ab_,bb_]]
+-- downDiatonic db 3 [[c,bb_,bb_,ab_],[ab_,gb_,gb_,ab_]]
 
 t5 :: Voice Pitch
 t5 =
@@ -820,12 +807,13 @@ t5 =
   v $ concat [a, [g, e] |/ 2, e', d', a, g, g, d, a', g', g', d']
 
 t6 :: Voice Pitch
-t6 = v $
+t6 =
+  v $
     -- Variation on motB
-     [a, g, g, d]    ++ [d, d', d', cs']
-     -- Falling motion
-  ++ [b, e', e', d'] ++ [d', cs', cs', b]
-
+    [a, g, g, d] ++ [d, d', d', cs']
+      -- Falling motion
+      ++ [b, e', e', d']
+      ++ [d', cs', cs', b]
 
 t8 :: Voice Pitch
 t8 =
