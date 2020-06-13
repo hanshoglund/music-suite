@@ -218,7 +218,9 @@ fromV = pseq . fmap (uncurry stretch) . fmap (view $ from note) . view (from voi
 v :: [Note Pitch] -> Voice Pitch
 v = view voice
 
+-- TODO factor out this
 ll = stretch 8
+-- TODO factor out this
 ss = compress 8
 
 section :: Natural -> Material v p -> (Natural, Material v p)
@@ -408,7 +410,7 @@ section_B1 =
       FlexDrones [g, d', a']
         <> Line
           (Just [bassoons])
-          t7,
+          (ll t7),
     -- TODO too abrupt
     -- TODO deduplicate!
     section 47 $ up _M3 $
@@ -785,7 +787,7 @@ t1 = ss $ down _P4 (motALyd <> takeV 5 motALyd)
 
 t7 :: Voice Pitch
 t7 =
-  ll t1 <> v [b_ |* 2]
+  t1 <> ss (v [b_ |* 2])
 
 t2 :: Voice Pitch
 -- From motC (loosely)
