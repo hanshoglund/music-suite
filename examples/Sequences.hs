@@ -21,7 +21,7 @@ import Numeric.Natural
 
 -- Working title "Sequences" (or "2020"?)
 --
--- TODO add harmony from 2 and 4 page sketch
+-- Harmony from 2 and 4 page sketch
 -- Render using only:
 --
 --  * Long notes
@@ -140,13 +140,14 @@ afterSnapToGrid x y = case _era x of
 pseqSnapToGrid :: (Transformable a, Monoid a, HasPosition a) => [a] -> a
 pseqSnapToGrid = foldr afterSnapToGrid mempty
 
+-- Global modifications
+-- Placed Here instead of at top-level so that we can more easily inspect sections
+globalMod :: Music -> Music
+globalMod = tempo (metronome (1 / 4 {- TODO working tempo, revert to 48 -}) 56)
+
 render :: Material Interval Pitch -> Music
 render = globalMod . go . renderMaterial
   where
-    -- Global modifications
-    -- Placed Here instead of at top-level so that we can more easily inspect sections
-    globalMod :: Music -> Music
-    globalMod = tempo (metronome (1 / 4 {- TODO working tempo, revert to 48 -}) 56)
     go :: [MaterialG Pitch] -> Music
     go xs =
       let d = safeMax (fmap dur xs)
