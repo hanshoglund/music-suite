@@ -343,7 +343,7 @@ section_A2B =
       Drones [b__, b___]
         <> Canon [g, fs, e],
     section 32 $
-      above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
+      above _P8 (Line Nothing (down m2 $ stretch 2 $ motC))
         <> Line (Just [horns]) (v [fs] |* 16)
         <> FlexDrones [b__, b___],
     section 34 $
@@ -352,7 +352,7 @@ section_A2B =
     -- 35 cut
 
     section 36 $
-      above _P8 (Line Nothing (down m2 $ stretch 2 $ v motC))
+      above _P8 (Line Nothing (down m2 $ stretch 2 $ motC))
         <> Line (Just [horns]) (v [fs, e] |* 16)
         <> FlexDrones [b__, b___],
     section 37 $
@@ -378,7 +378,7 @@ section_B1 =
           ),
     section 41 $
       FlexDrones [g, d', a']
-        <> Line (Just [cellos]) (v t2),
+        <> Line (Just [cellos]) (t2),
     section 42 $
       FlexDrones [g, d', a']
         <> Line (Just [violas]) (t1),
@@ -390,7 +390,6 @@ section_B1 =
         <> Line
           (Just [oboes])
           ( _8va $
-              v
                 t4
           ),
     -- TODO longer
@@ -435,7 +434,7 @@ section_B1 =
       FlexDrones [d', g, d, a__]
         <> Line (Just [horns]) (up _M2 motALyd),
     section 52 $
-      LineT Nothing mempty (up _M2 $ v motB)
+      LineT Nothing mempty (up _M2 $ motB)
         <> FlexDrones [c', g],
     section 53 $
       up _P12 (Line (Just [ebClarinets]) $ motA) -- TODO longer
@@ -449,16 +448,16 @@ section_B1 =
     -- Length of this section is OK but we need more variation, either from
     -- switching the sync or adding more layers
     section 55 $
-      Line Nothing (v motCToI <> _8va (v motCVar))
+      Line Nothing (motCToI <> _8va (motCVar))
         <> FlexDrones [c, f_, bb__],
     section 55 $
-      Line Nothing (v motCToI <> _8va (v motCVar))
+      Line Nothing (motCToI <> _8va (motCVar))
         <> FlexDrones [c, f_, a__],
     section 55 $
-      Line Nothing (v motCToI <> _8va (v motCVar))
+      Line Nothing (motCToI <> _8va (motCVar))
         <> FlexDrones [c, f_, bb__],
     section 55 $
-      Line Nothing (v motCToI <> _8va (v motCVar))
+      Line Nothing (motCToI <> _8va (motCVar))
         <> FlexDrones [c, f_, a__],
     section 56 $
       LineT Nothing (delaying (1 / 8)) (_8va $ v [e, a, e', e', d', fs', e'])
@@ -505,11 +504,11 @@ section_B1 =
     --  Drones [eb',bb,f]
 
     section 62 $
-      Line Nothing (down _P5 $ v motC)
+      Line Nothing (down _P5 $ motC)
         <>
       FlexDrones [f__, f___],
     section 62 $
-      Line Nothing (down _P5 $ v motC)
+      Line Nothing (down _P5 $ motC)
         <>
       FlexCanon [e'',d'']
         <>
@@ -537,12 +536,12 @@ section_B1 =
         <>
       FlexDrones [d, c_],
     section 66 $
-      Line Nothing (down _P5 $ v motC)
+      Line Nothing (down _P5 $ motC)
         <> FlexDrones [f__, f___],
     section 67 $
       FlexDrones [f__, f___],
     section 68 $
-      Line Nothing (down _P5 $ v motC)
+      Line Nothing (down _P5 $ motC)
         <> FlexDrones [f__, f___],
     section 69 $
       FlexDrones [f__, f___],
@@ -602,16 +601,16 @@ section_B2 =
         <> FlexDrones ([a__, d_, c]),
     -- TODO melodies of 102
     section 102 $
-      Line Nothing (up _M2 $ v motB)
+      Line Nothing (up _M2 $ motB)
         <> FlexDrones [g__, d_, g_, c],
     section 102 $
-      Line Nothing (up _M2 $ v motB)
+      Line Nothing (up _M2 $ motB)
         <> FlexDrones [a__, d_, g_, c],
     section 102 $
-      Line Nothing (up _M2 $ v motB)
+      Line Nothing (up _M2 $ motB)
         <> FlexDrones [g__, d_, g_, c],
     section 102 $
-      Line Nothing (up _M2 $ v motB)
+      Line Nothing (up _M2 $ motB)
         <> FlexDrones [a__, d_, g_, c],
     section 103 $
       LineHarm (motBLongHarm [horns] [cellos])
@@ -633,7 +632,7 @@ section_B2 =
       FlexDrones [d__, d___],
     section 107
       $ down m7
-      $ Line Nothing (v motCToV),
+      $ Line Nothing (motCToV),
     section 108 $
       -- TODO line
       FlexDrones [e', a],
@@ -656,32 +655,32 @@ section_B2 =
       Line Nothing (motALyd)
         <> FlexDrones [f, c, g_],
     section 112 $
-      Line Nothing (v motC)
+      Line Nothing (motC)
         <> FlexDrones [c_, c__],
     section 113 $
       -- TODO line
       FlexDrones [c_, c__],
     section 114 $
-      Line Nothing (v motC)
+      Line Nothing (motC)
         <> FlexDrones [c_, c__],
     section 115 $
-      LineHarm [(Nothing, v motB, Nothing, [d, bb_]), (Nothing, v [d', c', c', g], Nothing, [e])]
+      LineHarm [(Nothing, motB, Nothing, [d, bb_]), (Nothing, v [d', c', c', g], Nothing, [e])]
         <> FlexDrones [g__],
     section 116 $
-      LineHarm [(Nothing, v motB, Nothing, [d, bb_]), (Nothing, v [d', c', c', g], Nothing, [e])]
+      LineHarm [(Nothing, motB, Nothing, [d, bb_]), (Nothing, v [d', c', c', g], Nothing, [e])]
         <> FlexDrones [g__],
     section 117 $
       -- TODO line
       FlexDrones [g__],
     section 118 $
       LineHarm
-        [ (Nothing, up _P4 $ v motB, Nothing, [d, bb_]),
+        [ (Nothing, up _P4 $ motB, Nothing, [d, bb_]),
           (Nothing, mempty, Nothing, [e]),
           (Nothing, mempty, Nothing, [d])
         ]
         <> FlexDrones [g__],
     section 119 $
-      LineHarm [(Nothing, up _P4 $ v motB, Nothing, [e]), (Nothing, mempty, Nothing, [d]), (Nothing, mempty, Nothing, [e]), (Nothing, mempty, Nothing, [d])]
+      LineHarm [(Nothing, up _P4 $ motB, Nothing, [e]), (Nothing, mempty, Nothing, [d]), (Nothing, mempty, Nothing, [e]), (Nothing, mempty, Nothing, [d])]
         <> FlexDrones [g__]
   ]
 
@@ -757,11 +756,11 @@ motALyd = v $ concat [b, [a, b] |/ 2, a, f] ++ [f, a]
 motA :: Voice Pitch
 motA = v $ concat [c, [b_, c] |/ 2, b_, g_] ++ [g_, a_, a_, b_] -- TODO etd
 
-motB :: [Note Pitch]
-motB = [a, g, g, d]
+motB :: Voice Pitch
+motB = v [a, g, g, d]
 
-motBLong :: [Note Pitch]
-motBLong = [a, g, g, d, d', cs', cs', b] -- TODO etc
+motBLong :: Voice Pitch
+motBLong = v [a, g, g, d, d', cs', cs', b] -- TODO etc
 
 motBLongHarm :: [Part] -> [Part] -> [(Maybe [Part], Voice Pitch, Maybe [Part], [Pitch])]
 motBLongHarm melPart harmPart =
@@ -769,15 +768,17 @@ motBLongHarm melPart harmPart =
     (Just melPart, v [d', cs', cs', b], Just harmPart, [a, e]) -- TODO etc
   ]
 
-motC :: [Note Pitch]
-motC = [f, e, a, g, e' |* 4]
+motC :: Voice Pitch
+motC = v [f, e, a, g, e' |* 4]
 
-motCToV :: [Note Pitch]
-motCToV = [f, e, a, g, g' |* 4]
+motCToV :: Voice Pitch
+motCToV = v [f, e, a, g, g' |* 4]
 
-motCToI = [f, e, a, g, c' |* 4]
+motCToI :: Voice Pitch
+motCToI = v [f, e, a, g, c' |* 4]
 
-motCVar = [e, d, g, f, d' |* 4]
+motCVar :: Voice Pitch
+motCVar = v [e, d, g, f, d' |* 4]
 
 -- Variant of motA
 -- TODO "tie" first two notes (fuse does not work properly)
@@ -798,14 +799,14 @@ t7 :: Voice Pitch
 t7 =
   t1 <> v [b_ |* 2]
 
-t2 :: [Note Pitch]
+t2 :: Voice Pitch
 -- From motC (loosely)
 -- Also similar to motC starting with (-m2) insted of (-M2)
-t2 = [c |* 2, b_, d_] ++ [c, b_, b_, d_]
+t2 = v [c |* 2, b_, d_] <> v [c, b_, b_, d_]
 
-t4 :: [Note Pitch]
+t4 :: Voice Pitch
 -- (Diatonic) seq built on falling motion (motA)
-t4 =
+t4 = v $
        [f, eb, eb, db] ++ [db, c, c, db]
     ++ [eb, db, db, c] ++ [c, bb_, bb_, c]
 
