@@ -218,6 +218,9 @@ fromV = pseq . fmap (uncurry stretch) . fmap (view $ from note) . view (from voi
 v :: [Note Pitch] -> Voice Pitch
 v = view voice
 
+ll = stretch 8
+ss = compress 8
+
 section :: Natural -> Material v p -> (Natural, Material v p)
 section = (,)
 
@@ -373,14 +376,14 @@ section_B1 =
       FlexDrones [g, d', a']
         <> Line
           (Just [violas])
-          ( t1
+          ( ll t1
           ),
     section 41 $
       FlexDrones [g, d', a']
         <> Line (Just [cellos]) (t2),
     section 42 $
       FlexDrones [g, d', a']
-        <> Line (Just [violas]) (t1),
+        <> Line (Just [violas]) (ll t1),
     section 43 $
       FlexDrones [c'', f', bb]
         <> Line Nothing (up d5 $ motA), -- TODO long version of motA
@@ -778,11 +781,11 @@ subjX = ((cs' |* 4) <> v [cs', d', cs', b, cs'] |* (4 / (5 * 2)) <> v [e' |* 2, 
 
 t1 :: Voice Pitch
 -- From motA
-t1 = down _P4 (motALyd <> takeV 5 motALyd)
+t1 = ss $ down _P4 (motALyd <> takeV 5 motALyd)
 
 t7 :: Voice Pitch
 t7 =
-  t1 <> v [b_ |* 2]
+  ll t1 <> v [b_ |* 2]
 
 t2 :: Voice Pitch
 -- From motC (loosely)
