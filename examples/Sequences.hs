@@ -748,6 +748,9 @@ motALyd = ss $ v $ concat [b, [a, b] |/ 2, a, f] ++ [f, a]
 motA :: Voice Pitch
 motA = ss $ v $ concat [c, [b_, c] |/ 2, b_, g_] ++ [g_, a_, a_, b_] -- TODO etd
 
+motASeq =
+  motA <> motA <> motA
+
 motB :: Voice Pitch
 motB = v [a, g, g, d]
 
