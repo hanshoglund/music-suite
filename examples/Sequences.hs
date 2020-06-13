@@ -30,14 +30,9 @@ import Numeric.Natural
 
 music :: Music
 music =
-  -- TODO proper tempo
-  tempo (metronome (1 / 4 {- TODO working tempo, revert to 48 -}) 56)
-    $
-    -- TODO proper orchestration
-
     pseqSnapToGrid
-    $ fmap render
-    $ fmap snd sketch
+    $ fmap (snd . fmap render)
+    $ sketch
 
 main :: IO ()
 main = defaultMain music
@@ -149,8 +144,13 @@ pseqSnapToGrid :: (Transformable a, Monoid a, HasPosition a) => [a] -> a
 pseqSnapToGrid = foldr afterSnapToGrid mempty
 
 render :: Material Interval Pitch -> Music
-render = go . renderMaterial
+render = globalMod . go . renderMaterial
   where
+    -- Global modifications
+    -- Placed Here instead of at top-level so that we can more easily inspect sections
+    globalMod :: Music -> Music
+    globalMod = tempo (metronome (1 / 4 {- TODO working tempo, revert to 48 -}) 56)
+
     go :: [MaterialG Pitch] -> Music
     go xs =
       let d = safeMax (fmap dur xs)
