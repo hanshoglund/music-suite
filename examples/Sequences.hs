@@ -724,7 +724,7 @@ sketch =
   where
     -- TODO temporary cuts for preview purposes
     -- Restore!
-    xx = cut
+    xx = id
 
 -- Melodic ideas
 --
@@ -746,10 +746,16 @@ motALyd :: Voice Pitch
 motALyd = ss $ v $ concat [b, [a, b] |/ 2, a, f] ++ [f, a]
 
 motA :: Voice Pitch
-motA = ss $ v $ concat [c, [b_, c] |/ 2, b_, g_] ++ [g_, a_, a_, b_] -- TODO etd
+motA = motA' 2
 
-motASeq =
-  motA <> upDiatonic c 1 motA <> upDiatonic c 2 motA
+motA' :: Int -> Voice Pitch
+motA' n = ss $ p1
+    <> (mconcat $ take n [upDiatonic c n p2 | n <- [0..] ])
+  where
+    p1 = v $ concat [c, [b_, c] |/ 2, b_, g_]
+    p2 = v $
+      [g_, a_]
+
 
 motB :: Voice Pitch
 motB = v [a, g, g, d]
