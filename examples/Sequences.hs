@@ -327,12 +327,12 @@ section_A2B =
         <> Drones [b__, b___],
     section 29 $
       LineT Nothing (delaying 0) (up d5 $ subjX) -- TODO transpose?
-        <> LineT Nothing (delaying 1) (up d5 $ v motA) -- TODO transpose?
+        <> LineT Nothing (delaying 1) (up d5 $ motA) -- TODO transpose?
         <> Drones [cs']
         <> Drones [b__, b___],
     section 30 $
       LineT Nothing (delaying 0) (up d5 $ subjX) -- TODO transpose?
-        <> LineT Nothing (delaying 1) (up d5 $ v motA) -- TODO transpose?
+        <> LineT Nothing (delaying 1) (up d5 $ motA) -- TODO transpose?
         <> Drones [gs', cs']
         <> Drones [b__, b___],
     section 31 $
@@ -373,7 +373,7 @@ section_B1 =
       FlexDrones [g, d', a']
         <> Line
           (Just [violas])
-          ( v
+          (
               t1
           ),
     section 41 $
@@ -381,10 +381,10 @@ section_B1 =
         <> Line (Just [cellos]) (v t2),
     section 42 $
       FlexDrones [g, d', a']
-        <> Line (Just [violas]) (v t1),
+        <> Line (Just [violas]) (t1),
     section 43 $
       FlexDrones [c'', f', bb]
-        <> Line Nothing (up d5 $ v motA), -- TODO long version of motA
+        <> Line Nothing (up d5 $ motA), -- TODO long version of motA
     section 44 $
       FlexDrones [c'', f', bb]
         <> Line
@@ -399,7 +399,7 @@ section_B1 =
     -- TODO deduplicate!
     section 45 $ up m2 $
       (FlexDrones [g, d', a'])
-        <> (Line (Just [horns]) $ v $ motALyd ++ []), -- TODO
+        <> (Line (Just [horns]) $ motALyd), -- TODO
 
     -- TODO transposed version of 42, deduplicate
     -- TODO deduplicate!
@@ -413,7 +413,6 @@ section_B1 =
     section 47 $ up _M3 $
       _8va
         ( Line (Just [oboes]) $
-            v
               t8
         )
         <> FlexDrones [gb, c, f_],
@@ -422,7 +421,6 @@ section_B1 =
       -- TODO fl+cl
       _8va
         ( Line (Just [flutes, clarinets]) $
-            v
               t8
         )
         <> FlexDrones [gb, c, f_, bb__],
@@ -435,15 +433,15 @@ section_B1 =
         <> FlexDrones [cs', fs, b_, e_, a__],
     section 51 $
       FlexDrones [d', g, d, a__]
-        <> Line (Just [horns]) (up _M2 $ v motALyd),
+        <> Line (Just [horns]) (up _M2 motALyd),
     section 52 $
       LineT Nothing mempty (up _M2 $ v motB)
         <> FlexDrones [c', g],
     section 53 $
-      up _P12 (Line (Just [ebClarinets]) $ v motA) -- TODO longer
+      up _P12 (Line (Just [ebClarinets]) $ motA) -- TODO longer
         <> FlexDrones [c, f, bb, d'],
     section 54 $
-      up _P4 (Line Nothing $ v motALyd) -- TODO slightly longer
+      up _P4 (Line Nothing $ motALyd) -- TODO slightly longer
         <> FlexDrones [g, c, f_],
     -- TODO this the [bb,a] layer here should be *unison* (e.g. not a canon), but
     -- still alternate at a pace unsynchronized with the main line
@@ -555,7 +553,7 @@ section_B1 =
 section_C =
   -- C section
   [ section 71 $
-      Line (Just [flutes]) (v $ _8va $ down _M2 motA)
+      Line (Just [flutes]) (_8va $ down _M2 motA)
       -- TODO use inversion of motA: f',gb',f,bb',gb'...
         <>
       FlexDrones [f'', bb', eb'],
@@ -589,7 +587,7 @@ section_C =
       Line Nothing (v [cs, b_, a_, fs_, gs_]),
     section 80 $
       -- TODO add fading gs_
-      Line Nothing (v $ up (_P8+_P5) $ take 4 motA)
+      Line Nothing (up (_P8+_P5) $ takeV 4 motA)
         <>
       FlexDrones [g', cs', fs, d]
   ]
@@ -597,10 +595,10 @@ section_C =
 section_B2 =
   -- B2
   [ section 100 $
-      down _P4 (Line Nothing $ v $ motALyd ++ motALyd)
+      down _P4 (Line Nothing $ motALyd <> motALyd)
         <> FlexDrones ([a__, d_, g_, c]),
     section 101 $
-      down _P4 (Line Nothing $ v $ motA)
+      down _P4 (Line Nothing $ motA)
         <> FlexDrones ([a__, d_, c]),
     -- TODO melodies of 102
     section 102 $
@@ -655,7 +653,7 @@ section_B2 =
       -- TODO line
       FlexDrones [fs, d, g_],
     section 111 $
-      Line Nothing (v motALyd)
+      Line Nothing (motALyd)
         <> FlexDrones [f, c, g_],
     section 112 $
       Line Nothing (v motC)
@@ -753,11 +751,11 @@ sketch =
 -- In beginning/"recap"/"coda" sections we are more "monotonal", fitting our fields
 -- around a few very long drones, giving the music a more stable/tonal feel.
 
-motALyd :: [Note Pitch]
-motALyd = concat [b, [a, b] |/ 2, a, f] ++ [f, a]
+motALyd :: Voice Pitch
+motALyd = v $ concat [b, [a, b] |/ 2, a, f] ++ [f, a]
 
-motA :: [Note Pitch]
-motA = concat [c, [b_, c] |/ 2, b_, g_] ++ [g_, a_, a_, b_] -- TODO etd
+motA :: Voice Pitch
+motA = v $ concat [c, [b_, c] |/ 2, b_, g_] ++ [g_, a_, a_, b_] -- TODO etd
 
 motB :: [Note Pitch]
 motB = [a, g, g, d]
@@ -792,13 +790,13 @@ subjX = ((cs' |* 4) <> v [cs', d', cs', b, cs'] |* (4 / (5 * 2)) <> v [e' |* 2, 
 
 
 
-t1 :: [Note Pitch]
+t1 :: Voice Pitch
 -- From motA
-t1 = down _P4 (motALyd ++ take 5 motALyd)
+t1 = down _P4 (motALyd <> takeV 5 motALyd)
 
 t7 :: Voice Pitch
 t7 =
-  v $ t1 ++ [b_ |* 2]
+  t1 <> v [b_ |* 2]
 
 t2 :: [Note Pitch]
 -- From motC (loosely)
@@ -828,10 +826,10 @@ t6 = v $
   ++ [b, e', e', d'] ++ [d', cs', cs', b]
 
 
-t8 :: [Note Pitch]
+t8 :: Voice Pitch
 t8 =
   -- TODO this is a not a lydian variant of motA but some other mode (mixolydian?)
-  take 4 (down _A5 motALyd) ++ [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
+  takeV 4 (down _A5 motALyd) <> v [bb_, bb_, c, c, db, eb, db, c, f, eb, db, c, db]
 
 divModDur :: Duration -> Duration -> (Integer, Duration)
 divModDur x v = (n, r)
@@ -840,3 +838,5 @@ divModDur x v = (n, r)
     -- r follows from (v*^n ^+^ r = x)
     r = x ^-^ (v *^ fromIntegral n)
 {-# INLINE divModDur #-}
+
+takeV n = view (from notes) . take n . view notes
