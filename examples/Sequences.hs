@@ -28,9 +28,6 @@ import Numeric.Natural
 --  * multiTempoCanon (pattern version)
 --  * Single lines
 
-main :: IO ()
-main = defaultMain music
-
 music :: Music
 music =
   -- TODO proper tempo
@@ -41,6 +38,9 @@ music =
     pseqSnapToGrid
     $ fmap render
     $ fmap snd sketch
+
+main :: IO ()
+main = defaultMain music
 
 -- TODO DEPRECATE Drones/Canon: Use FlexDrones/FlexCanons everywhere
 data Material v p
