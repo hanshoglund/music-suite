@@ -328,7 +328,7 @@ section_A2A =
         section 14 $
           Line
               (Just [bassoons])
-              (_15vb subjX)
+              (_8vb subjX)
               <>
           FlexDrones [fs__]
       ]
