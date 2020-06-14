@@ -299,11 +299,18 @@ section_A2A =
             <> FlexDrones [b, g, cs]
             -- TODO missing (delayed) bassoon line
             <> FlexDrones [e__],
-        section 11 $ Drones [e__],
-        -- TODO missing str WT material
 
-        section 12 $ Drones [e__],
-        -- TODO missing str motives (mf, cresc.)
+        section 11 $
+          -- TODO turn into canon instead of line
+          Line Nothing (up _M6 motB)
+            <>
+          Drones [e__],
+
+
+        section 12 $
+          Line Nothing (up m3 motB)
+            <>
+          Drones [e__],
 
         section 13 $ Drones [fs__],
         -- TODO missing str canons (poco f)
