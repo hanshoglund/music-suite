@@ -319,7 +319,7 @@ section_A2A =
           FlexDrones [bb,e__],
 
         section 13 $
-          Line Nothing (up _M6 motB <> up _P4 motB)
+          Line Nothing (up _M6 motB <> up _P4 motB <> down m3 motB)
             <>
           FlexDrones [fs__]
         -- TODO 14/15
