@@ -304,13 +304,13 @@ section_A2A =
           -- TODO turn into canon instead of line
           Line Nothing (up _M6 motB)
             <>
-          Drones [e__],
+          FlexDrones [e__],
 
 
         section 12 $
-          Line Nothing (up m3 motB)
+          Line Nothing (up _P4 motB)
             <>
-          Drones [e__],
+          FlexDrones [e__],
 
         section 13 $ Drones [fs__],
         -- TODO missing str canons (poco f)
