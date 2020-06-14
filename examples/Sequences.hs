@@ -306,6 +306,8 @@ section_A2A =
             <>
           Line Nothing (stretch 4 $ up _M6 motB)
             <>
+          FlexDrones [b, g, cs]
+            <>
           FlexDrones [e__],
 
 
@@ -321,8 +323,14 @@ section_A2A =
         section 13 $
           Line Nothing (up _M6 motB <> up _P4 motB <> down m3 motB)
             <>
+          FlexDrones [fs__],
+
+        section 14 $
+          Line
+              (Just [tutti bassoons])
+              subjX
+              <>
           FlexDrones [fs__]
-        -- TODO 14/15
       ]
 
 section_A2B =
