@@ -310,12 +310,15 @@ section_A2A =
         section 12 $
           Line Nothing (up _P4 motB)
             <>
-          FlexDrones [e__],
+          FlexCanon [e,d,c]
+            <>
+          FlexDrones [bb,e__],
 
         section 13 $
           Line Nothing (up _M6 motB <> up _P4 motB)
             <>
           FlexDrones [fs__]
+        -- TODO 14/15
       ]
 
 section_A2B =
