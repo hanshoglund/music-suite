@@ -304,11 +304,15 @@ section_A2A =
           -- TODO turn into canon instead of line
           Line Nothing (up _M6 motB)
             <>
+          Line Nothing (stretch 4 $ up _M6 motB)
+            <>
           FlexDrones [e__],
 
 
         section 12 $
           Line Nothing (up _P4 motB)
+            <>
+          Line Nothing (stretch 4 $ up _P4 motB)
             <>
           FlexCanon [e,d,c]
             <>
