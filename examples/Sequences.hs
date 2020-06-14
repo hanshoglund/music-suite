@@ -312,14 +312,10 @@ section_A2A =
             <>
           FlexDrones [e__],
 
-        section 13 $ Drones [fs__],
-        -- TODO missing str canons (poco f)
-
-        section 14 $ Drones [fs__],
-        -- TODO missing canons (f)
-
-        section 15 $ Drones [fs__]
-        -- TODO missing canons (ff)
+        section 13 $
+          Line Nothing (up _M6 motB <> up _P4 motB)
+            <>
+          FlexDrones [fs__],
       ]
 
 section_A2B =
