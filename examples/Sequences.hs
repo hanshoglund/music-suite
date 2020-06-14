@@ -330,7 +330,7 @@ section_A2A =
               (Just [bassoons])
               (_8vb subjX)
               <>
-          FlexDrones [b, g, cs] -- TODO should be SLOW canon
+          FlexDrones [c', g, cs] -- TODO should be SLOW canon
               <>
           FlexDrones [fs__]
       ]
