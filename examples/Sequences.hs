@@ -315,7 +315,7 @@ section_A2A =
         section 13 $
           Line Nothing (up _M6 motB <> up _P4 motB)
             <>
-          FlexDrones [fs__],
+          FlexDrones [fs__]
       ]
 
 section_A2B =
